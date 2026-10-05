@@ -14,10 +14,10 @@ export default function DonatorPaymentPage() {
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse at 50% 40%, #0a1628 0%, #020617 60%)",
+              "radial-gradient(ellipse at 50% 40%, #0c0c0e 0%, #08080a 60%)",
           }}
         />
-        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-[#7c3aed]/8 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-[#e2600f]/8 rounded-full blur-[140px] pointer-events-none" />
 
         <DonationForm />
       </section>

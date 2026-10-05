@@ -35,7 +35,7 @@ export default function StarTooltip({
           }}
         >
           <div
-            className="flex items-center gap-3 px-4 py-3 rounded-xl border border-white/10 bg-[#07091a]/90 backdrop-blur-md shadow-lg"
+            className="flex items-center gap-3 px-4 py-3 rounded-lg border border-white/10 bg-[#0b0b0d]/90 backdrop-blur-md shadow-lg"
             style={{ minWidth: 180 }}
           >
             <div className="w-9 h-9 rounded-full overflow-hidden border border-white/20 flex-shrink-0">
@@ -46,7 +46,7 @@ export default function StarTooltip({
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <div className="w-full h-full bg-gradient-to-br from-[#2563eb] to-[#10b981] flex items-center justify-center">
+                <div className="w-full h-full bg-gradient-to-br from-[#ff7a29] to-[#e08b2e] flex items-center justify-center">
                   <svg
                     viewBox="0 0 24 24"
                     className="w-4 h-4 text-white fill-current"
@@ -59,14 +59,14 @@ export default function StarTooltip({
             <div>
               <p
                 className="text-white text-sm font-semibold leading-tight"
-                style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                style={{ fontFamily: "var(--font-body)" }}
               >
                 {name || "AstroSci Member"}
               </p>
               <p
                 className="text-xs mt-0.5"
                 style={{
-                  fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif",
+                  fontFamily: "var(--font-body)",
                   color: getPlanColor(membershipPlan),
                 }}
               >

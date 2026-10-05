@@ -2,18 +2,18 @@
 import { motion } from "framer-motion";
 
 const galleryItems = [
-  { title: "Orion Nebula", photographer: "Priya Sen", gradient: "radial-gradient(ellipse at 40% 50%, #1e40af 0%, #0c1e3d 40%, #020617 100%)", glow: "#3b82f6", tag: "Nebula" },
-  { title: "Andromeda Galaxy", photographer: "Arjun Bose", gradient: "radial-gradient(ellipse at 60% 40%, #065f46 0%, #022c22 50%, #020617 100%)", glow: "#34d399", tag: "Galaxy" },
-  { title: "Saturn Transit", photographer: "Sneha Das", gradient: "radial-gradient(ellipse at 50% 60%, #78350f 0%, #3b1a09 50%, #020617 100%)", glow: "#f59e0b", tag: "Planets" },
-  { title: "Milky Way Core", photographer: "Ravi Chatterjee", gradient: "radial-gradient(ellipse at 50% 40%, #1e3a5f 0%, #2d1b69 30%, #020617 80%)", glow: "#2563eb", tag: "Milky Way" },
-  { title: "Lunar Eclipse", photographer: "Mita Roy", gradient: "radial-gradient(ellipse at 45% 45%, #7f1d1d 0%, #450a0a 50%, #020617 100%)", glow: "#ef4444", tag: "Moon" },
-  { title: "Pleiades Cluster", photographer: "Dibya Ghosh", gradient: "radial-gradient(ellipse at 55% 40%, #164e63 0%, #0c4a6e 40%, #020617 100%)", glow: "#38bdf8", tag: "Star Cluster" },
+  { title: "Orion Nebula", photographer: "Priya Sen", gradient: "radial-gradient(ellipse at 40% 50%, #b8430a 0%, #17130f 40%, #08080a 100%)", glow: "#ff8f4d", tag: "Nebula" },
+  { title: "Andromeda Galaxy", photographer: "Arjun Bose", gradient: "radial-gradient(ellipse at 60% 40%, #5a3611 0%, #1a1207 50%, #08080a 100%)", glow: "#f0a461", tag: "Galaxy" },
+  { title: "Saturn Transit", photographer: "Sneha Das", gradient: "radial-gradient(ellipse at 50% 60%, #6b3a12 0%, #3b1a09 50%, #08080a 100%)", glow: "#ff9d3d", tag: "Planets" },
+  { title: "Milky Way Core", photographer: "Ravi Chatterjee", gradient: "radial-gradient(ellipse at 50% 40%, #241a12 0%, #3a1e0f 30%, #08080a 80%)", glow: "#ff7a29", tag: "Milky Way" },
+  { title: "Lunar Eclipse", photographer: "Mita Roy", gradient: "radial-gradient(ellipse at 45% 45%, #5b2318 0%, #2b1310 50%, #08080a 100%)", glow: "#e5533d", tag: "Moon" },
+  { title: "Pleiades Cluster", photographer: "Dibya Ghosh", gradient: "radial-gradient(ellipse at 55% 40%, #2a1c0e 0%, #2c1d0e 40%, #08080a 100%)", glow: "#ffb173", tag: "Star Cluster" },
 ];
 
 export default function GalleryPreview() {
   return (
-    <section id="gallery" className="py-24 px-6 relative overflow-hidden bg-[#020617]">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#38bdf8]/20 to-transparent" />
+    <section id="gallery" className="py-24 px-6 relative overflow-hidden bg-[#08080a]">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#ffb173]/20 to-transparent" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
@@ -24,16 +24,16 @@ export default function GalleryPreview() {
           className="flex flex-col md:flex-row items-start justify-between mb-12 gap-4"
         >
           <div>
-            <p className="text-xs tracking-[0.4em] text-[#38bdf8] mb-2 uppercase" style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}>
+            <p className="kicker mb-3" style={{ fontFamily: "var(--font-body)" }}>
               — Astrophotography —
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}>GALLERY PREVIEW</h2>
-            <p className="text-gray-500 text-sm mt-2" style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}>Shot by our members, from our campus</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: "var(--font-display)" }}>GALLERY PREVIEW</h2>
+            <p className="text-gray-500 text-sm mt-2" style={{ fontFamily: "var(--font-body)" }}>Shot by our members, from our campus</p>
           </div>
           <motion.a
             href="#gallery"
-            className="text-sm text-[#38bdf8] border-b border-[#38bdf8]/40 hover:border-[#38bdf8] transition-colors pb-1 whitespace-nowrap"
-            style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+            className="text-sm text-[#ffb173] border-b border-[#ffb173]/40 hover:border-[#ffb173] transition-colors pb-1 whitespace-nowrap"
+            style={{ fontFamily: "var(--font-body)" }}
             whileHover={{ x: 4 }}
           >
             Open Full Gallery →
@@ -49,7 +49,7 @@ export default function GalleryPreview() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
               whileHover={{ scale: 1.03, y: -4 }}
-              className="group relative rounded-xl overflow-hidden cursor-pointer border border-white/5 hover:border-white/20 transition-all duration-400"
+              className="group relative rounded-lg overflow-hidden cursor-pointer border border-white/5 hover:border-white/20 transition-all duration-400"
               style={{ aspectRatio: i === 0 || i === 3 ? "1/1" : "4/3" }}
             >
               <div className="w-full h-full relative" style={{ background: item.gradient }}>
@@ -73,16 +73,16 @@ export default function GalleryPreview() {
               </div>
 
               {/* Hover overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-[#020617]/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#08080a] via-[#08080a]/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
                 <div className="absolute bottom-0 left-0 right-0 p-4">
                   <div className="flex items-end justify-between">
                     <div>
-                      <p className="text-white font-bold text-sm" style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}>{item.title}</p>
-                      <p className="text-gray-400 text-xs mt-0.5" style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}>by {item.photographer}</p>
+                      <p className="text-white font-bold text-sm" style={{ fontFamily: "var(--font-display)" }}>{item.title}</p>
+                      <p className="text-gray-400 text-xs mt-0.5" style={{ fontFamily: "var(--font-body)" }}>by {item.photographer}</p>
                     </div>
                     <span
-                      className="text-xs px-2 py-0.5 rounded-full border"
-                      style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif", color: item.glow, borderColor: `${item.glow}40`, background: `${item.glow}15` }}
+                      className="text-xs px-2 py-0.5 rounded-sm border"
+                      style={{ fontFamily: "var(--font-body)", color: item.glow, borderColor: `${item.glow}40`, background: `${item.glow}15` }}
                     >
                       {item.tag}
                     </span>
@@ -93,8 +93,8 @@ export default function GalleryPreview() {
               {/* Static tag */}
               <div className="absolute top-3 right-3 opacity-100 group-hover:opacity-0 transition-opacity">
                 <span
-                  className="text-xs px-2 py-0.5 rounded-full border bg-black/40 backdrop-blur-sm"
-                  style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif", color: item.glow, borderColor: `${item.glow}30` }}
+                  className="text-xs px-2 py-0.5 rounded-sm border bg-black/40 backdrop-blur-sm"
+                  style={{ fontFamily: "var(--font-body)", color: item.glow, borderColor: `${item.glow}30` }}
                 >
                   {item.tag}
                 </span>
@@ -111,8 +111,8 @@ export default function GalleryPreview() {
           className="text-center mt-10"
         >
           <motion.button
-            className="px-6 py-3 sm:px-10 sm:py-4 rounded-full border border-[#38bdf8]/30 text-[#38bdf8] text-xs sm:text-sm font-medium hover:bg-[#38bdf8]/10 hover:border-[#38bdf8]/60 hover:shadow-[0_0_30px_rgba(56,189,248,0.2)] transition-all duration-300"
-            style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+            className="px-6 py-3 sm:px-10 sm:py-4 rounded-sm border border-[#ffb173]/30 text-[#ffb173] text-xs sm:text-sm font-medium hover:bg-[#ffb173]/10 hover:border-[#ffb173]/60 hover:shadow-[0_0_30px_rgba(255,177,115,0.2)] transition-all duration-300"
+            style={{ fontFamily: "var(--font-display)" }}
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
           >

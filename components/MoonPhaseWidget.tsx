@@ -78,7 +78,7 @@ function MoonVisual({ phaseRatio, size }: { phaseRatio: number; size: number }) 
       <div
         className="absolute inset-0 rounded-full"
         style={{
-          background: "radial-gradient(circle at 40% 35%, #e5e7eb 0%, #9ca3af 60%, #6b7280 100%)",
+          background: "radial-gradient(circle at 40% 35%, #ece7de 0%, #a49d91 60%, #736d63 100%)",
         }}
       />
       {/* Shadow overlay using SVG for accurate terminator */}
@@ -101,7 +101,7 @@ function MoonVisual({ phaseRatio, size }: { phaseRatio: number; size: number }) 
               cy={radius}
               rx={Math.abs(shadowX) * radius}
               ry={radius}
-              fill="#020617"
+              fill="#08080a"
               opacity={0.92}
               transform={shadowX < 0 ? `translate(${-radius + Math.abs(shadowX) * radius}, 0)` : undefined}
               style={shadowX >= 0 ? { transform: `translateX(${-radius + shadowX * radius}px)` } : undefined}
@@ -113,14 +113,14 @@ function MoonVisual({ phaseRatio, size }: { phaseRatio: number; size: number }) 
               cy={radius}
               rx={Math.abs(shadowX) * radius}
               ry={radius}
-              fill="#020617"
+              fill="#08080a"
               opacity={0.92}
               style={{ transform: `translateX(${radius - Math.abs(shadowX) * radius}px)` }}
             />
           )}
           {/* Near new moon, cover everything */}
           {illuminationFraction < 0.03 && (
-            <circle cx={radius} cy={radius} r={radius} fill="#020617" opacity={0.92} />
+            <circle cx={radius} cy={radius} r={radius} fill="#08080a" opacity={0.92} />
           )}
         </g>
       </svg>
@@ -128,9 +128,9 @@ function MoonVisual({ phaseRatio, size }: { phaseRatio: number; size: number }) 
       <div
         className="absolute inset-0 rounded-full opacity-20"
         style={{
-          background: `radial-gradient(circle at 30% 25%, transparent 0%, transparent 8%, rgba(107,114,128,0.3) 9%, transparent 10%),
-                       radial-gradient(circle at 60% 65%, transparent 0%, transparent 5%, rgba(107,114,128,0.2) 6%, transparent 7%),
-                       radial-gradient(circle at 45% 50%, transparent 0%, transparent 12%, rgba(107,114,128,0.15) 13%, transparent 14%)`,
+          background: `radial-gradient(circle at 30% 25%, transparent 0%, transparent 8%, rgba(115,109,99,0.3) 9%, transparent 10%),
+                       radial-gradient(circle at 60% 65%, transparent 0%, transparent 5%, rgba(115,109,99,0.2) 6%, transparent 7%),
+                       radial-gradient(circle at 45% 50%, transparent 0%, transparent 12%, rgba(115,109,99,0.15) 13%, transparent 14%)`,
         }}
       />
     </div>
@@ -146,10 +146,10 @@ export default function MoonPhaseWidget({ preview = false }: MoonPhaseWidgetProp
 
   if (!phaseData) {
     return (
-      <div className={`rounded-xl border border-[#1f2937] bg-[#0f172a] ${preview ? "p-4" : "p-6"} animate-pulse`}>
-        <div className="h-4 bg-[#1f2937] rounded w-1/3 mb-3" />
-        <div className="h-8 bg-[#1f2937] rounded w-1/2 mb-4" />
-        <div className={`${preview ? "h-16 w-16" : "h-32 w-32"} rounded-full bg-[#1f2937] mx-auto`} />
+      <div className={`rounded-xl border border-[#26231f] bg-[#121214] ${preview ? "p-4" : "p-6"} animate-pulse`}>
+        <div className="h-4 bg-[#26231f] rounded w-1/3 mb-3" />
+        <div className="h-8 bg-[#26231f] rounded w-1/2 mb-4" />
+        <div className={`${preview ? "h-16 w-16" : "h-32 w-32"} rounded-full bg-[#26231f] mx-auto`} />
       </div>
     );
   }
@@ -163,26 +163,26 @@ export default function MoonPhaseWidget({ preview = false }: MoonPhaseWidgetProp
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="rounded-xl border border-[#1f2937] bg-[#0f172a]/80 p-5 hover:border-[#38bdf8]/30 transition-all"
+        className="rounded-lg border border-[#26231f] bg-[#121214]/80 p-5 hover:border-[#ffb173]/30 transition-all"
       >
         <div className="flex items-center gap-4">
           <MoonVisual phaseRatio={phaseRatio} size={56} />
           <div className="flex-1 min-w-0">
             <p
-              className="text-xs tracking-[0.3em] text-[#38bdf8] mb-1 uppercase"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+              className="text-xs tracking-[0.3em] text-[#ffb173] mb-1 uppercase"
+              style={{ fontFamily: "var(--font-body)" }}
             >
               Moon Phase
             </p>
             <h3
               className="text-lg font-bold text-white truncate"
-              style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+              style={{ fontFamily: "var(--font-display)" }}
             >
               {phaseName}
             </h3>
             <p
-              className="text-sm text-[#e5e7eb]/70 mt-0.5"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+              className="text-sm text-[#ece7de]/70 mt-0.5"
+              style={{ fontFamily: "var(--font-body)" }}
             >
               {illumination}% illuminated
             </p>
@@ -198,17 +198,17 @@ export default function MoonPhaseWidget({ preview = false }: MoonPhaseWidgetProp
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.7 }}
-      className="rounded-xl border border-[#1f2937] bg-[#0f172a]/80 p-8"
+      className="rounded-lg border border-[#26231f] bg-[#121214]/80 p-8"
     >
       <p
-        className="text-xs tracking-[0.4em] text-[#38bdf8] mb-2 uppercase"
-        style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+        className="kicker mb-3"
+        style={{ fontFamily: "var(--font-body)" }}
       >
         — Current Moon Phase —
       </p>
       <h2
         className="text-2xl md:text-3xl font-bold text-white mb-8"
-        style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+        style={{ fontFamily: "var(--font-display)" }}
       >
         {phaseName}
       </h2>
@@ -220,46 +220,46 @@ export default function MoonPhaseWidget({ preview = false }: MoonPhaseWidgetProp
 
         <div className="flex-1 space-y-4">
           <div className="grid grid-cols-2 gap-4">
-            <div className="rounded-lg bg-[#020617]/60 border border-[#1f2937] p-4">
+            <div className="rounded-lg bg-[#08080a]/60 border border-[#26231f] p-4">
               <p
-                className="text-xs text-[#e5e7eb]/50 uppercase tracking-wider mb-1"
-                style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                className="text-xs text-[#ece7de]/50 uppercase tracking-wider mb-1"
+                style={{ fontFamily: "var(--font-body)" }}
               >
                 Illumination
               </p>
               <p
-                className="text-2xl font-bold text-[#38bdf8]"
-                style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+                className="text-2xl font-bold text-[#ffb173]"
+                style={{ fontFamily: "var(--font-display)" }}
               >
                 {illumination}%
               </p>
             </div>
-            <div className="rounded-lg bg-[#020617]/60 border border-[#1f2937] p-4">
+            <div className="rounded-lg bg-[#08080a]/60 border border-[#26231f] p-4">
               <p
-                className="text-xs text-[#e5e7eb]/50 uppercase tracking-wider mb-1"
-                style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                className="text-xs text-[#ece7de]/50 uppercase tracking-wider mb-1"
+                style={{ fontFamily: "var(--font-body)" }}
               >
                 Moon Age
               </p>
               <p
-                className="text-2xl font-bold text-[#38bdf8]"
-                style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+                className="text-2xl font-bold text-[#ffb173]"
+                style={{ fontFamily: "var(--font-display)" }}
               >
                 {moonAge}d
               </p>
             </div>
           </div>
 
-          <div className="rounded-lg bg-[#020617]/60 border border-[#1f2937] p-4">
+          <div className="rounded-lg bg-[#08080a]/60 border border-[#26231f] p-4">
             <p
-              className="text-xs text-[#e5e7eb]/50 uppercase tracking-wider mb-1"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+              className="text-xs text-[#ece7de]/50 uppercase tracking-wider mb-1"
+              style={{ fontFamily: "var(--font-body)" }}
             >
               Next Full Moon
             </p>
             <p
               className="text-lg font-semibold text-white"
-              style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+              style={{ fontFamily: "var(--font-display)" }}
             >
               {nextFullMoon.toLocaleDateString("en-US", {
                 weekday: "short",
@@ -272,19 +272,19 @@ export default function MoonPhaseWidget({ preview = false }: MoonPhaseWidgetProp
 
           {/* Illumination bar */}
           <div className="w-full">
-            <div className="flex justify-between text-xs text-[#e5e7eb]/40 mb-1"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+            <div className="flex justify-between text-xs text-[#ece7de]/40 mb-1"
+              style={{ fontFamily: "var(--font-body)" }}
             >
               <span>New</span>
               <span>Full</span>
             </div>
-            <div className="h-2 rounded-full bg-[#020617] border border-[#1f2937] overflow-hidden">
+            <div className="h-2 rounded-full bg-[#08080a] border border-[#26231f] overflow-hidden">
               <motion.div
                 initial={{ width: 0 }}
                 whileInView={{ width: `${illumination}%` }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, ease: "easeOut" }}
-                className="h-full rounded-full bg-gradient-to-r from-[#38bdf8]/60 to-[#38bdf8]"
+                className="h-full rounded-full bg-gradient-to-r from-[#ffb173]/60 to-[#ffb173]"
               />
             </div>
           </div>

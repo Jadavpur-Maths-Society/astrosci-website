@@ -5,9 +5,9 @@ import Link from "next/link";
 export default function JoinSection() {
   return (
     <section id="join" className="py-24 px-6 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[#020617]/80" />
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#2563eb]/40 to-transparent" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#2563eb]/8 rounded-full blur-[120px]" />
+      <div className="absolute inset-0 bg-[#08080a]/80" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#ff7a29]/40 to-transparent" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#ff7a29]/8 rounded-full blur-[120px]" />
 
       <div className="max-w-3xl mx-auto relative z-10 text-center">
         <motion.div
@@ -16,14 +16,14 @@ export default function JoinSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <p className="text-xs tracking-[0.4em] text-[#38bdf8] mb-4 uppercase" style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}>
+          <p className="text-xs tracking-[0.4em] text-[#ffb173] mb-4 uppercase" style={{ fontFamily: "var(--font-body)" }}>
             — Join Us —
           </p>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6" style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6" style={{ fontFamily: "var(--font-display)" }}>
             Become part of the<br />
-            <span className="bg-gradient-to-r from-[#2563eb] to-[#10b981] bg-clip-text text-transparent">AstroSci community</span>
+            <span className="text-[#ff7a29]">AstroSci community</span>
           </h2>
-          <p className="text-gray-400 text-base md:text-lg max-w-xl mx-auto mb-10 leading-relaxed" style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}>
+          <p className="text-gray-400 text-base md:text-lg max-w-xl mx-auto mb-10 leading-relaxed" style={{ fontFamily: "var(--font-body)" }}>
             Join a passionate group of astronomers, astrophotographers, and space enthusiasts.
             Attend stargazing events, contribute to our magazine, and explore the universe with us.
           </p>
@@ -37,8 +37,8 @@ export default function JoinSection() {
         >
           <Link href="/auth?tab=signup">
             <motion.span
-              className="inline-flex px-10 py-4 rounded-full bg-gradient-to-r from-[#2563eb] to-[#1d4ed8] text-white font-semibold text-sm tracking-wider shadow-[0_0_30px_rgba(37,99,235,0.4)] hover:shadow-[0_0_50px_rgba(37,99,235,0.7)] transition-all duration-300 cursor-pointer"
-              style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+              className="inline-flex px-10 py-4 rounded-sm bg-gradient-to-r from-[#ff7a29] to-[#e2600f] text-white font-semibold text-sm tracking-wider shadow-[0_0_30px_rgba(255,122,41,0.4)] hover:shadow-[0_0_50px_rgba(255,122,41,0.7)] transition-all duration-300 cursor-pointer"
+              style={{ fontFamily: "var(--font-display)" }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
             >

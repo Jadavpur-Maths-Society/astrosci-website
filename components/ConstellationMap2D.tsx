@@ -379,9 +379,9 @@ export default function ConstellationMap2D() {
 
       // background gradient
       const grad = ctx.createLinearGradient(0, 0, 0, H);
-      grad.addColorStop(0, "#020617");
-      grad.addColorStop(0.5, "#0a0f2e");
-      grad.addColorStop(1, "#020617");
+      grad.addColorStop(0, "#08080a");
+      grad.addColorStop(0.5, "#0f0e0d");
+      grad.addColorStop(1, "#08080a");
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, W, H);
 
@@ -441,7 +441,7 @@ export default function ConstellationMap2D() {
         tipTierEl.textContent =
           tierLabels[hoveredStar.user.tier] || "Member";
         tipTierEl.style.color =
-          tierColors[hoveredStar.user.tier] || "#94a3b8";
+          tierColors[hoveredStar.user.tier] || "#9a938a";
         tip.style.opacity = "1";
 
         let tx = s.mouseX + 16;
@@ -503,10 +503,10 @@ export default function ConstellationMap2D() {
           pointerEvents: "none",
           padding: "8px 14px",
           borderRadius: 8,
-          background: "rgba(7,9,26,0.88)",
+          background: "rgba(11,11,13,0.88)",
           border: "1px solid rgba(255,255,255,0.12)",
           backdropFilter: "blur(6px)",
-          color: "#e2e8f0",
+          color: "#e6e1d8",
           fontSize: 13,
           lineHeight: 1.45,
           opacity: 0,
@@ -516,7 +516,7 @@ export default function ConstellationMap2D() {
         }}
       >
         <div className="tip-name" style={{ fontWeight: 700, marginBottom: 2 }} />
-        <div className="tip-tier" style={{ fontSize: 11, color: "#94a3b8" }} />
+        <div className="tip-tier" style={{ fontSize: 11, color: "#9a938a" }} />
       </div>
     </div>
   );

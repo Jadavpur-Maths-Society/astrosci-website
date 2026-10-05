@@ -99,8 +99,8 @@ export default function AstronomyCalendar() {
 
   return (
     <section className="py-16 px-6 relative overflow-hidden">
-      <CometLine className="absolute top-0 left-0 right-0" color="#38bdf8" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-[#38bdf8]/3 rounded-full blur-[100px] astro-drift-a" />
+      <CometLine className="absolute top-0 left-0 right-0" color="#ffb173" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-[#ffb173]/3 rounded-full blur-[100px] astro-drift-a" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
@@ -111,20 +111,20 @@ export default function AstronomyCalendar() {
           className="mb-8"
         >
           <p
-            className="text-xs tracking-[0.4em] text-[#38bdf8] mb-2 uppercase"
-            style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+            className="kicker mb-3"
+            style={{ fontFamily: "var(--font-body)" }}
           >
             — Celestial Events —
           </p>
           <h2
-            className="text-2xl md:text-3xl font-bold text-white"
-            style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+            className="section-title leading-none"
+            style={{ fontFamily: "var(--font-display)" }}
           >
             ASTRONOMY CALENDAR
           </h2>
           <p
             className="text-gray-500 text-sm mt-1"
-            style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+            style={{ fontFamily: "var(--font-body)" }}
           >
             Events this month
           </p>
@@ -132,35 +132,35 @@ export default function AstronomyCalendar() {
 
         {loading ? (
           <>
-            <div className="rounded-2xl border border-[#38bdf8]/20 bg-[#07091a]/80 backdrop-blur-sm p-6 mb-8 animate-pulse">
+            <div className="rounded-lg border border-[#ffb173]/20 bg-[#0b0b0d]/80 backdrop-blur-sm p-6 mb-8 animate-pulse">
               <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-4">
                 <div className="w-full">
-                  <div className="h-3 bg-[#0f172a] rounded w-1/4 mb-2" />
-                  <div className="h-5 bg-[#0f172a] rounded w-1/2 mb-2" />
-                  <div className="h-3 bg-[#0f172a] rounded w-1/3" />
+                  <div className="h-3 bg-[#121214] rounded w-1/4 mb-2" />
+                  <div className="h-5 bg-[#121214] rounded w-1/2 mb-2" />
+                  <div className="h-3 bg-[#121214] rounded w-1/3" />
                 </div>
                 <div className="flex items-center gap-3">
                   {[...Array(4)].map((_, i) => (
-                    <div key={i} className="w-14 h-14 rounded-lg bg-[#0f172a]" />
+                    <div key={i} className="w-14 h-14 rounded-lg bg-[#121214]" />
                   ))}
                 </div>
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {[...Array(3)].map((_, i) => (
-                <div key={i} className="rounded-xl border border-white/10 bg-[#07091a]/60 p-5 animate-pulse">
-                  <div className="h-3 bg-[#0f172a] rounded w-1/3 mb-3" />
-                  <div className="h-4 bg-[#0f172a] rounded w-2/3 mb-2" />
-                  <div className="h-3 bg-[#0f172a] rounded w-full" />
+                <div key={i} className="rounded-lg border border-white/10 bg-[#0b0b0d]/60 p-5 animate-pulse">
+                  <div className="h-3 bg-[#121214] rounded w-1/3 mb-3" />
+                  <div className="h-4 bg-[#121214] rounded w-2/3 mb-2" />
+                  <div className="h-3 bg-[#121214] rounded w-full" />
                 </div>
               ))}
             </div>
           </>
         ) : events.length === 0 ? (
-          <div className="rounded-xl border border-white/10 bg-[#07091a]/60 py-16 text-center">
+          <div className="rounded-lg border border-white/10 bg-[#0b0b0d]/60 py-16 text-center">
             <p
               className="text-gray-500 text-sm"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+              style={{ fontFamily: "var(--font-body)" }}
             >
               No astronomical events this month — check back soon!
             </p>
@@ -174,28 +174,28 @@ export default function AstronomyCalendar() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="rounded-2xl border border-[#38bdf8]/20 bg-[#07091a]/80 backdrop-blur-sm p-6 mb-8"
+          className="rounded-lg border border-[#ffb173]/20 bg-[#0b0b0d]/80 backdrop-blur-sm p-6 mb-8"
         >
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-4">
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <span className="w-2 h-2 rounded-full bg-[#38bdf8] animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-[#ffb173] animate-pulse" />
                 <span
-                  className="text-[#38bdf8] text-xs tracking-widest uppercase"
-                  style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                  className="text-[#ffb173] text-xs tracking-widest uppercase"
+                  style={{ fontFamily: "var(--font-body)" }}
                 >
                   Next Astronomical Event
                 </span>
               </div>
               <h3
                 className="text-xl font-bold text-white"
-                style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+                style={{ fontFamily: "var(--font-display)" }}
               >
                 {nearestEvent.title}
               </h3>
               <p
                 className="text-gray-400 text-sm mt-1"
-                style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                style={{ fontFamily: "var(--font-body)" }}
               >
                 {nearestEvent.location}
               </p>
@@ -208,17 +208,17 @@ export default function AstronomyCalendar() {
                 { val: countdown.seconds, label: "S" },
               ].map((t) => (
                 <div key={t.label} className="text-center">
-                  <div className="w-14 h-14 rounded-lg bg-[#38bdf8]/10 border border-[#38bdf8]/30 flex items-center justify-center">
+                  <div className="w-14 h-14 rounded-lg bg-[#ffb173]/10 border border-[#ffb173]/30 flex items-center justify-center">
                     <span
                       className="text-xl font-bold text-white"
-                      style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+                      style={{ fontFamily: "var(--font-display)" }}
                     >
                       {String(t.val).padStart(2, "0")}
                     </span>
                   </div>
                   <span
                     className="text-[10px] text-gray-500 mt-1"
-                    style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                    style={{ fontFamily: "var(--font-body)" }}
                   >
                     {t.label}
                   </span>
@@ -239,11 +239,11 @@ export default function AstronomyCalendar() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               whileHover={{ y: -4 }}
-              className="rounded-xl border border-white/10 bg-[#07091a]/60 backdrop-blur-sm p-5 hover:border-[#38bdf8]/30 hover:shadow-[0_8px_36px_rgba(56,189,248,0.12)] transition-all"
+              className="rounded-lg border border-white/10 bg-[#0b0b0d]/60 backdrop-blur-sm p-5 hover:border-[#ffb173]/30 hover:shadow-[0_8px_36px_rgba(255,177,115,0.12)] transition-all"
             >
               <p
-                className="text-[#38bdf8] text-xs mb-2"
-                style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                className="text-[#ffb173] text-xs mb-2"
+                style={{ fontFamily: "var(--font-body)" }}
               >
                 {new Date(event.event_date).toLocaleDateString("en-IN", {
                   month: "short",
@@ -253,13 +253,13 @@ export default function AstronomyCalendar() {
               </p>
               <h4
                 className="text-white font-bold text-sm mb-1"
-                style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+                style={{ fontFamily: "var(--font-display)" }}
               >
                 {event.title}
               </h4>
               <p
                 className="text-gray-500 text-xs"
-                style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                style={{ fontFamily: "var(--font-body)" }}
               >
                 {event.description}
               </p>

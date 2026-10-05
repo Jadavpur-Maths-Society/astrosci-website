@@ -20,20 +20,20 @@ export default function AstronomyPage() {
             transition={{ duration: 0.7 }}
           >
             <p
-              className="text-xs tracking-[0.4em] text-[#38bdf8] mb-3 uppercase"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+              className="text-xs tracking-[0.4em] text-[#ffb173] mb-3 uppercase"
+              style={{ fontFamily: "var(--font-body)" }}
             >
               — Live Data —
             </p>
             <h1
-              className="text-3xl md:text-5xl font-bold text-white"
-              style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+              className="section-title leading-none"
+              style={{ fontFamily: "var(--font-display)" }}
             >
               ASTRONOMY TOOLS
             </h1>
             <p
-              className="text-[#e5e7eb]/60 mt-4 max-w-lg mx-auto"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+              className="text-[#ece7de]/60 mt-4 max-w-lg mx-auto"
+              style={{ fontFamily: "var(--font-body)" }}
             >
               Real-time celestial data, moon phases, and astronomical events — all in one place.
             </p>

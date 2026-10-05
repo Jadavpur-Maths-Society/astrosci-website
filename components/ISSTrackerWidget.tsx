@@ -54,12 +54,12 @@ function ISSMap({ latitude, longitude }: { latitude: number; longitude: number }
   const y = ((90 - latitude) / 180) * 100;
 
   return (
-    <div className="relative w-full rounded-lg overflow-hidden border border-[#1f2937]" style={{ aspectRatio: "2/1" }}>
+    <div className="relative w-full rounded-lg overflow-hidden border border-[#26231f]" style={{ aspectRatio: "2/1" }}>
       {/* Background gradient representing Earth */}
       <div
         className="absolute inset-0"
         style={{
-          background: "linear-gradient(180deg, #0c1929 0%, #0f2744 25%, #0a1e3a 50%, #0f2744 75%, #0c1929 100%)",
+          background: "linear-gradient(180deg, #12100e 0%, #1a1410 25%, #141210 50%, #1a1410 75%, #12100e 100%)",
         }}
       />
 
@@ -73,7 +73,7 @@ function ISSMap({ latitude, longitude }: { latitude: number; longitude: number }
             y1={90 - lat}
             x2={360}
             y2={90 - lat}
-            stroke="#1f2937"
+            stroke="#26231f"
             strokeWidth={lat === 0 ? 0.8 : 0.4}
             strokeDasharray={lat === 0 ? undefined : "4 4"}
           />
@@ -86,7 +86,7 @@ function ISSMap({ latitude, longitude }: { latitude: number; longitude: number }
             y1={0}
             x2={lon + 180}
             y2={180}
-            stroke="#1f2937"
+            stroke="#26231f"
             strokeWidth={lon === 0 ? 0.8 : 0.4}
             strokeDasharray={lon === 0 ? undefined : "4 4"}
           />
@@ -153,26 +153,26 @@ function ISSMap({ latitude, longitude }: { latitude: number; longitude: number }
       >
         {/* Pulsing ring */}
         <motion.div
-          className="absolute rounded-full border border-[#38bdf8]/50"
+          className="absolute rounded-full border border-[#ffb173]/50"
           style={{ width: 24, height: 24, top: -8, left: -8 }}
           animate={{ scale: [1, 2, 1], opacity: [0.6, 0, 0.6] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
         />
         {/* Dot */}
-        <div className="w-2 h-2 rounded-full bg-[#38bdf8] shadow-[0_0_8px_2px_rgba(56,189,248,0.6)]" />
+        <div className="w-2 h-2 rounded-full bg-[#ffb173] shadow-[0_0_8px_2px_rgba(255,177,115,0.6)]" />
       </motion.div>
 
       {/* Coordinate labels */}
-      <div className="absolute bottom-2 left-2 text-[10px] text-[#e5e7eb]/40" style={{ fontFamily: "'DM Mono', monospace" }}>
+      <div className="absolute bottom-2 left-2 text-[10px] text-[#ece7de]/40" style={{ fontFamily: "var(--font-mono)" }}>
         90°S
       </div>
-      <div className="absolute top-2 left-2 text-[10px] text-[#e5e7eb]/40" style={{ fontFamily: "'DM Mono', monospace" }}>
+      <div className="absolute top-2 left-2 text-[10px] text-[#ece7de]/40" style={{ fontFamily: "var(--font-mono)" }}>
         90°N
       </div>
-      <div className="absolute bottom-2 right-2 text-[10px] text-[#e5e7eb]/40" style={{ fontFamily: "'DM Mono', monospace" }}>
+      <div className="absolute bottom-2 right-2 text-[10px] text-[#ece7de]/40" style={{ fontFamily: "var(--font-mono)" }}>
         180°E
       </div>
-      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[10px] text-[#e5e7eb]/40" style={{ fontFamily: "'DM Mono', monospace" }}>
+      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[10px] text-[#ece7de]/40" style={{ fontFamily: "var(--font-mono)" }}>
         0°
       </div>
     </div>
@@ -203,26 +203,26 @@ export default function ISSTrackerWidget({ preview = false }: ISSTrackerWidgetPr
 
   if (loading) {
     return (
-      <div className={`rounded-xl border border-[#1f2937] bg-[#0f172a] ${preview ? "p-4" : "p-6"} animate-pulse`}>
-        <div className="h-4 bg-[#1f2937] rounded w-1/3 mb-3" />
-        <div className="h-6 bg-[#1f2937] rounded w-2/3 mb-4" />
-        {!preview && <div className="w-full bg-[#1f2937] rounded-lg" style={{ aspectRatio: "2/1" }} />}
+      <div className={`rounded-xl border border-[#26231f] bg-[#121214] ${preview ? "p-4" : "p-6"} animate-pulse`}>
+        <div className="h-4 bg-[#26231f] rounded w-1/3 mb-3" />
+        <div className="h-6 bg-[#26231f] rounded w-2/3 mb-4" />
+        {!preview && <div className="w-full bg-[#26231f] rounded-lg" style={{ aspectRatio: "2/1" }} />}
       </div>
     );
   }
 
   if (error && !position) {
     return (
-      <div className={`rounded-xl border border-[#1f2937] bg-[#0f172a] ${preview ? "p-4" : "p-6"}`}>
+      <div className={`rounded-xl border border-[#26231f] bg-[#121214] ${preview ? "p-4" : "p-6"}`}>
         <p
-          className="text-xs tracking-[0.3em] text-[#38bdf8] mb-1 uppercase"
-          style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+          className="text-xs tracking-[0.3em] text-[#ffb173] mb-1 uppercase"
+          style={{ fontFamily: "var(--font-body)" }}
         >
           ISS Tracker
         </p>
         <p
-          className="text-sm text-[#e5e7eb]/50"
-          style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+          className="text-sm text-[#ece7de]/50"
+          style={{ fontFamily: "var(--font-body)" }}
         >
           Unable to fetch ISS position. Retrying…
         </p>
@@ -239,40 +239,40 @@ export default function ISSTrackerWidget({ preview = false }: ISSTrackerWidgetPr
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="rounded-xl border border-[#1f2937] bg-[#0f172a]/80 p-5 hover:border-[#38bdf8]/30 transition-all"
+        className="rounded-lg border border-[#26231f] bg-[#121214]/80 p-5 hover:border-[#ffb173]/30 transition-all"
       >
         <div className="flex items-center gap-4">
           {/* Mini position indicator */}
-          <div className="relative flex-shrink-0 w-14 h-14 rounded-lg bg-[#020617]/60 border border-[#1f2937] flex items-center justify-center overflow-hidden">
+          <div className="relative flex-shrink-0 w-14 h-14 rounded-lg bg-[#08080a]/60 border border-[#26231f] flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0 opacity-30">
               {/* Mini grid */}
               <svg className="w-full h-full" viewBox="0 0 56 56">
-                <line x1={0} y1={28} x2={56} y2={28} stroke="#1f2937" strokeWidth={0.5} />
-                <line x1={28} y1={0} x2={28} y2={56} stroke="#1f2937" strokeWidth={0.5} />
+                <line x1={0} y1={28} x2={56} y2={28} stroke="#26231f" strokeWidth={0.5} />
+                <line x1={28} y1={0} x2={28} y2={56} stroke="#26231f" strokeWidth={0.5} />
               </svg>
             </div>
             <motion.div
-              className="w-2 h-2 rounded-full bg-[#10b981] shadow-[0_0_6px_2px_rgba(16,185,129,0.5)]"
+              className="w-2 h-2 rounded-full bg-[#e08b2e] shadow-[0_0_6px_2px_rgba(224,139,46,0.5)]"
               animate={{ scale: [1, 1.3, 1] }}
               transition={{ duration: 1.5, repeat: Infinity }}
             />
           </div>
           <div className="flex-1 min-w-0">
             <p
-              className="text-xs tracking-[0.3em] text-[#38bdf8] mb-1 uppercase"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+              className="text-xs tracking-[0.3em] text-[#ffb173] mb-1 uppercase"
+              style={{ fontFamily: "var(--font-body)" }}
             >
               ISS Location
             </p>
             <p
               className="text-sm font-semibold text-white"
-              style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+              style={{ fontFamily: "var(--font-display)" }}
             >
               {formatCoord(position.latitude, "N", "S")}
             </p>
             <p
-              className="text-sm text-[#e5e7eb]/70"
-              style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+              className="text-sm text-[#ece7de]/70"
+              style={{ fontFamily: "var(--font-display)" }}
             >
               {formatCoord(position.longitude, "E", "W")}
             </p>
@@ -288,32 +288,32 @@ export default function ISSTrackerWidget({ preview = false }: ISSTrackerWidgetPr
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.7 }}
-      className="rounded-xl border border-[#1f2937] bg-[#0f172a]/80 p-8"
+      className="rounded-lg border border-[#26231f] bg-[#121214]/80 p-8"
     >
       <div className="flex items-center justify-between mb-6">
         <div>
           <p
-            className="text-xs tracking-[0.4em] text-[#38bdf8] mb-2 uppercase"
-            style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+            className="kicker mb-3"
+            style={{ fontFamily: "var(--font-body)" }}
           >
             — International Space Station —
           </p>
           <h2
-            className="text-2xl md:text-3xl font-bold text-white"
-            style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+            className="section-title leading-none"
+            style={{ fontFamily: "var(--font-display)" }}
           >
             ISS TRACKER
           </h2>
         </div>
         <div className="flex items-center gap-2">
           <motion.div
-            className="w-2 h-2 rounded-full bg-[#10b981]"
+            className="w-2 h-2 rounded-full bg-[#e08b2e]"
             animate={{ opacity: [1, 0.3, 1] }}
             transition={{ duration: 1.5, repeat: Infinity }}
           />
           <span
-            className="text-xs text-[#10b981]"
-            style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+            className="text-xs text-[#e08b2e]"
+            style={{ fontFamily: "var(--font-body)" }}
           >
             LIVE
           </span>
@@ -323,58 +323,58 @@ export default function ISSTrackerWidget({ preview = false }: ISSTrackerWidgetPr
       <ISSMap latitude={position.latitude} longitude={position.longitude} />
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
-        <div className="rounded-lg bg-[#020617]/60 border border-[#1f2937] p-4">
+        <div className="rounded-lg bg-[#08080a]/60 border border-[#26231f] p-4">
           <p
-            className="text-xs text-[#e5e7eb]/50 uppercase tracking-wider mb-1"
-            style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+            className="text-xs text-[#ece7de]/50 uppercase tracking-wider mb-1"
+            style={{ fontFamily: "var(--font-body)" }}
           >
             Latitude
           </p>
           <p
             className="text-lg font-bold text-white"
-            style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+            style={{ fontFamily: "var(--font-display)" }}
           >
             {formatCoord(position.latitude, "N", "S")}
           </p>
         </div>
-        <div className="rounded-lg bg-[#020617]/60 border border-[#1f2937] p-4">
+        <div className="rounded-lg bg-[#08080a]/60 border border-[#26231f] p-4">
           <p
-            className="text-xs text-[#e5e7eb]/50 uppercase tracking-wider mb-1"
-            style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+            className="text-xs text-[#ece7de]/50 uppercase tracking-wider mb-1"
+            style={{ fontFamily: "var(--font-body)" }}
           >
             Longitude
           </p>
           <p
             className="text-lg font-bold text-white"
-            style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+            style={{ fontFamily: "var(--font-display)" }}
           >
             {formatCoord(position.longitude, "E", "W")}
           </p>
         </div>
-        <div className="rounded-lg bg-[#020617]/60 border border-[#1f2937] p-4">
+        <div className="rounded-lg bg-[#08080a]/60 border border-[#26231f] p-4">
           <p
-            className="text-xs text-[#e5e7eb]/50 uppercase tracking-wider mb-1"
-            style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+            className="text-xs text-[#ece7de]/50 uppercase tracking-wider mb-1"
+            style={{ fontFamily: "var(--font-body)" }}
           >
             Altitude
           </p>
           <p
             className="text-lg font-bold text-white"
-            style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+            style={{ fontFamily: "var(--font-display)" }}
           >
             {position.altitude.toFixed(1)} km
           </p>
         </div>
-        <div className="rounded-lg bg-[#020617]/60 border border-[#1f2937] p-4">
+        <div className="rounded-lg bg-[#08080a]/60 border border-[#26231f] p-4">
           <p
-            className="text-xs text-[#e5e7eb]/50 uppercase tracking-wider mb-1"
-            style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+            className="text-xs text-[#ece7de]/50 uppercase tracking-wider mb-1"
+            style={{ fontFamily: "var(--font-body)" }}
           >
             Velocity
           </p>
           <p
             className="text-lg font-bold text-white"
-            style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+            style={{ fontFamily: "var(--font-display)" }}
           >
             {position.velocity.toFixed(0)} km/h
           </p>
@@ -384,7 +384,7 @@ export default function ISSTrackerWidget({ preview = false }: ISSTrackerWidgetPr
       {error && (
         <p
           className="text-xs text-yellow-500/70 mt-4 text-center"
-          style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+          style={{ fontFamily: "var(--font-body)" }}
         >
           Connection issue — showing last known position
         </p>

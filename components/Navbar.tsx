@@ -1,8 +1,8 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
 import { supabase, isSupabaseConfigured } from "@/lib/supabaseClient";
 import { siteConfig } from "@/config/siteConfig";
 
@@ -18,7 +18,6 @@ const navItems = [
   { label: "Members", href: "/members" },
   { label: "Sponsors", href: "/sponsors" },
   { label: "Donators", href: "/donators" },
-  { label: "🚀 Recruit", href: "/recruitment", highlight: true },
 ];
 
 export default function Navbar() {
@@ -28,7 +27,8 @@ export default function Navbar() {
   const [profileImage, setProfileImage] = useState("");
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => setScrolled(window.scrollY > 16);
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -38,7 +38,9 @@ export default function Navbar() {
 
     async function checkAuth() {
       try {
-        const { data: { user } } = await supabase.auth.getUser();
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
         if (user) {
           setIsSignedIn(true);
           const { data } = await supabase
@@ -46,17 +48,17 @@ export default function Navbar() {
             .select("profile_image")
             .eq("id", user.id)
             .maybeSingle();
-          if (data?.profile_image) {
-            setProfileImage(data.profile_image);
-          }
+          if (data?.profile_image) setProfileImage(data.profile_image);
         }
       } catch {
-        // Auth check failed silently
+        // auth check failed silently
       }
     }
     checkAuth();
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
       setIsSignedIn(!!session?.user);
       if (!session?.user) setProfileImage("");
     });
@@ -66,228 +68,165 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      initial={{ y: -80, opacity: 0 }}
+      initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
         scrolled
-          ? "bg-[#020617]/80 backdrop-blur-xl border-b border-[#2563eb]/20 shadow-lg shadow-[#2563eb]/10"
-          : "bg-transparent"
+          ? "border-b border-white/10 bg-[#08080a]/88 backdrop-blur-xl"
+          : "border-b border-transparent bg-transparent"
       }`}
     >
-      {/* glowing hairline that slides in once the page is scrolled */}
-      <span
-        aria-hidden
-        className={`absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#38bdf8]/70 to-transparent transition-all duration-700 ${
-          scrolled ? "opacity-100 scale-x-100" : "opacity-0 scale-x-50"
-        }`}
-      />
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <motion.div className="flex items-center gap-3 cursor-pointer" whileHover={{ scale: 1.03 }}>
-          <span className="relative inline-block">
-            <Image src={siteConfig.assets.logo} alt={`${siteConfig.clubName} Logo`} width={36} height={36} className="h-9 w-9 relative z-10" />
-            {/* orbiting halo around the logo */}
-            <span
-              aria-hidden
-              className="absolute -inset-1.5 rounded-full border border-dashed border-[#38bdf8]/25 astro-spin-slow"
-            />
-            <span aria-hidden className="absolute -inset-1.5 astro-spin-slower">
-              <span className="absolute left-1/2 top-0 w-1 h-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#38bdf8] shadow-[0_0_6px_rgba(56,189,248,0.9)]" />
-            </span>
-          </span>
-          <div>
-            <span
-              className="font-bold text-lg tracking-wider bg-gradient-to-r from-[#2563eb] to-[#10b981] bg-clip-text text-transparent"
-              style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
-            >
+      <div className="mx-auto flex h-16 max-w-content items-center justify-between gap-6 px-6">
+        {/* wordmark */}
+        <Link href="/" className="group flex items-center gap-3" aria-label="AstroSci Club, home">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={siteConfig.assets.logo}
+            alt=""
+            width={26}
+            height={26}
+            className="h-[26px] w-[26px] object-contain opacity-90 transition-opacity group-hover:opacity-100"
+          />
+          <span className="flex flex-col leading-none">
+            <span className="font-display text-[0.95rem] font-semibold tracking-[-0.02em] text-[#f6f2ea]">
               ASTROSCI
             </span>
-            <p className="text-[10px] text-gray-400 tracking-widest -mt-1 uppercase" style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}>
-              {siteConfig.university}
-            </p>
-          </div>
-        </motion.div>
+            <span className="mono-data mt-0.5 text-[0.55rem] uppercase tracking-[0.26em] text-[#6a655c]">
+              Jadavpur University
+            </span>
+          </span>
+        </Link>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-1">
-          {navItems.map((item, i) =>
-            (item as { highlight?: boolean }).highlight ? (
-              <Link key={item.label} href={item.href}>
-                <motion.span
-                  className="relative px-4 py-2 text-sm font-semibold cursor-pointer group"
-                  style={{
-                    fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif",
-                    background: "linear-gradient(135deg,#a855f7,#ec4899)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                  }}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 * i + 0.3 }}
-                >
-                  {item.label}
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-[#a855f7] to-[#ec4899] group-hover:w-4/5 transition-all duration-300 rounded-full" />
-                </motion.span>
-              </Link>
-            ) : (
-              <Link key={item.label} href={item.href}>
-                <motion.span
-                  className="relative px-4 py-2 text-sm text-gray-300 hover:text-white transition-colors group cursor-pointer"
-                  style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 * i + 0.3 }}
-                >
-                  {item.label}
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-[#2563eb] to-[#10b981] group-hover:w-4/5 transition-all duration-300 rounded-full" />
-                </motion.span>
-              </Link>
-            )
-          )}
+        {/* desktop nav */}
+        <div className="hidden items-center xl:flex">
+          {navItems.map((item, i) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className="group relative px-2.5 py-2 text-[0.66rem] uppercase tracking-[0.16em] text-[#948d81] transition-colors hover:text-[#f6f2ea]"
+              style={{ fontFamily: "var(--font-mono)" }}
+            >
+              <span
+                aria-hidden
+                className="absolute inset-x-2.5 bottom-0.5 h-px origin-left scale-x-0 bg-[#ff7a29] transition-transform duration-300 group-hover:scale-x-100"
+                style={{ transitionDelay: `${Math.min(i, 6) * 12}ms` }}
+              />
+              {item.label}
+            </Link>
+          ))}
         </div>
 
-        {/* Right Buttons */}
-        <div className="hidden md:flex items-center gap-3">
+        {/* account cluster */}
+        <div className="hidden items-center gap-5 xl:flex">
           {isSignedIn ? (
-            <Link href="/profile">
-              <motion.div
-                className="relative w-10 h-10 rounded-full cursor-pointer group"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.8 }}
-              >
-                <div className="absolute -inset-0.5 rounded-full bg-gradient-to-br from-[#2563eb] to-[#10b981] opacity-60 group-hover:opacity-100 transition-opacity" />
-                <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-[#2563eb]/60">
-                  {profileImage ? (
-                    <img src={profileImage} alt="Profile" className="w-full h-full object-cover" />
-                  ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-[#2563eb] to-[#10b981] flex items-center justify-center">
-                      <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current">
-                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                      </svg>
-                    </div>
-                  )}
-                </div>
-              </motion.div>
+            <Link href="/profile" className="flex items-center gap-2.5" aria-label="Your profile">
+              <span className="mono-data text-[0.6rem] uppercase tracking-[0.22em] text-[#948d81] transition-colors hover:text-[#f6f2ea]">
+                Profile
+              </span>
+              <span className="relative block h-7 w-7 overflow-hidden rounded-full border border-white/15">
+                {profileImage ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={profileImage} alt="" className="h-full w-full object-cover" />
+                ) : (
+                  <span className="flex h-full w-full items-center justify-center bg-[#171614]">
+                    <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-[#948d81]" aria-hidden>
+                      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                    </svg>
+                  </span>
+                )}
+              </span>
             </Link>
           ) : (
-            <>
-              <Link href="/auth">
-                <motion.span
-                  className="flex items-center gap-2 px-5 py-2 rounded-full text-sm font-medium border border-[#2563eb]/60 text-[#38bdf8] hover:bg-[#2563eb]/20 hover:border-[#2563eb] hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] transition-all duration-300 cursor-pointer"
-                  style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.97 }}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.8 }}
-                >
-                  <span className="w-2 h-2 rounded-full bg-[#38bdf8] animate-pulse" />
-                  Login
-                </motion.span>
-              </Link>
-              <Link href="/auth?tab=signup">
-                <motion.span
-                  className="inline-flex px-5 py-2 rounded-full text-sm font-medium bg-gradient-to-r from-[#2563eb] to-[#1d4ed8] text-white shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_30px_rgba(37,99,235,0.5)] transition-all duration-300 cursor-pointer"
-                  style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.97 }}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.9 }}
-                >
-                  Join Now
-                </motion.span>
-              </Link>
-            </>
+            <Link
+              href="/auth"
+              className="text-[0.66rem] uppercase tracking-[0.18em] text-[#948d81] transition-colors hover:text-[#f6f2ea]"
+              style={{ fontFamily: "var(--font-mono)" }}
+            >
+              Log in
+            </Link>
           )}
+          <Link
+            href="/recruitment"
+            className="border border-[#ff7a29] bg-[#ff7a29] px-4 py-2 text-[0.64rem] uppercase tracking-[0.18em] text-[#17110b] transition-colors hover:border-[#ffb173] hover:bg-[#ffb173]"
+            style={{ fontFamily: "var(--font-mono)" }}
+          >
+            Recruiting
+          </Link>
         </div>
 
-        {/* Hamburger */}
-        <button className="md:hidden text-white p-2" onClick={() => setMenuOpen(!menuOpen)}>
-          <div className="flex flex-col gap-1.5">
-            <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
-            <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
-            <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
-          </div>
+        {/* mobile toggle */}
+        <button
+          type="button"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          className="flex h-9 w-9 flex-col items-center justify-center gap-[5px] border border-white/10 xl:hidden"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          <span
+            className={`block h-px w-4 bg-[#f6f2ea] transition-transform duration-300 ${
+              menuOpen ? "translate-y-[3px] rotate-45" : ""
+            }`}
+          />
+          <span
+            className={`block h-px w-4 bg-[#f6f2ea] transition-transform duration-300 ${
+              menuOpen ? "-translate-y-[3px] -rotate-45" : ""
+            }`}
+          />
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* mobile panel */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-[#020617]/95 backdrop-blur-xl border-t border-[#2563eb]/20 px-6 pb-4"
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden border-t border-white/10 bg-[#08080a]/97 backdrop-blur-xl xl:hidden"
           >
-            {navItems.map((item) =>
-              (item as { highlight?: boolean }).highlight ? (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  className="block mt-3 mb-1"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  <span
-                    className="inline-block w-full text-center py-2.5 rounded-full text-sm font-semibold text-white"
-                    style={{
-                      fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif",
-                      background: "linear-gradient(135deg,#4f46e5,#a855f7,#ec4899)",
-                    }}
+            <div className="mx-auto max-w-content px-6 py-4">
+              <div className="grid grid-cols-2 gap-x-6">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="border-b border-white/[0.06] py-3 text-[0.7rem] uppercase tracking-[0.18em] text-[#b9b3a7] transition-colors hover:text-[#ffb173]"
+                    style={{ fontFamily: "var(--font-mono)" }}
                   >
                     {item.label}
-                  </span>
-                </Link>
-              ) : (
+                  </Link>
+                ))}
+              </div>
+              <div className="mt-5 flex items-center gap-3">
+                {isSignedIn ? (
+                  <Link
+                    href="/profile"
+                    onClick={() => setMenuOpen(false)}
+                    className="btn-quiet flex-1 justify-center"
+                  >
+                    Your profile
+                  </Link>
+                ) : (
+                  <Link
+                    href="/auth"
+                    onClick={() => setMenuOpen(false)}
+                    className="btn-quiet flex-1 justify-center"
+                  >
+                    Log in
+                  </Link>
+                )}
                 <Link
-                  key={item.label}
-                  href={item.href}
-                  className="block py-3 text-gray-300 hover:text-[#38bdf8] border-b border-white/5 text-sm tracking-wider"
-                  style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                  href="/recruitment"
                   onClick={() => setMenuOpen(false)}
+                  className="btn-ember flex-1 justify-center"
                 >
-                  {item.label}
+                  Recruiting
                 </Link>
-              )
-            )}
-            {isSignedIn ? (
-              <Link href="/profile" className="block mt-4" onClick={() => setMenuOpen(false)}>
-                <span
-                  className="flex items-center justify-center gap-2 w-full py-2 rounded-full border border-[#2563eb]/60 text-[#38bdf8] text-sm"
-                  style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
-                >
-                  <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current" aria-hidden="true">
-                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                  </svg>
-                  My Profile
-                </span>
-              </Link>
-            ) : (
-              <>
-                <Link href="/auth" className="block mt-4">
-                  <span
-                    className="block w-full py-2 rounded-full border border-[#2563eb]/60 text-[#38bdf8] text-sm text-center"
-                    style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
-                  >
-                    Login
-                  </span>
-                </Link>
-                <Link href="/auth?tab=signup" className="block mt-2">
-                  <span
-                    className="block w-full py-2 rounded-full bg-gradient-to-r from-[#2563eb] to-[#1d4ed8] text-white text-sm text-center"
-                    style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
-                  >
-                    Join Now
-                  </span>
-                </Link>
-              </>
-            )}
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

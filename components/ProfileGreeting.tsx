@@ -1,4 +1,5 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -39,7 +40,9 @@ export default function ProfileGreeting() {
             setUserName(data.name || "Explorer");
             setProfileImage(data.profile_image || "");
           } else {
-            setUserName(user.user_metadata?.name || user.user_metadata?.full_name || "Explorer");
+            setUserName(
+              user.user_metadata?.name || user.user_metadata?.full_name || "Explorer"
+            );
           }
         } else {
           setUserName("Explorer");
@@ -54,58 +57,49 @@ export default function ProfileGreeting() {
 
   return (
     <motion.section
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      className="pt-28 pb-8 px-6"
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      className="px-6 pt-24 pb-10"
     >
-      <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
-        <Link href="/profile">
-          <motion.div
-            className="relative w-36 h-36 rounded-full cursor-pointer group"
-            whileHover={{ scale: 1.08 }}
-          >
-            <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-[#2563eb] to-[#10b981] opacity-60 blur-sm group-hover:opacity-100 transition-opacity" />
-            {/* rotating comet-tail halo */}
-            <div className="absolute -inset-2 rounded-full astro-ring opacity-80" aria-hidden />
-            {/* tiny satellite orbiting the avatar */}
-            <span className="absolute -inset-3 astro-spin-slow" aria-hidden>
-              <span className="absolute left-1/2 top-0 w-1.5 h-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#a5f3fc] shadow-[0_0_8px_rgba(165,243,252,0.9)]" />
+      <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
+        <Link href="/profile" className="group" aria-label="Open your profile">
+          <span className="relative block h-24 w-24">
+            {/* hairline ring */}
+            <span
+              aria-hidden
+              className="absolute inset-0 rounded-full border border-white/15 transition-colors duration-300 group-hover:border-[#ff7a29]/60"
+            />
+            {/* rotating tick on the ring */}
+            <span aria-hidden className="absolute -inset-2 astro-spin-slower">
+              <span className="absolute left-1/2 top-0 h-[3px] w-[3px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ffb173]" />
             </span>
-            <div className="relative w-36 h-36 rounded-full overflow-hidden border-2 border-purple-500 shadow-lg">
+            <span className="absolute inset-[3px] flex items-center justify-center overflow-hidden rounded-full bg-[#121214]">
               {profileImage ? (
+                // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={profileImage}
-                  alt="Profile"
-                  className="w-full h-full object-cover"
+                  alt=""
+                  className="h-full w-full object-cover"
                 />
               ) : (
-                <div className="w-full h-full bg-gradient-to-br from-[#2563eb] to-[#10b981] flex items-center justify-center">
-                  <svg viewBox="0 0 24 24" className="w-14 h-14 text-white fill-current">
-                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                  </svg>
-                </div>
+                <svg viewBox="0 0 24 24" className="h-10 w-10 fill-[#585349]" aria-hidden>
+                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                </svg>
               )}
-            </div>
-          </motion.div>
+            </span>
+          </span>
         </Link>
+
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="mt-4"
+          transition={{ delay: 0.25, duration: 0.6 }}
+          className="mt-5"
         >
-          <p
-            className="text-xs tracking-[0.3em] text-[#38bdf8] uppercase mb-1"
-            style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
-          >
-            {greeting}
-          </p>
-          <h1
-            className="text-2xl md:text-3xl font-bold text-white"
-            style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
-          >
-            Hello, {userName}
+          <p className="kicker kicker-ember mb-2">{greeting}</p>
+          <h1 className="font-display text-2xl font-semibold tracking-[-0.02em] text-[#f6f2ea] md:text-3xl">
+            Hello, <span className="serif-accent font-normal text-[#b9b3a7]">{userName}</span>
           </h1>
         </motion.div>
       </div>

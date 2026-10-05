@@ -50,20 +50,20 @@ export default function MagazinePage() {
             className="text-center mb-12"
           >
             <p
-              className="text-xs tracking-[0.4em] text-[#2563eb] mb-2 uppercase"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+              className="kicker mb-3"
+              style={{ fontFamily: "var(--font-body)" }}
             >
               — Publication —
             </p>
             <h1
-              className="text-3xl md:text-5xl font-bold text-white"
-              style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+              className="section-title leading-none"
+              style={{ fontFamily: "var(--font-display)" }}
             >
               MAGAZINE
             </h1>
             <p
               className="text-gray-500 text-sm mt-3"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+              style={{ fontFamily: "var(--font-body)" }}
             >
               All editions of our flagship astronomy magazine
             </p>
@@ -72,22 +72,22 @@ export default function MagazinePage() {
           {loading ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {[...Array(3)].map((_, i) => (
-                <div key={i} className="rounded-2xl overflow-hidden border border-[#2563eb]/20 bg-[#07091a]/80 animate-pulse">
-                  <div className="w-full bg-[#0f172a]" style={{ aspectRatio: "3/4" }} />
+                <div key={i} className="rounded-lg overflow-hidden border border-[#ff7a29]/20 bg-[#0b0b0d]/80 animate-pulse">
+                  <div className="w-full bg-[#121214]" style={{ aspectRatio: "3/4" }} />
                   <div className="p-5">
-                    <div className="h-4 bg-[#0f172a] rounded w-3/4 mb-2" />
-                    <div className="h-3 bg-[#0f172a] rounded w-1/3 mb-1" />
-                    <div className="h-3 bg-[#0f172a] rounded w-1/4 mb-3" />
-                    <div className="h-8 bg-[#0f172a] rounded w-1/2" />
+                    <div className="h-4 bg-[#121214] rounded w-3/4 mb-2" />
+                    <div className="h-3 bg-[#121214] rounded w-1/3 mb-1" />
+                    <div className="h-3 bg-[#121214] rounded w-1/4 mb-3" />
+                    <div className="h-8 bg-[#121214] rounded w-1/2" />
                   </div>
                 </div>
               ))}
             </div>
           ) : magazines.length === 0 ? (
-            <div className="rounded-xl border border-white/10 bg-[#07091a]/60 py-16 text-center">
+            <div className="rounded-lg border border-white/10 bg-[#0b0b0d]/60 py-16 text-center">
               <p
                 className="text-gray-500 text-sm"
-                style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                style={{ fontFamily: "var(--font-body)" }}
               >
                 No magazines published yet — check back soon!
               </p>
@@ -101,7 +101,7 @@ export default function MagazinePage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 whileHover={{ y: -6 }}
-                className="group rounded-2xl overflow-hidden border border-[#2563eb]/20 bg-[#07091a]/80 backdrop-blur-sm hover:border-[#2563eb]/50 transition-all"
+                className="group rounded-lg overflow-hidden border border-[#ff7a29]/20 bg-[#0b0b0d]/80 backdrop-blur-sm hover:border-[#ff7a29]/50 transition-all"
               >
                 <div
                   className="relative overflow-hidden cursor-pointer"
@@ -115,7 +115,7 @@ export default function MagazinePage() {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
-                    <div className="w-full h-full relative" style={{ background: "linear-gradient(135deg, #020617 0%, #1a0a3e 40%, #030e1a 100%)" }}>
+                    <div className="w-full h-full relative" style={{ background: "linear-gradient(135deg, #08080a 0%, #1a0a3e 40%, #0a0a0b 100%)" }}>
                       {[...Array(30)].map((_, j) => (
                         <div
                           key={j}
@@ -132,23 +132,23 @@ export default function MagazinePage() {
                       <div className="absolute inset-0 flex flex-col justify-between p-6">
                         <div>
                           <p
-                            className="text-[#38bdf8] text-xs tracking-[0.3em] uppercase"
-                            style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                            className="text-[#ffb173] text-xs tracking-[0.3em] uppercase"
+                            style={{ fontFamily: "var(--font-body)" }}
                           >
                             AstroSci · JU
                           </p>
                           <h3
                             className="text-xl font-black text-white leading-tight mt-1"
-                            style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+                            style={{ fontFamily: "var(--font-display)" }}
                           >
                             {item.title}
                           </h3>
                         </div>
                         <div>
-                          <div className="h-px w-full bg-gradient-to-r from-[#2563eb] to-[#10b981] mb-2 opacity-60" />
+                          <div className="h-px w-full bg-gradient-to-r from-[#ff7a29] to-[#e08b2e] mb-2 opacity-60" />
                           <p
                             className="text-2xl font-black text-white"
-                            style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+                            style={{ fontFamily: "var(--font-display)" }}
                           >
                             {item.issue}
                           </p>
@@ -160,19 +160,19 @@ export default function MagazinePage() {
                 <div className="p-5">
                   <h3
                     className="text-white font-bold text-base mb-1"
-                    style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+                    style={{ fontFamily: "var(--font-display)" }}
                   >
                     {item.title}
                   </h3>
                   <p
-                    className="text-[#2563eb] text-sm"
-                    style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                    className="text-[#ff7a29] text-sm"
+                    style={{ fontFamily: "var(--font-body)" }}
                   >
                     {item.issue}
                   </p>
                   <p
                     className="text-gray-500 text-xs mt-1"
-                    style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                    style={{ fontFamily: "var(--font-body)" }}
                   >
                     {new Date(item.published_at).toLocaleDateString("en-IN", {
                       year: "numeric",
@@ -184,8 +184,8 @@ export default function MagazinePage() {
                       href={item.pdf_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-block mt-3 px-5 py-2 rounded-xl bg-gradient-to-r from-[#2563eb] to-[#1d4ed8] text-white text-xs font-medium shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_30px_rgba(37,99,235,0.5)] transition-all"
-                      style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                      className="inline-block mt-3 px-5 py-2 rounded-lg bg-gradient-to-r from-[#ff7a29] to-[#e2600f] text-white text-xs font-medium shadow-[0_0_20px_rgba(255,122,41,0.3)] hover:shadow-[0_0_30px_rgba(255,122,41,0.5)] transition-all"
+                      style={{ fontFamily: "var(--font-body)" }}
                       whileHover={{ scale: 1.04 }}
                       whileTap={{ scale: 0.97 }}
                     >
@@ -193,8 +193,8 @@ export default function MagazinePage() {
                     </motion.a>
                   ) : (
                     <motion.button
-                      className="mt-3 px-5 py-2 rounded-xl bg-gradient-to-r from-[#2563eb] to-[#1d4ed8] text-white text-xs font-medium shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_30px_rgba(37,99,235,0.5)] transition-all"
-                      style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                      className="mt-3 px-5 py-2 rounded-lg bg-gradient-to-r from-[#ff7a29] to-[#e2600f] text-white text-xs font-medium shadow-[0_0_20px_rgba(255,122,41,0.3)] hover:shadow-[0_0_30px_rgba(255,122,41,0.5)] transition-all"
+                      style={{ fontFamily: "var(--font-body)" }}
                       whileHover={{ scale: 1.04 }}
                       whileTap={{ scale: 0.97 }}
                     >

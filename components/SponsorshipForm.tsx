@@ -186,7 +186,7 @@ export default function SponsorshipForm() {
       {/* Back Link */}
       <Link
         href="/sponsors"
-        className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-[#f59e0b] transition-colors mb-8"
+        className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-[#ff9d3d] transition-colors mb-8"
       >
         <ArrowLeft className="w-4 h-4" />
         Back to Sponsors
@@ -202,7 +202,7 @@ export default function SponsorshipForm() {
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
                   isActive
-                    ? "bg-[#f59e0b] text-black"
+                    ? "bg-[#ff9d3d] text-black"
                     : "bg-white/10 text-gray-500"
                 }`}
               >
@@ -210,7 +210,7 @@ export default function SponsorshipForm() {
               </div>
               <span
                 className={`text-xs hidden sm:block ${
-                  isActive ? "text-[#f59e0b]" : "text-gray-600"
+                  isActive ? "text-[#ff9d3d]" : "text-gray-600"
                 }`}
               >
                 {label}
@@ -218,7 +218,7 @@ export default function SponsorshipForm() {
               {i < 2 && (
                 <div
                   className={`w-8 sm:w-12 h-px ${
-                    isActive ? "bg-[#f59e0b]/40" : "bg-white/10"
+                    isActive ? "bg-[#ff9d3d]/40" : "bg-white/10"
                   }`}
                 />
               )}
@@ -237,16 +237,16 @@ export default function SponsorshipForm() {
             exit={{ opacity: 0, x: 20 }}
             transition={{ duration: 0.4 }}
           >
-            <div className="rounded-2xl border border-[#f59e0b]/20 bg-[#0f172a]/80 backdrop-blur-sm p-8">
+            <div className="rounded-lg border border-[#ff9d3d]/20 bg-[#121214]/80 backdrop-blur-sm p-8">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-[#f59e0b]/10 flex items-center justify-center">
-                  <Award className="w-5 h-5 text-[#f59e0b]" />
+                <div className="w-10 h-10 rounded-lg bg-[#ff9d3d]/10 flex items-center justify-center">
+                  <Award className="w-5 h-5 text-[#ff9d3d]" />
                 </div>
                 <div>
                   <h2
                     className="text-xl font-bold text-white"
                     style={{
-                      fontFamily: "'Space Grotesk', 'Inter', sans-serif",
+                      fontFamily: "var(--font-display)",
                     }}
                   >
                     Become a Sponsor
@@ -258,9 +258,9 @@ export default function SponsorshipForm() {
               </div>
 
               {/* Note about email */}
-              <div className="rounded-xl bg-[#f59e0b]/5 border border-[#f59e0b]/20 p-4 mb-5">
+              <div className="rounded-lg bg-[#ff9d3d]/5 border border-[#ff9d3d]/20 p-4 mb-5">
                 <div className="flex items-start gap-3">
-                  <Info className="w-4 h-4 text-[#f59e0b] mt-0.5 flex-shrink-0" />
+                  <Info className="w-4 h-4 text-[#ff9d3d] mt-0.5 flex-shrink-0" />
                   <p className="text-xs text-gray-300 leading-relaxed">
                     <strong className="text-white">Important:</strong> Please
                     provide a correct email and phone number so our team can
@@ -278,13 +278,13 @@ export default function SponsorshipForm() {
                   <select
                     value={planType}
                     onChange={(e) => setPlanType(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#f59e0b]/50 focus:shadow-[0_0_15px_rgba(245,158,11,0.15)] transition-all"
+                    className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-[#ff9d3d]/50 focus:shadow-[0_0_15px_rgba(255,157,61,0.15)] transition-all"
                   >
                     {sponsorPlans.map((plan) => (
                       <option
                         key={plan.value}
                         value={plan.value}
-                        className="bg-[#0f172a]"
+                        className="bg-[#121214]"
                       >
                         {plan.label}
                       </option>
@@ -304,7 +304,7 @@ export default function SponsorshipForm() {
                       value={organizationName}
                       onChange={(e) => setOrganizationName(e.target.value)}
                       required
-                      className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#f59e0b]/50 focus:shadow-[0_0_15px_rgba(245,158,11,0.15)] transition-all"
+                      className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#ff9d3d]/50 focus:shadow-[0_0_15px_rgba(255,157,61,0.15)] transition-all"
                       placeholder="Your organization"
                     />
                   </div>
@@ -317,7 +317,7 @@ export default function SponsorshipForm() {
                       type="url"
                       value={websiteUrl}
                       onChange={(e) => setWebsiteUrl(e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#f59e0b]/50 focus:shadow-[0_0_15px_rgba(245,158,11,0.15)] transition-all"
+                      className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#ff9d3d]/50 focus:shadow-[0_0_15px_rgba(255,157,61,0.15)] transition-all"
                       placeholder="https://example.com"
                     />
                   </div>
@@ -333,7 +333,7 @@ export default function SponsorshipForm() {
                     value={contactName}
                     onChange={(e) => setContactName(e.target.value)}
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#f59e0b]/50 focus:shadow-[0_0_15px_rgba(245,158,11,0.15)] transition-all"
+                    className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#ff9d3d]/50 focus:shadow-[0_0_15px_rgba(255,157,61,0.15)] transition-all"
                     placeholder="Full name"
                   />
                 </div>
@@ -350,7 +350,7 @@ export default function SponsorshipForm() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#f59e0b]/50 focus:shadow-[0_0_15px_rgba(245,158,11,0.15)] transition-all"
+                      className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#ff9d3d]/50 focus:shadow-[0_0_15px_rgba(255,157,61,0.15)] transition-all"
                       placeholder="you@email.com"
                     />
                   </div>
@@ -369,7 +369,7 @@ export default function SponsorshipForm() {
                       className={`w-full px-4 py-3 rounded-xl bg-white/5 border text-white text-sm placeholder-gray-500 focus:outline-none transition-all ${
                         phoneError
                           ? "border-red-500/50 focus:border-red-500/80"
-                          : "border-white/10 focus:border-[#f59e0b]/50 focus:shadow-[0_0_15px_rgba(245,158,11,0.15)]"
+                          : "border-white/10 focus:border-[#ff9d3d]/50 focus:shadow-[0_0_15px_rgba(255,157,61,0.15)]"
                       }`}
                       placeholder="10-digit number"
                     />
@@ -399,7 +399,7 @@ export default function SponsorshipForm() {
                     aria-label="Upload organization logo"
                     className={`relative rounded-xl border-2 border-dashed p-4 text-center cursor-pointer transition-colors ${
                       isDraggingLogo
-                        ? "border-[#f59e0b] bg-[#f59e0b]/5"
+                        ? "border-[#ff9d3d] bg-[#ff9d3d]/5"
                         : "border-white/10 hover:border-white/20 bg-white/5"
                     }`}
                   >
@@ -412,7 +412,7 @@ export default function SponsorshipForm() {
                     />
                     {logoFile ? (
                       <div className="flex items-center justify-center gap-3">
-                        <CheckCircle2 className="w-4 h-4 text-[#10b981] flex-shrink-0" />
+                        <CheckCircle2 className="w-4 h-4 text-[#e08b2e] flex-shrink-0" />
                         <span className="text-sm text-gray-300 truncate max-w-[200px]">
                           {logoFile.name}
                         </span>
@@ -447,8 +447,8 @@ export default function SponsorshipForm() {
                 </div>
 
                 {/* Connect with Admins */}
-                <div className="rounded-xl bg-[#f59e0b]/5 border border-[#f59e0b]/20 p-4">
-                  <h4 className="text-sm font-semibold text-[#f59e0b] mb-2">
+                <div className="rounded-lg bg-[#ff9d3d]/5 border border-[#ff9d3d]/20 p-4">
+                  <h4 className="text-sm font-semibold text-[#ff9d3d] mb-2">
                     Connect with Our Team
                   </h4>
                   <p className="text-xs text-gray-400 leading-relaxed mb-2">
@@ -457,7 +457,7 @@ export default function SponsorshipForm() {
                   </p>
                   <a
                     href={`mailto:${siteConfig.email}`}
-                    className="text-sm text-[#f59e0b] hover:text-[#fbbf24] transition-colors underline underline-offset-4"
+                    className="text-sm text-[#ff9d3d] hover:text-[#fbbf24] transition-colors underline underline-offset-4"
                   >
                     {siteConfig.email}
                   </a>
@@ -465,9 +465,9 @@ export default function SponsorshipForm() {
 
                 <motion.button
                   type="submit"
-                  className="w-full py-4 rounded-full bg-gradient-to-r from-[#f59e0b] to-[#d97706] text-black font-bold text-sm tracking-wider shadow-[0_0_30px_rgba(245,158,11,0.3)] hover:shadow-[0_0_50px_rgba(245,158,11,0.5)] transition-all duration-300"
+                  className="w-full py-4 rounded-full bg-gradient-to-r from-[#ff9d3d] to-[#e08b2e] text-black font-bold text-sm tracking-wider shadow-[0_0_30px_rgba(255,157,61,0.3)] hover:shadow-[0_0_50px_rgba(255,157,61,0.5)] transition-all duration-300"
                   style={{
-                    fontFamily: "'Space Grotesk', 'Inter', sans-serif",
+                    fontFamily: "var(--font-display)",
                   }}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -488,14 +488,14 @@ export default function SponsorshipForm() {
             exit={{ opacity: 0, x: 20 }}
             transition={{ duration: 0.4 }}
           >
-            <div className="rounded-2xl border border-[#f59e0b]/20 bg-[#0f172a]/80 backdrop-blur-sm p-8 text-center">
-              <div className="w-14 h-14 rounded-2xl bg-[#f59e0b]/10 flex items-center justify-center mx-auto mb-6">
-                <QrCode className="w-7 h-7 text-[#f59e0b]" />
+            <div className="rounded-lg border border-[#ff9d3d]/20 bg-[#121214]/80 backdrop-blur-sm p-8 text-center">
+              <div className="w-14 h-14 rounded-lg bg-[#ff9d3d]/10 flex items-center justify-center mx-auto mb-6">
+                <QrCode className="w-7 h-7 text-[#ff9d3d]" />
               </div>
               <h2
                 className="text-xl font-bold text-white mb-2"
                 style={{
-                  fontFamily: "'Space Grotesk', 'Inter', sans-serif",
+                  fontFamily: "var(--font-display)",
                 }}
               >
                 Complete Payment
@@ -503,12 +503,12 @@ export default function SponsorshipForm() {
               <p className="text-sm text-gray-400 mb-2">
                 Scan the QR code below or use UPI to pay
               </p>
-              <p className="text-xs text-[#f59e0b] font-semibold mb-8">
+              <p className="text-xs text-[#ff9d3d] font-semibold mb-8">
                 Selected Plan: {selectedPlanLabel}
               </p>
 
               {/* Payment QR Code */}
-              <div className="w-56 h-56 mx-auto rounded-2xl overflow-hidden bg-white flex items-center justify-center mb-6">
+              <div className="w-56 h-56 mx-auto rounded-lg overflow-hidden bg-white flex items-center justify-center mb-6">
                 <img
                   src={siteConfig.assets.paymentQr}
                   alt="Payment QR Code"
@@ -519,7 +519,7 @@ export default function SponsorshipForm() {
               {/* UPI Button */}
               <motion.a
                 href="#"
-                className="inline-flex items-center gap-2 px-8 py-3 rounded-full border border-[#f59e0b]/40 text-[#f59e0b] font-semibold text-sm tracking-wider hover:bg-[#f59e0b]/10 hover:border-[#f59e0b] transition-all duration-300 mb-8"
+                className="inline-flex items-center gap-2 px-8 py-3 rounded-sm border border-[#ff9d3d]/40 text-[#ff9d3d] font-semibold text-sm tracking-wider hover:bg-[#ff9d3d]/10 hover:border-[#ff9d3d] transition-all duration-300 mb-8"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
               >
@@ -547,7 +547,7 @@ export default function SponsorshipForm() {
                   value={transactionRef}
                   onChange={(e) => setTransactionRef(e.target.value)}
                   required
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#f59e0b]/50 focus:shadow-[0_0_15px_rgba(245,158,11,0.15)] transition-all"
+                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#ff9d3d]/50 focus:shadow-[0_0_15px_rgba(255,157,61,0.15)] transition-all"
                   placeholder="Enter transaction ID or UTR number"
                 />
               </div>
@@ -572,7 +572,7 @@ export default function SponsorshipForm() {
                   aria-label="Upload payment proof file"
                   className={`relative rounded-xl border-2 border-dashed p-6 text-center cursor-pointer transition-colors ${
                     isDraggingProof
-                      ? "border-[#f59e0b] bg-[#f59e0b]/5"
+                      ? "border-[#ff9d3d] bg-[#ff9d3d]/5"
                       : "border-white/10 hover:border-white/20 bg-white/5"
                   }`}
                 >
@@ -585,7 +585,7 @@ export default function SponsorshipForm() {
                   />
                   {proofFile ? (
                     <div className="flex items-center justify-center gap-3">
-                      <CheckCircle2 className="w-4 h-4 text-[#10b981] flex-shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-[#e08b2e] flex-shrink-0" />
                       <span className="text-sm text-gray-300 truncate max-w-[200px]">
                         {proofFile.name}
                       </span>
@@ -620,7 +620,7 @@ export default function SponsorshipForm() {
               </div>
 
               {submitError && (
-                <div className="rounded-xl bg-red-500/10 border border-red-500/30 p-3 mb-4">
+                <div className="rounded-lg bg-red-500/10 border border-red-500/30 p-3 mb-4">
                   <p className="text-sm text-red-400 flex items-center gap-2">
                     <AlertCircle className="w-4 h-4 flex-shrink-0" />
                     {submitError}
@@ -632,9 +632,9 @@ export default function SponsorshipForm() {
                 <motion.button
                   onClick={handleFinalSubmit}
                   disabled={submitting}
-                  className="w-full py-4 rounded-full bg-gradient-to-r from-[#f59e0b] to-[#d97706] text-black font-bold text-sm tracking-wider shadow-[0_0_30px_rgba(245,158,11,0.3)] hover:shadow-[0_0_50px_rgba(245,158,11,0.5)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full py-4 rounded-full bg-gradient-to-r from-[#ff9d3d] to-[#e08b2e] text-black font-bold text-sm tracking-wider shadow-[0_0_30px_rgba(255,157,61,0.3)] hover:shadow-[0_0_50px_rgba(255,157,61,0.5)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   style={{
-                    fontFamily: "'Space Grotesk', 'Inter', sans-serif",
+                    fontFamily: "var(--font-display)",
                   }}
                   whileHover={submitting ? {} : { scale: 1.02 }}
                   whileTap={submitting ? {} : { scale: 0.98 }}
@@ -664,21 +664,21 @@ export default function SponsorshipForm() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="rounded-2xl border border-[#f59e0b]/20 bg-[#0f172a]/80 backdrop-blur-sm p-10 text-center">
+            <div className="rounded-lg border border-[#ff9d3d]/20 bg-[#121214]/80 backdrop-blur-sm p-10 text-center">
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
               >
-                <div className="w-20 h-20 rounded-full bg-[#f59e0b]/10 flex items-center justify-center mx-auto mb-6">
-                  <Clock className="w-10 h-10 text-[#f59e0b]" />
+                <div className="w-20 h-20 rounded-full bg-[#ff9d3d]/10 flex items-center justify-center mx-auto mb-6">
+                  <Clock className="w-10 h-10 text-[#ff9d3d]" />
                 </div>
               </motion.div>
 
               <h2
                 className="text-2xl font-bold text-white mb-3"
                 style={{
-                  fontFamily: "'Space Grotesk', 'Inter', sans-serif",
+                  fontFamily: "var(--font-display)",
                 }}
               >
                 Payment Verification Pending
@@ -686,20 +686,20 @@ export default function SponsorshipForm() {
               <p className="text-gray-400 text-base mb-2">
                 Your payment is being verified by our team.
               </p>
-              <p className="text-[#f59e0b] text-sm font-semibold mb-6">
+              <p className="text-[#ff9d3d] text-sm font-semibold mb-6">
                 Verification will be completed within 24 hours.
               </p>
 
-              <div className="rounded-xl bg-white/5 border border-white/10 p-5 text-left space-y-3 mb-8">
+              <div className="rounded-lg bg-white/5 border border-white/10 p-5 text-left space-y-3 mb-8">
                 <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-4 h-4 text-[#10b981] mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-[#e08b2e] mt-0.5 flex-shrink-0" />
                   <p className="text-sm text-gray-300">
                     Once verified, your organization will be featured on our{" "}
                     <strong className="text-white">Sponsors page</strong>.
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-4 h-4 text-[#10b981] mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-[#e08b2e] mt-0.5 flex-shrink-0" />
                   <p className="text-sm text-gray-300">
                     An official{" "}
                     <strong className="text-white">Sponsor Certificate</strong>{" "}
@@ -707,10 +707,10 @@ export default function SponsorshipForm() {
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-4 h-4 text-[#10b981] mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-[#e08b2e] mt-0.5 flex-shrink-0" />
                   <p className="text-sm text-gray-300">
                     Status update:{" "}
-                    <strong className="text-[#f59e0b]">Accepted</strong> or{" "}
+                    <strong className="text-[#ff9d3d]">Accepted</strong> or{" "}
                     <strong className="text-gray-400">Rejected</strong> within
                     24 hrs.
                   </p>
@@ -718,37 +718,37 @@ export default function SponsorshipForm() {
               </div>
 
               {/* Verification Status */}
-              <div className="rounded-xl border border-[#f59e0b]/20 bg-[#f59e0b]/5 p-4 mb-8">
+              <div className="rounded-lg border border-[#ff9d3d]/20 bg-[#ff9d3d]/5 p-4 mb-8">
                 <div className="flex items-center justify-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#f59e0b] animate-pulse" />
-                  <span className="text-sm font-semibold text-[#f59e0b]">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#ff9d3d] animate-pulse" />
+                  <span className="text-sm font-semibold text-[#ff9d3d]">
                     Pending Verification
                   </span>
                 </div>
               </div>
 
               {/* Certificate Status */}
-              <div className="rounded-xl border border-[#f59e0b]/20 bg-[#f59e0b]/5 p-6 text-left mb-8">
+              <div className="rounded-lg border border-[#ff9d3d]/20 bg-[#ff9d3d]/5 p-6 text-left mb-8">
                 <h3
                   className="text-base font-bold text-white mb-4"
                   style={{
-                    fontFamily: "'Space Grotesk', 'Inter', sans-serif",
+                    fontFamily: "var(--font-display)",
                   }}
                 >
                   Certificate Status
                 </h3>
                 <div className="flex items-center gap-3 mb-4">
-                  <Award className="w-5 h-5 text-[#f59e0b] flex-shrink-0" />
+                  <Award className="w-5 h-5 text-[#ff9d3d] flex-shrink-0" />
                   <span className="text-sm text-gray-300">
                     Certificate Status:{" "}
-                    <strong className="text-[#f59e0b]">
+                    <strong className="text-[#ff9d3d]">
                       Pending Verification
                     </strong>
                   </span>
                 </div>
                 <button
                   disabled
-                  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-white/5 border border-white/10 text-gray-500 text-sm font-semibold cursor-not-allowed"
+                  className="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-white/5 border border-white/10 text-gray-500 text-sm font-semibold cursor-not-allowed"
                 >
                   <Download className="w-4 h-4" />
                   Download Official Sponsor Certificate
@@ -760,7 +760,7 @@ export default function SponsorshipForm() {
 
               <Link href="/sponsors">
                 <motion.span
-                  className="inline-flex items-center gap-2 px-8 py-3 rounded-full border border-[#f59e0b]/40 text-[#f59e0b] font-semibold text-sm tracking-wider hover:bg-[#f59e0b]/10 transition-all duration-300 cursor-pointer"
+                  className="inline-flex items-center gap-2 px-8 py-3 rounded-sm border border-[#ff9d3d]/40 text-[#ff9d3d] font-semibold text-sm tracking-wider hover:bg-[#ff9d3d]/10 transition-all duration-300 cursor-pointer"
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                 >

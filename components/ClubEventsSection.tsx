@@ -31,7 +31,7 @@ export default function ClubEventsSection() {
   const [loading, setLoading] = useState(true);
   const [posterExpanded, setPosterExpanded] = useState(false);
 
-  const defaultGradient = "radial-gradient(ellipse at 50% 50%, #1e3a5f 0%, #020617 100%)";
+  const defaultGradient = "radial-gradient(ellipse at 50% 50%, #241a12 0%, #08080a 100%)";
 
   useEffect(() => {
     async function fetchNextEvent() {
@@ -66,8 +66,8 @@ export default function ClubEventsSection() {
 
   return (
     <section className="py-16 px-6 relative overflow-hidden">
-      <CometLine className="absolute top-0 left-0 right-0" color="#2563eb" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-[#2563eb]/5 rounded-full blur-[100px] astro-drift-b" />
+      <CometLine className="absolute top-0 left-0 right-0" color="#ff7a29" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-[#ff7a29]/5 rounded-full blur-[100px] astro-drift-b" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Section header */}
@@ -80,14 +80,14 @@ export default function ClubEventsSection() {
         >
           <div>
             <p
-              className="text-xs tracking-[0.4em] text-[#38bdf8] mb-2 uppercase"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+              className="kicker mb-3"
+              style={{ fontFamily: "var(--font-body)" }}
             >
               — Club Activities —
             </p>
             <h2
-              className="text-2xl md:text-3xl font-bold text-white"
-              style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+              className="section-title leading-none"
+              style={{ fontFamily: "var(--font-display)" }}
             >
               CLUB EVENTS
             </h2>
@@ -95,8 +95,8 @@ export default function ClubEventsSection() {
           <div className="flex flex-col sm:flex-row gap-3">
             <Link href="/events">
               <motion.span
-                className="text-xs sm:text-sm text-[#38bdf8] border border-[#38bdf8]/30 px-4 sm:px-5 py-2 rounded-full hover:bg-[#38bdf8]/10 transition-all cursor-pointer whitespace-nowrap"
-                style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                className="link-rule mono-data text-[0.66rem] uppercase tracking-[0.2em]"
+                style={{ fontFamily: "var(--font-body)" }}
                 whileHover={{ scale: 1.05 }}
               >
                 View All Events
@@ -104,8 +104,8 @@ export default function ClubEventsSection() {
             </Link>
             <Link href="/events">
               <motion.span
-                className="text-xs sm:text-sm text-gray-400 border border-white/10 px-4 sm:px-5 py-2 rounded-full hover:bg-white/5 transition-all cursor-pointer hidden md:inline-block whitespace-nowrap"
-                style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                className="text-xs sm:text-sm text-gray-400 border border-white/10 px-4 sm:px-5 py-2 rounded-sm hover:bg-white/5 transition-all cursor-pointer hidden md:inline-block whitespace-nowrap"
+                style={{ fontFamily: "var(--font-body)" }}
                 whileHover={{ scale: 1.05 }}
               >
                 Past Activities
@@ -116,33 +116,33 @@ export default function ClubEventsSection() {
 
         {/* Loading skeleton */}
         {loading ? (
-          <div className="rounded-2xl border border-[#2563eb]/20 bg-[#07091a]/80 backdrop-blur-sm p-6 md:p-8 animate-pulse">
+          <div className="rounded-lg border border-[#ff7a29]/20 bg-[#0b0b0d]/80 backdrop-blur-sm p-6 md:p-8 animate-pulse">
             <div className="grid gap-6 md:grid-cols-[260px_minmax(0,1fr)]">
-              <div className="w-full rounded-xl bg-[#0f172a]" style={{ aspectRatio: "3/4" }} />
+              <div className="w-full rounded-lg bg-[#121214]" style={{ aspectRatio: "3/4" }} />
               <div className="flex flex-col gap-6">
                 <div className="flex flex-col md:flex-row items-start justify-between gap-6">
                   <div className="flex-1 w-full">
-                    <div className="h-3 bg-[#0f172a] rounded w-1/4 mb-3" />
-                    <div className="h-6 bg-[#0f172a] rounded w-2/3 mb-3" />
-                    <div className="h-3 bg-[#0f172a] rounded w-1/3 mb-2" />
-                    <div className="h-3 bg-[#0f172a] rounded w-3/4 mb-2" />
-                    <div className="h-3 bg-[#0f172a] rounded w-1/2" />
+                    <div className="h-3 bg-[#121214] rounded w-1/4 mb-3" />
+                    <div className="h-6 bg-[#121214] rounded w-2/3 mb-3" />
+                    <div className="h-3 bg-[#121214] rounded w-1/3 mb-2" />
+                    <div className="h-3 bg-[#121214] rounded w-3/4 mb-2" />
+                    <div className="h-3 bg-[#121214] rounded w-1/2" />
                   </div>
-                  <div className="h-10 bg-[#0f172a] rounded w-32 shrink-0" />
+                  <div className="h-10 bg-[#121214] rounded w-32 shrink-0" />
                 </div>
                 <div className="flex items-center justify-center md:justify-start gap-4">
                   {[...Array(4)].map((_, i) => (
-                    <div key={i} className="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-[#0f172a]" />
+                    <div key={i} className="w-16 h-16 md:w-20 md:h-20 rounded-lg bg-[#121214]" />
                   ))}
                 </div>
               </div>
             </div>
           </div>
         ) : !nextEvent ? (
-          <div className="rounded-2xl border border-white/10 bg-[#07091a]/60 py-16 text-center">
+          <div className="rounded-lg border border-white/10 bg-[#0b0b0d]/60 py-16 text-center">
             <p
               className="text-gray-500 text-sm"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+              style={{ fontFamily: "var(--font-body)" }}
             >
               No upcoming events — stay tuned!
             </p>
@@ -153,12 +153,12 @@ export default function ClubEventsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="rounded-2xl border border-[#2563eb]/20 bg-[#07091a]/80 backdrop-blur-sm overflow-hidden"
+            className="rounded-lg border border-[#ff7a29]/20 bg-[#0b0b0d]/80 backdrop-blur-sm overflow-hidden"
           >
             <div className="grid md:grid-cols-[260px_minmax(0,1fr)]">
               {/* Event Poster */}
               <div
-                className="relative overflow-hidden bg-[#020617] border-r border-[#2563eb]/10 cursor-pointer group"
+                className="relative overflow-hidden bg-[#08080a] border-r border-[#ff7a29]/10 cursor-pointer group"
                 style={{ aspectRatio: "3/4", minHeight: "280px" }}
                 onClick={() => setPosterExpanded(true)}
               >
@@ -169,10 +169,10 @@ export default function ClubEventsSection() {
                       alt={`${nextEvent.title} poster`}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#020617]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#08080a]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
                       <span
-                        className="text-white text-xs bg-[#2563eb]/80 px-3 py-1 rounded-full"
-                        style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                        className="text-white text-xs bg-[#ff7a29]/80 px-3 py-1 rounded-sm"
+                        style={{ fontFamily: "var(--font-body)" }}
                       >
                         Click to enlarge
                       </span>
@@ -194,7 +194,7 @@ export default function ClubEventsSection() {
                         }}
                       />
                     ))}
-                    <span className="text-[#38bdf8]/40 text-3xl">🔭</span>
+                    <span className="text-[#ffb173]/40 text-3xl">🔭</span>
                   </div>
                 )}
               </div>
@@ -205,17 +205,17 @@ export default function ClubEventsSection() {
                 <div className="flex flex-col md:flex-row items-start justify-between gap-4">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="w-2 h-2 rounded-full bg-[#38bdf8] animate-pulse" />
+                      <span className="w-2 h-2 rounded-full bg-[#ffb173] animate-pulse" />
                       <span
-                        className="text-[#38bdf8] text-xs tracking-widest uppercase"
-                        style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                        className="text-[#ffb173] text-xs tracking-widest uppercase"
+                        style={{ fontFamily: "var(--font-body)" }}
                       >
                         {isExpired ? "Recent Event" : "Next Club Event"}
                       </span>
                     </div>
                     <h3
                       className="text-xl md:text-2xl font-bold text-white mb-3"
-                      style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+                      style={{ fontFamily: "var(--font-display)" }}
                     >
                       {nextEvent.title}
                     </h3>
@@ -223,7 +223,7 @@ export default function ClubEventsSection() {
                       <span className="text-sm mt-0.5">📍</span>
                       <p
                         className="text-gray-300 text-sm"
-                        style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                        style={{ fontFamily: "var(--font-body)" }}
                       >
                         {nextEvent.location}
                       </p>
@@ -231,7 +231,7 @@ export default function ClubEventsSection() {
                     {nextEvent.description && (
                       <p
                         className="text-gray-400 text-sm leading-relaxed mt-2"
-                        style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                        style={{ fontFamily: "var(--font-body)" }}
                       >
                         {nextEvent.description}
                       </p>
@@ -239,16 +239,16 @@ export default function ClubEventsSection() {
                   </div>
 
                   {/* Date badge */}
-                  <div className="shrink-0 text-left md:text-right bg-[#0f172a]/80 border border-[#2563eb]/20 rounded-xl px-4 py-3">
+                  <div className="shrink-0 text-left md:text-right bg-[#121214]/80 border border-[#ff7a29]/20 rounded-lg px-4 py-3">
                     <p
                       className="text-gray-500 text-xs mb-1"
-                      style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                      style={{ fontFamily: "var(--font-body)" }}
                     >
                       Event Date
                     </p>
                     <p
                       className="text-white font-bold text-base"
-                      style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+                      style={{ fontFamily: "var(--font-display)" }}
                     >
                       {new Date(nextEvent.event_date).toLocaleDateString("en-IN", {
                         month: "short",
@@ -257,8 +257,8 @@ export default function ClubEventsSection() {
                       })}
                     </p>
                     <p
-                      className="text-[#38bdf8] text-xs mt-1"
-                      style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                      className="text-[#ffb173] text-xs mt-1"
+                      style={{ fontFamily: "var(--font-body)" }}
                     >
                       {new Date(nextEvent.event_date).toLocaleTimeString("en-IN", {
                         hour: "2-digit",
@@ -274,7 +274,7 @@ export default function ClubEventsSection() {
                 <div>
                   <p
                     className="text-xs text-gray-600 uppercase tracking-widest mb-3"
-                    style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                    style={{ fontFamily: "var(--font-body)" }}
                   >
                     {isExpired ? "Event has passed" : "Countdown"}
                   </p>
@@ -287,26 +287,26 @@ export default function ClubEventsSection() {
                     ].map((t, i) => (
                       <div key={t.label} className="flex items-center gap-3 md:gap-4">
                         <div className="text-center">
-                          <div className="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-b from-[#2563eb]/20 to-[#020617] border border-[#2563eb]/30 flex items-center justify-center shadow-[0_0_20px_rgba(37,99,235,0.2)]">
+                          <div className="w-16 h-16 md:w-20 md:h-20 rounded-lg bg-gradient-to-b from-[#ff7a29]/20 to-[#08080a] border border-[#ff7a29]/30 flex items-center justify-center shadow-[0_0_20px_rgba(255,122,41,0.2)]">
                             <motion.span
                               key={t.val}
                               initial={{ opacity: 0.5, scale: 0.9 }}
                               animate={{ opacity: 1, scale: 1 }}
                               className="text-2xl md:text-3xl font-black text-white"
-                              style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+                              style={{ fontFamily: "var(--font-display)" }}
                             >
                               {String(t.val).padStart(2, "0")}
                             </motion.span>
                           </div>
                           <span
                             className="text-xs text-gray-500 mt-1 block"
-                            style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                            style={{ fontFamily: "var(--font-body)" }}
                           >
                             {t.label}
                           </span>
                         </div>
                         {i < 3 && (
-                          <span className="text-2xl font-light text-[#2563eb] -mt-4">:</span>
+                          <span className="text-2xl font-light text-[#ff7a29] -mt-4">:</span>
                         )}
                       </div>
                     ))}
@@ -317,8 +317,8 @@ export default function ClubEventsSection() {
                 <div className="mt-auto pt-2">
                   <Link href="/events">
                     <motion.button
-                      className="px-6 py-2.5 rounded-full bg-gradient-to-r from-[#2563eb]/30 to-[#38bdf8]/20 border border-[#2563eb]/50 text-white text-sm font-medium hover:from-[#2563eb]/50 hover:to-[#38bdf8]/30 hover:shadow-[0_0_24px_rgba(37,99,235,0.35)] transition-all duration-300"
-                      style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                      className="px-6 py-2.5 rounded-sm bg-gradient-to-r from-[#ff7a29]/30 to-[#ffb173]/20 border border-[#ff7a29]/50 text-white text-sm font-medium hover:from-[#ff7a29]/50 hover:to-[#ffb173]/30 hover:shadow-[0_0_24px_rgba(255,122,41,0.35)] transition-all duration-300"
+                      style={{ fontFamily: "var(--font-body)" }}
                       whileHover={{ scale: 1.04 }}
                       whileTap={{ scale: 0.97 }}
                     >
@@ -346,7 +346,7 @@ export default function ClubEventsSection() {
             animate={{ scale: 1, opacity: 1 }}
             src={nextEvent.poster_url}
             alt={nextEvent.title}
-            className="max-h-[90vh] max-w-[90vw] rounded-2xl shadow-2xl object-contain"
+            className="max-h-[90vh] max-w-[90vw] rounded-lg shadow-2xl object-contain"
             onClick={(e) => e.stopPropagation()}
           />
           <button

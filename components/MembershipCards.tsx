@@ -12,14 +12,14 @@ const plans = [
     name: "Free",
     description: "Basic access to club resources and events",
     features: ["Event notifications", "Gallery access", "Community forum"],
-    color: "#B45309",
+    color: "#b8430a",
     tier: "free",
   },
   {
     name: "Monthly Subscriber",
     description: "Enhanced benefits with monthly renewal",
     features: ["All Free features", "Magazine downloads", "Priority registration", "Workshop access"],
-    color: "#C0C0C0",
+    color: "#c9c3b8",
     tier: "monthly",
   },
   {
@@ -57,7 +57,7 @@ export default function MembershipCards() {
 
   return (
     <section className="py-16 px-6 relative overflow-hidden">
-      <CometLine className="absolute top-0 left-0 right-0" color="#2563eb" />
+      <CometLine className="absolute top-0 left-0 right-0" color="#ff7a29" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
@@ -68,14 +68,14 @@ export default function MembershipCards() {
           className="text-center mb-10"
         >
           <p
-            className="text-xs tracking-[0.4em] text-[#2563eb] mb-2 uppercase"
-            style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+            className="kicker mb-3"
+            style={{ fontFamily: "var(--font-body)" }}
           >
             — Plans —
           </p>
           <h2
-            className="text-2xl md:text-3xl font-bold text-white"
-            style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+            className="section-title leading-none"
+            style={{ fontFamily: "var(--font-display)" }}
           >
             Membership
           </h2>
@@ -88,34 +88,34 @@ export default function MembershipCards() {
             const tierStyles =
               plan.tier === "annual"
                 ? {
-                    border: "border-[#FCD34D]/60 shadow-[0_0_30px_rgba(245,158,11,0.2)]",
-                    badge: "bg-gradient-to-r from-[#FCD34D] to-[#F59E0B] text-[#111827]",
+                    border: "border-[#FCD34D]/60 shadow-[0_0_30px_rgba(255,157,61,0.2)]",
+                    badge: "bg-gradient-to-r from-[#FCD34D] to-[#ff9d3d] text-[#16161a]",
                   }
                 : plan.tier === "monthly"
                   ? {
-                      border: "border-[#C0C0C0]/60 shadow-[0_0_24px_rgba(192,192,192,0.15)]",
-                      badge: "bg-gradient-to-r from-[#E5E7EB] to-[#9CA3AF] text-[#111827]",
+                      border: "border-[#c9c3b8]/60 shadow-[0_0_24px_rgba(201,195,184,0.15)]",
+                      badge: "bg-gradient-to-r from-[#ece7de] to-[#a49d91] text-[#16161a]",
                     }
                   : {
-                      border: "border-[#B45309]/60 shadow-[0_0_20px_rgba(180,83,9,0.15)]",
-                      badge: "bg-gradient-to-r from-[#B45309] to-[#78350F] text-white",
+                      border: "border-[#b8430a]/60 shadow-[0_0_20px_rgba(184,67,10,0.15)]",
+                      badge: "bg-gradient-to-r from-[#b8430a] to-[#78350F] text-white",
                     };
 
             return (
-              <TiltCard key={plan.name} className="rounded-2xl" glow={`${plan.color}24`}>
+              <TiltCard key={plan.name} className="rounded-lg" glow={`${plan.color}24`}>
                 <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.15 }}
                 whileHover={{ y: -6 }}
-                className={`relative rounded-2xl border bg-[#07091a]/80 backdrop-blur-sm p-6 transition-all h-full ${tierStyles.border}`}
+                className={`relative rounded-2xl border bg-[#0b0b0d]/80 backdrop-blur-sm p-6 transition-all h-full ${tierStyles.border}`}
               >
                 {plan.tier === "annual" && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                     <span
                       className={`px-3 py-1 rounded-full text-xs font-bold ${tierStyles.badge}`}
-                      style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                      style={{ fontFamily: "var(--font-body)" }}
                     >
                       Best Value
                     </span>
@@ -125,8 +125,8 @@ export default function MembershipCards() {
                 {isActive && (
                   <div className="absolute top-4 right-4">
                     <span
-                      className="px-2 py-1 rounded-full bg-[#38bdf8]/20 border border-[#38bdf8]/40 text-[#38bdf8] text-xs"
-                      style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                      className="px-2 py-1 rounded-sm bg-[#ffb173]/20 border border-[#ffb173]/40 text-[#ffb173] text-xs"
+                      style={{ fontFamily: "var(--font-body)" }}
                     >
                       Active
                     </span>
@@ -144,13 +144,13 @@ export default function MembershipCards() {
 
                 <h3
                   className="text-lg font-bold text-white mb-1"
-                  style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+                  style={{ fontFamily: "var(--font-display)" }}
                 >
                   {plan.name}
                 </h3>
                 <p
                   className="text-gray-500 text-xs mb-4"
-                  style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                  style={{ fontFamily: "var(--font-body)" }}
                 >
                   {plan.description}
                 </p>
@@ -161,7 +161,7 @@ export default function MembershipCards() {
                       <span style={{ color: plan.color }}>✓</span>
                       <span
                         className="text-gray-400 text-xs"
-                        style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                        style={{ fontFamily: "var(--font-body)" }}
                       >
                         {feature}
                       </span>
@@ -171,9 +171,9 @@ export default function MembershipCards() {
 
                 <motion.a
                   href={`mailto:${siteConfig.email}`}
-                  className="block w-full py-2.5 rounded-xl text-center text-sm font-medium transition-all duration-300"
+                  className="block w-full py-2.5 rounded-lg text-center text-sm font-medium transition-all duration-300"
                   style={{
-                    fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif",
+                    fontFamily: "var(--font-body)",
                     background: `${plan.color}15`,
                     border: `1px solid ${plan.color}40`,
                     color: plan.color,
@@ -199,8 +199,8 @@ export default function MembershipCards() {
         >
           <Link href="/support">
             <motion.span
-              className="px-5 sm:px-6 py-3 rounded-full border border-[#38bdf8]/30 text-[#38bdf8] text-xs sm:text-sm hover:bg-[#38bdf8]/10 transition-all cursor-pointer whitespace-nowrap"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+              className="px-5 sm:px-6 py-3 rounded-sm border border-[#ffb173]/30 text-[#ffb173] text-xs sm:text-sm hover:bg-[#ffb173]/10 transition-all cursor-pointer whitespace-nowrap"
+              style={{ fontFamily: "var(--font-body)" }}
               whileHover={{ scale: 1.05 }}
             >
               Join as Sponsor
@@ -208,13 +208,13 @@ export default function MembershipCards() {
           </Link>
           <Link href="/support">
             <motion.span
-              className="px-5 sm:px-6 py-3 rounded-full bg-gradient-to-r from-[#FBBF24] to-[#F59E0B] text-white text-xs sm:text-sm shadow-[0_0_24px_rgba(168,85,247,0.28)] hover:shadow-[0_0_36px_rgba(168,85,247,0.42)] transition-all cursor-pointer whitespace-nowrap"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+              className="px-5 sm:px-6 py-3 rounded-sm bg-gradient-to-r from-[#FBBF24] to-[#ff9d3d] text-white text-xs sm:text-sm shadow-[0_0_24px_rgba(255,122,41,0.28)] hover:shadow-[0_0_36px_rgba(255,122,41,0.42)] transition-all cursor-pointer whitespace-nowrap"
+              style={{ fontFamily: "var(--font-body)" }}
               animate={{
                 boxShadow: [
-                  "0 0 18px rgba(139,92,246,0.22)",
-                  "0 0 28px rgba(139,92,246,0.42)",
-                  "0 0 18px rgba(139,92,246,0.22)",
+                  "0 0 18px rgba(234,92,11,0.22)",
+                  "0 0 28px rgba(234,92,11,0.42)",
+                  "0 0 18px rgba(234,92,11,0.22)",
                 ],
               }}
               transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
