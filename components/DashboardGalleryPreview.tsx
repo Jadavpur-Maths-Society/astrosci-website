@@ -39,7 +39,7 @@ export default function DashboardGalleryPreview() {
 
   return (
     <section className="py-16 px-6 relative overflow-hidden">
-      <CometLine className="absolute top-0 left-0 right-0" color="#38bdf8" />
+      <CometLine className="absolute top-0 left-0 right-0" color="#ffb173" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
@@ -51,22 +51,22 @@ export default function DashboardGalleryPreview() {
         >
           <div>
             <p
-              className="text-xs tracking-[0.4em] text-[#38bdf8] mb-2 uppercase"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+              className="kicker mb-3"
+              style={{ fontFamily: "var(--font-body)" }}
             >
               — Astrophotography —
             </p>
             <h2
-              className="text-2xl md:text-3xl font-bold text-white"
-              style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+              className="section-title leading-none"
+              style={{ fontFamily: "var(--font-display)" }}
             >
               GALLERY
             </h2>
           </div>
           <Link href="/gallery">
             <motion.span
-              className="text-xs sm:text-sm text-[#38bdf8] border border-[#38bdf8]/30 px-3 sm:px-5 py-1.5 sm:py-2 rounded-full hover:bg-[#38bdf8]/10 transition-all cursor-pointer whitespace-nowrap"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+              className="link-rule mono-data text-[0.66rem] uppercase tracking-[0.2em]"
+              style={{ fontFamily: "var(--font-body)" }}
               whileHover={{ scale: 1.05 }}
             >
               View All →
@@ -77,16 +77,16 @@ export default function DashboardGalleryPreview() {
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {[...Array(3)].map((_, i) => (
-              <div key={i} className="rounded-xl overflow-hidden border border-white/10 animate-pulse" style={{ aspectRatio: "4/3" }}>
-                <div className="w-full h-full bg-[#0f172a]" />
+              <div key={i} className="rounded-lg overflow-hidden border border-white/10 animate-pulse" style={{ aspectRatio: "4/3" }}>
+                <div className="w-full h-full bg-[#121214]" />
               </div>
             ))}
           </div>
         ) : items.length === 0 ? (
-          <div className="rounded-xl border border-white/10 bg-[#07091a]/60 py-16 text-center">
+          <div className="rounded-lg border border-white/10 bg-[#0b0b0d]/60 py-16 text-center">
             <p
               className="text-gray-500 text-sm"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+              style={{ fontFamily: "var(--font-body)" }}
             >
               No gallery images yet — check back soon!
             </p>
@@ -94,14 +94,14 @@ export default function DashboardGalleryPreview() {
         ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {items.map((item, i) => (
-            <TiltCard key={item.id} className="rounded-xl" glow="rgba(56,189,248,0.18)">
+            <TiltCard key={item.id} className="rounded-lg" glow="rgba(255,177,115,0.18)">
               <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
               whileHover={{ scale: 1.03, y: -4 }}
-              className="group relative rounded-xl overflow-hidden cursor-pointer border border-white/10 hover:border-[#38bdf8]/30 transition-all h-full"
+              className="group relative rounded-lg overflow-hidden cursor-pointer border border-white/10 hover:border-[#ffb173]/30 transition-all h-full"
               style={{ aspectRatio: "4/3" }}
               onClick={() => item.image_url && setFullscreenItem(item)}
             >
@@ -112,7 +112,7 @@ export default function DashboardGalleryPreview() {
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
               ) : (
-                <div className="w-full h-full" style={{ background: "radial-gradient(ellipse at 50% 50%, #1e3a5f 0%, #020617 100%)" }}>
+                <div className="w-full h-full" style={{ background: "radial-gradient(ellipse at 50% 50%, #241a12 0%, #08080a 100%)" }}>
                   {[...Array(20)].map((_, j) => (
                     <div
                       key={j}
@@ -129,12 +129,12 @@ export default function DashboardGalleryPreview() {
                 </div>
               )}
 
-              <div className="absolute inset-0 bg-gradient-to-t from-[#020617]/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#08080a]/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300" />
               <span className="shine-sweep" aria-hidden />
               <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
                 <p
                   className="text-white text-sm font-bold"
-                  style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+                  style={{ fontFamily: "var(--font-display)" }}
                 >
                   {item.caption}
                 </p>

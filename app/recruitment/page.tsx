@@ -29,12 +29,12 @@ function getTimeLeft(): TimeLeft {
 }
 
 const TAB_META: Record<Tab, { label: string; emoji: string; color: string; gradient: string; btnGradient: string; dark: boolean }> = {
-  general: { label: "General",      emoji: "🌌", color: "#4f6ef7", gradient: "linear-gradient(135deg,#4f6ef7,#a855f7)", btnGradient: "linear-gradient(135deg,#4f6ef7,#a855f7)", dark: false },
-  pr:      { label: "📣 PR",        emoji: "📣", color: "#f472b6", gradient: "linear-gradient(135deg,#f472b6,#e11d7a)", btnGradient: "linear-gradient(135deg,#f472b6,#e11d7a)", dark: false },
-  design:  { label: "🎨 Design",    emoji: "🎨", color: "#fb923c", gradient: "linear-gradient(135deg,#fb923c,#f59e0b)", btnGradient: "linear-gradient(135deg,#fb923c,#f59e0b)", dark: true  },
-  tech:    { label: "⚡ Tech",      emoji: "⚡", color: "#38bdf8", gradient: "linear-gradient(135deg,#38bdf8,#0ea5e9)", btnGradient: "linear-gradient(135deg,#38bdf8,#0ea5e9)", dark: true  },
-  video:   { label: "🎬 Video",     emoji: "🎬", color: "#4ade80", gradient: "linear-gradient(135deg,#4ade80,#22c55e)", btnGradient: "linear-gradient(135deg,#4ade80,#22c55e)", dark: true  },
-  content: { label: "✍️ Content",   emoji: "✍️", color: "#c084fc", gradient: "linear-gradient(135deg,#c084fc,#a855f7)", btnGradient: "linear-gradient(135deg,#c084fc,#a855f7)", dark: false },
+  general: { label: "General",      emoji: "🌌", color: "#ff8a3d", gradient: "linear-gradient(135deg,#ff8a3d,#ff7a29)", btnGradient: "linear-gradient(135deg,#ff8a3d,#ff7a29)", dark: false },
+  pr:      { label: "📣 PR",        emoji: "📣", color: "#ff9d4d", gradient: "linear-gradient(135deg,#ff9d4d,#d94a12)", btnGradient: "linear-gradient(135deg,#ff9d4d,#d94a12)", dark: false },
+  design:  { label: "🎨 Design",    emoji: "🎨", color: "#ff8f4d", gradient: "linear-gradient(135deg,#ff8f4d,#ff9d3d)", btnGradient: "linear-gradient(135deg,#ff8f4d,#ff9d3d)", dark: true  },
+  tech:    { label: "⚡ Tech",      emoji: "⚡", color: "#ffb173", gradient: "linear-gradient(135deg,#ffb173,#ffab63)", btnGradient: "linear-gradient(135deg,#ffb173,#ffab63)", dark: true  },
+  video:   { label: "🎬 Video",     emoji: "🎬", color: "#f0a461", gradient: "linear-gradient(135deg,#f0a461,#e08b2e)", btnGradient: "linear-gradient(135deg,#f0a461,#e08b2e)", dark: true  },
+  content: { label: "✍️ Content",   emoji: "✍️", color: "#ffb173", gradient: "linear-gradient(135deg,#ffb173,#ff7a29)", btnGradient: "linear-gradient(135deg,#ffb173,#ff7a29)", dark: false },
 };
 
 const TABS: Tab[] = ["general", "pr", "design", "tech", "video", "content"];
@@ -42,7 +42,7 @@ const TABS: Tab[] = ["general", "pr", "design", "tech", "video", "content"];
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=DM+Sans:wght@300;400;500;600&display=swap');
 
-.rc-root { --space:#03040d;--deep:#080b1a;--surface:#0d1128;--card:#101530;--border:#1e2545;--border-glow:#2a3570;--nebula1:#4f6ef7;--nebula2:#a855f7;--nebula3:#06b6d4;--star:#e2e8ff;--muted:#5a6490;--input-bg:#090c1f;--gold:#f0b429; }
+.rc-root { --space:#060607;--deep:#0c0c0e;--surface:#131315;--card:#131315;--border:#1c1a17;--border-glow:#3a2a1c;--nebula1:#ff8a3d;--nebula2:#ff7a29;--nebula3:#ffab63;--star:#efe6da;--muted:#7d7468;--input-bg:#090c1f;--gold:#f0b429; }
 
 /* ── STARS ── */
 .rc-stars { position:fixed;inset:0;z-index:0;pointer-events:none; }
@@ -51,20 +51,20 @@ const CSS = `
 .rc-banner {
   position:relative;z-index:2;
   padding:0;overflow:hidden;
-  background:#03040d;
-  border-bottom:1px solid #1e2545;
+  background:#060607;
+  border-bottom:1px solid #1c1a17;
 }
 .rc-banner-aurora {
   position:absolute;inset:0;pointer-events:none;
   background:
-    radial-gradient(ellipse 70% 60% at 15% 30%, #3a1a6a55 0%, transparent 55%),
-    radial-gradient(ellipse 60% 50% at 85% 20%, #0a2a5055 0%, transparent 55%),
-    radial-gradient(ellipse 80% 40% at 50% 80%, #0a1a4044 0%, transparent 60%),
-    radial-gradient(ellipse 40% 70% at 70% 50%, #1a0a3a33 0%, transparent 50%);
+    radial-gradient(ellipse 70% 60% at 15% 30%, #2a1a0e55 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 85% 20%, #24140944 0%, transparent 55%),
+    radial-gradient(ellipse 80% 40% at 50% 80%, #1c100844 0%, transparent 60%),
+    radial-gradient(ellipse 40% 70% at 70% 50%, #1a0e0733 0%, transparent 50%);
 }
 .rc-banner-lines {
   position:absolute;inset:0;pointer-events:none;overflow:hidden;opacity:0.08;
-  background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, #4f6ef7 40px);
+  background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, #ff8a3d 40px);
 }
 .rc-banner-inner {
   position:relative;z-index:1;
@@ -76,14 +76,14 @@ const CSS = `
 /* spinning logo */
 .rc-logo-ring {
   width:80px;height:80px;border-radius:50%;
-  background:conic-gradient(from 0deg,#4f6ef7,#a855f7,#f472b6,#fb923c,#4ade80,#06b6d4,#4f6ef7);
+  background:conic-gradient(from 0deg,#ff8a3d,#ff7a29,#ff9d4d,#ff8f4d,#f0a461,#ffab63,#ff8a3d);
   padding:3px;
   animation:rcSpin 12s linear infinite;
   margin-bottom:24px;flex-shrink:0;
 }
 .rc-logo-inner {
   width:100%;height:100%;border-radius:50%;
-  background:#03040d;
+  background:#060607;
   display:flex;align-items:center;justify-content:center;font-size:32px;
 }
 @keyframes rcSpin { to { transform:rotate(360deg); } }
@@ -91,30 +91,26 @@ const CSS = `
 /* eyebrow */
 .rc-eyebrow {
   font-family:'Orbitron',monospace;font-size:9px;letter-spacing:6px;
-  color:#06b6d4;text-transform:uppercase;margin-bottom:14px;
+  color:#ffab63;text-transform:uppercase;margin-bottom:14px;
 }
 
 /* main title */
 .rc-title {
   font-family:'Orbitron',monospace;
   font-size:clamp(2rem,6vw,4rem);font-weight:900;line-height:1.05;
-  background:linear-gradient(135deg,#fff 10%,#a5b4fc 40%,#f472b6 65%,#fb923c 85%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  color:#f6f2ea;
   margin-bottom:10px;
 }
 .rc-subtitle {
   font-family:'Orbitron',monospace;font-size:10px;
-  letter-spacing:3px;color:#5a6490;margin-bottom:36px;
+  letter-spacing:3px;color:#7d7468;margin-bottom:36px;
 }
 
-/* ── COLORFUL BANNER STRIP ── */
+/* ── BANNER STRIP ── */
 .rc-rainbow-strip {
-  width:100%;height:4px;
-  background:linear-gradient(90deg,#4f6ef7,#a855f7,#f472b6,#fb923c,#f59e0b,#4ade80,#06b6d4,#4f6ef7);
-  background-size:200% 100%;
-  animation:rcRainbow 4s linear infinite;
+  width:100%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,122,41,0.5) 30%,rgba(255,122,41,0.5) 70%,transparent);
 }
-@keyframes rcRainbow { to { background-position: 200% 0; } }
 
 /* ── COUNTDOWN ── */
 .rc-deadline-label {
@@ -127,8 +123,8 @@ const CSS = `
 }
 .rc-timer-block {
   display:flex;flex-direction:column;align-items:center;
-  background:linear-gradient(135deg,#0d1128,#101530);
-  border:1px solid #1e2545;
+  background:linear-gradient(135deg,#131315,#131315);
+  border:1px solid #1c1a17;
   border-radius:14px;
   padding:14px 20px;
   min-width:72px;
@@ -136,30 +132,30 @@ const CSS = `
 }
 .rc-timer-block::before {
   content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:var(--tb-color,#4f6ef7);
+  background:var(--tb-color,#ff8a3d);
 }
 .rc-timer-num {
   font-family:'Orbitron',monospace;font-size:28px;font-weight:900;
-  color:#e2e8ff;line-height:1;
+  color:#efe6da;line-height:1;
 }
 .rc-timer-lbl {
   font-family:'Orbitron',monospace;font-size:8px;letter-spacing:2px;
-  color:#5a6490;margin-top:6px;
+  color:#7d7468;margin-top:6px;
 }
 .rc-timer-sep {
   font-family:'Orbitron',monospace;font-size:24px;font-weight:900;
-  color:#2a3570;line-height:1;padding-bottom:16px;
+  color:#3a2a1c;line-height:1;padding-bottom:16px;
 }
 .rc-expired-badge {
   font-family:'Orbitron',monospace;font-size:13px;letter-spacing:3px;
-  color:#f87171;background:#2a0a0a;border:1px solid #7a2020;
+  color:#f08a70;background:#1c0f0c;border:1px solid #6b2a20;
   padding:10px 24px;border-radius:50px;
 }
 .rc-date-pill {
   display:inline-flex;align-items:center;gap:8px;
-  background:#090c1f;border:1px solid #2a3570;
+  background:#090c1f;border:1px solid #3a2a1c;
   padding:8px 20px;border-radius:50px;
-  font-family:'Orbitron',monospace;font-size:10px;color:#5a6490;
+  font-family:'Orbitron',monospace;font-size:10px;color:#7d7468;
   letter-spacing:2px;
 }
 .rc-date-pill strong { color:#f0b429; }
@@ -179,9 +175,9 @@ const CSS = `
 /* ── TABS ── */
 .rc-tabs-wrap {
   position:sticky;top:0;z-index:20;
-  background:rgba(3,4,13,0.94);
+  background:rgba(6,6,7,0.94);
   backdrop-filter:blur(14px);
-  border-bottom:1px solid #1e2545;
+  border-bottom:1px solid #1c1a17;
 }
 .rc-tabs {
   display:flex;gap:0;max-width:800px;margin:0 auto;
@@ -192,13 +188,13 @@ const CSS = `
   background:none;border:none;
   padding:14px 16px;
   font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;
-  color:#5a6490;cursor:pointer;
+  color:#7d7468;cursor:pointer;
   border-bottom:2px solid transparent;
   white-space:nowrap;transition:all 0.2s;
   position:relative;top:1px;
 }
-.rc-tab-btn:hover { color:#e2e8ff; }
-.rc-tab-btn.active { color:#e2e8ff;border-bottom-color:var(--tc,#4f6ef7); }
+.rc-tab-btn:hover { color:#efe6da; }
+.rc-tab-btn.active { color:#efe6da;border-bottom-color:var(--tc,#ff8a3d); }
 
 /* ── CONTAINER ── */
 .rc-container { max-width:780px;margin:0 auto;padding:0 20px 80px;position:relative;z-index:2; }
@@ -214,16 +210,16 @@ const CSS = `
   display:flex;align-items:center;justify-content:center;font-size:22px;
 }
 .rc-s-title h2 {font-family:'Orbitron',monospace;font-size:18px;font-weight:800;letter-spacing:1px;}
-.rc-s-title p {font-size:11px;color:#5a6490;font-family:'Orbitron',monospace;letter-spacing:1.5px;margin-top:4px;}
+.rc-s-title p {font-size:11px;color:#7d7468;font-family:'Orbitron',monospace;letter-spacing:1.5px;margin-top:4px;}
 
 /* ── CARDS ── */
 .rc-card {
-  background:#101530;border:1px solid #1e2545;
+  background:#131315;border:1px solid #1c1a17;
   border-radius:16px;padding:26px;margin-bottom:14px;
 }
 .rc-card-label {
   font-family:'Orbitron',monospace;font-size:9px;letter-spacing:3px;
-  color:#5a6490;text-transform:uppercase;margin-bottom:20px;
+  color:#7d7468;text-transform:uppercase;margin-bottom:20px;
 }
 
 /* ── FIELDS ── */
@@ -232,31 +228,31 @@ const CSS = `
 .rc-field { display:flex;flex-direction:column;gap:8px; }
 .rc-field.full { grid-column:1/-1; }
 .rc-label {
-  font-size:11px;font-weight:600;color:#5a6490;letter-spacing:0.5px;
+  font-size:11px;font-weight:600;color:#7d7468;letter-spacing:0.5px;
   font-family:'Orbitron',monospace;
 }
-.rc-label .req { color:#f472b6;margin-left:2px; }
+.rc-label .req { color:#ff9d4d;margin-left:2px; }
 input[type=text].rc-inp,input[type=number].rc-inp,input[type=email].rc-inp,textarea.rc-inp,select.rc-inp {
-  background:#090c1f;border:1px solid #1e2545;border-radius:10px;
-  color:#e2e8ff;font-family:'DM Sans',sans-serif;font-size:14px;
+  background:#090c1f;border:1px solid #1c1a17;border-radius:10px;
+  color:#efe6da;font-family:'DM Sans',sans-serif;font-size:14px;
   padding:12px 14px;outline:none;transition:border-color 0.2s,box-shadow 0.2s;
   width:100%;resize:vertical;
 }
 input.rc-inp:focus,textarea.rc-inp:focus,select.rc-inp:focus {
-  border-color:#4f6ef7;box-shadow:0 0 0 3px #4f6ef718;
+  border-color:#ff8a3d;box-shadow:0 0 0 3px #4f6ef718;
 }
 textarea.rc-inp { min-height:90px; }
-select.rc-inp option { background:#0d1128; }
+select.rc-inp option { background:#131315; }
 
 /* ── Q-CARDS ── */
 .rc-qcard {
-  background:#101530;border:1px solid #1e2545;
+  background:#131315;border:1px solid #1c1a17;
   border-radius:14px;padding:22px;margin-bottom:12px;
   transition:border-color 0.2s;
 }
-.rc-qcard:focus-within { border-color:#2a3570; }
-.rc-qnum { font-family:'Orbitron',monospace;font-size:9px;color:#5a6490;letter-spacing:3px;margin-bottom:8px; }
-.rc-qtitle { font-size:14px;font-weight:600;margin-bottom:14px;line-height:1.5;color:#e2e8ff; }
+.rc-qcard:focus-within { border-color:#3a2a1c; }
+.rc-qnum { font-family:'Orbitron',monospace;font-size:9px;color:#7d7468;letter-spacing:3px;margin-bottom:8px; }
+.rc-qtitle { font-size:14px;font-weight:600;margin-bottom:14px;line-height:1.5;color:#efe6da; }
 .rc-qweight { font-size:10px;font-weight:400;color:#f0b429;margin-left:6px; }
 
 /* ── OPTIONS ── */
@@ -264,23 +260,23 @@ select.rc-inp option { background:#0d1128; }
 .rc-option {
   display:flex;align-items:center;gap:10px;
   padding:10px 14px;
-  background:#090c1f;border:1px solid #1e2545;
+  background:#090c1f;border:1px solid #1c1a17;
   border-radius:9px;cursor:pointer;transition:all 0.15s;font-size:14px;
-  color:#e2e8ff;
+  color:#efe6da;
 }
-.rc-option:hover { border-color:#4f6ef7;background:#0c0f24; }
+.rc-option:hover { border-color:#ff8a3d;background:#0f0e0d; }
 .rc-option input[type=radio],.rc-option input[type=checkbox] {
-  width:16px;height:16px;accent-color:#4f6ef7;flex-shrink:0;cursor:pointer;
+  width:16px;height:16px;accent-color:#ff8a3d;flex-shrink:0;cursor:pointer;
 }
 
 /* ── DIVIDER ── */
 .rc-div { display:flex;align-items:center;gap:10px;margin:18px 0; }
-.rc-div::before,.rc-div::after { content:'';flex:1;height:1px;background:#1e2545; }
-.rc-div span { font-family:'Orbitron',monospace;font-size:9px;color:#5a6490;letter-spacing:3px; }
+.rc-div::before,.rc-div::after { content:'';flex:1;height:1px;background:#1c1a17; }
+.rc-div span { font-family:'Orbitron',monospace;font-size:9px;color:#7d7468;letter-spacing:3px; }
 
 /* ── NOTE ── */
 .rc-note {
-  background:#13100a;border-left:3px solid #f0b429;
+  background:#141210;border-left:3px solid #f0b429;
   padding:10px 14px;border-radius:0 8px 8px 0;
   font-size:12px;color:#a07830;margin-bottom:16px;
   font-family:'Orbitron',monospace;letter-spacing:0.5px;
@@ -288,15 +284,15 @@ select.rc-inp option { background:#0d1128; }
 
 /* ── FORMSPREE NOTICE ── */
 .rc-fsnotice {
-  background:linear-gradient(135deg,#0d1a30,#0a1020);
+  background:linear-gradient(135deg,#151311,#0e0e10);
   border:1px solid #4f6ef733;border-radius:12px;
   padding:16px 18px;margin-bottom:20px;
   display:flex;gap:12px;align-items:flex-start;
 }
 .rc-fsnotice .icon { font-size:18px;flex-shrink:0;margin-top:2px; }
 .rc-fsnotice .text { font-size:12px;line-height:1.7; }
-.rc-fsnotice .text strong { color:#06b6d4;font-family:'Orbitron',monospace;font-size:10px;letter-spacing:1px; }
-.rc-fsnotice .text code { background:#1a2240;padding:2px 6px;border-radius:4px;font-size:11px;color:#f0b429; }
+.rc-fsnotice .text strong { color:#ffab63;font-family:'Orbitron',monospace;font-size:10px;letter-spacing:1px; }
+.rc-fsnotice .text code { background:#1b1916;padding:2px 6px;border-radius:4px;font-size:11px;color:#f0b429; }
 
 /* ── SUBMIT ── */
 .rc-submit-wrap { padding:8px 0 4px; }
@@ -316,7 +312,7 @@ select.rc-inp option { background:#0d1128; }
 .rc-success-icon { font-size:52px;margin-bottom:16px;animation:rcPulse 2s ease infinite; }
 @keyframes rcPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
 .rc-success h3 { font-family:'Orbitron',monospace;font-size:18px;font-weight:800;margin-bottom:8px; }
-.rc-success p { font-size:14px;color:#5a6490; }
+.rc-success p { font-size:14px;color:#7d7468; }
 
 /* ── TOAST ── */
 .rc-toast {
@@ -327,8 +323,8 @@ select.rc-inp option { background:#0d1128; }
   animation:rcToastIn 0.3s ease;
 }
 @keyframes rcToastIn{from{opacity:0;transform:translateX(-50%) translateY(8px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
-.rc-toast.success{background:#0d1f0d;border:1px solid #22543d;color:#4ade80;}
-.rc-toast.error{background:#2a0a0a;border:1px solid #7a2020;color:#f87171;}
+.rc-toast.success{background:#12120d;border:1px solid #2a1d0e;color:#f0a461;}
+.rc-toast.error{background:#1c0f0c;border:1px solid #6b2a20;color:#f08a70;}
 
 /* responsive timer */
 @media(max-width:500px){
@@ -379,7 +375,7 @@ export default function RecruitmentPage() {
         s.o += s.s * 0.008 * s.d;
         if (s.o > 0.9 || s.o < 0.05) s.d *= -1;
         ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(180,200,255,${s.o})`; ctx.fill();
+        ctx.fillStyle = `rgba(255,214,178,${s.o})`; ctx.fill();
       });
       animId = requestAnimationFrame(draw);
     }
@@ -440,10 +436,10 @@ export default function RecruitmentPage() {
             ) : (
               <div className="rc-countdown">
                 {[
-                  { val: timeLeft.days,    lbl: "DAYS",    color: "#f472b6" },
-                  { val: timeLeft.hours,   lbl: "HOURS",   color: "#fb923c" },
-                  { val: timeLeft.minutes, lbl: "MINS",    color: "#4f6ef7" },
-                  { val: timeLeft.seconds, lbl: "SECS",    color: "#4ade80" },
+                  { val: timeLeft.days,    lbl: "DAYS",    color: "#ff9d4d" },
+                  { val: timeLeft.hours,   lbl: "HOURS",   color: "#ff8f4d" },
+                  { val: timeLeft.minutes, lbl: "MINS",    color: "#ff8a3d" },
+                  { val: timeLeft.seconds, lbl: "SECS",    color: "#f0a461" },
                 ].map((b, i) => (
                   <>
                     <div key={b.lbl} className="rc-timer-block" style={{ "--tb-color": b.color } as React.CSSProperties}>
@@ -463,11 +459,11 @@ export default function RecruitmentPage() {
             {/* promo badges */}
             <div className="rc-badge-row">
               {[
-                { text: "PR Team",      color: "#f472b6", bg: "#f472b611" },
-                { text: "Design Team",  color: "#fb923c", bg: "#fb923c11" },
-                { text: "Tech Team",    color: "#38bdf8", bg: "#38bdf811" },
-                { text: "Video Team",   color: "#4ade80", bg: "#4ade8011" },
-                { text: "Content Team", color: "#c084fc", bg: "#c084fc11" },
+                { text: "PR Team",      color: "#ff9d4d", bg: "#ff9d4d11" },
+                { text: "Design Team",  color: "#ff8f4d", bg: "#ff8f4d11" },
+                { text: "Tech Team",    color: "#ffb173", bg: "#ffb17311" },
+                { text: "Video Team",   color: "#f0a461", bg: "#f0a46111" },
+                { text: "Content Team", color: "#ffb173", bg: "#ffb17311" },
               ].map(b => (
                 <span key={b.text} className="rc-badge" style={{ color: b.color, background: b.bg, borderColor: b.color + "44" }}>
                   {b.text}
@@ -500,7 +496,7 @@ export default function RecruitmentPage() {
           {/* ══════ GENERAL ══════ */}
           <div className={`rc-section${activeTab === "general" ? " active" : ""}`}>
             <div className="rc-section-header">
-              <div className="rc-s-icon" style={{ background: "linear-gradient(135deg,#4f6ef720,#4f6ef740)", border: "1px solid #4f6ef755" }}>🌌</div>
+              <div className="rc-s-icon" style={{ background: "linear-gradient(135deg,#ece7de12,#ece7de28)", border: "1px solid #ece7de40" }}>🌌</div>
               <div className="rc-s-title">
                 <h2>General Info</h2>
                 <p>Required for all applications</p>
@@ -582,7 +578,7 @@ export default function RecruitmentPage() {
           {/* ══════ PR ══════ */}
           <div className={`rc-section${activeTab === "pr" ? " active" : ""}`}>
             <div className="rc-section-header">
-              <div className="rc-s-icon" style={{ background: "linear-gradient(135deg,#f472b620,#f472b640)", border: "1px solid #f472b655" }}>📣</div>
+              <div className="rc-s-icon" style={{ background: "linear-gradient(135deg,#ff9d4d20,#ff9d4d40)", border: "1px solid #ff9d4d55" }}>📣</div>
               <div className="rc-s-title"><h2>PR Team</h2><p>Outreach · Social Media · Reels</p></div>
             </div>
 
@@ -691,7 +687,7 @@ export default function RecruitmentPage() {
           {/* ══════ DESIGN ══════ */}
           <div className={`rc-section${activeTab === "design" ? " active" : ""}`}>
             <div className="rc-section-header">
-              <div className="rc-s-icon" style={{ background: "linear-gradient(135deg,#fb923c20,#fb923c40)", border: "1px solid #fb923c55" }}>🎨</div>
+              <div className="rc-s-icon" style={{ background: "linear-gradient(135deg,#ff8f4d20,#ff8f4d40)", border: "1px solid #ff8f4d55" }}>🎨</div>
               <div className="rc-s-title"><h2>Design Team</h2><p>Graphics · Astrophotography · Visual Identity</p></div>
             </div>
 
@@ -803,7 +799,7 @@ export default function RecruitmentPage() {
           {/* ══════ TECH ══════ */}
           <div className={`rc-section${activeTab === "tech" ? " active" : ""}`}>
             <div className="rc-section-header">
-              <div className="rc-s-icon" style={{ background: "linear-gradient(135deg,#38bdf820,#38bdf840)", border: "1px solid #38bdf855" }}>⚡</div>
+              <div className="rc-s-icon" style={{ background: "linear-gradient(135deg,#ffb17320,#ffb17340)", border: "1px solid #ffb17355" }}>⚡</div>
               <div className="rc-s-title"><h2>Tech Team</h2><p>ML · CV · Development · AI Tools</p></div>
             </div>
 
@@ -930,7 +926,7 @@ export default function RecruitmentPage() {
           {/* ══════ VIDEO ══════ */}
           <div className={`rc-section${activeTab === "video" ? " active" : ""}`}>
             <div className="rc-section-header">
-              <div className="rc-s-icon" style={{ background: "linear-gradient(135deg,#4ade8020,#4ade8040)", border: "1px solid #4ade8055" }}>🎬</div>
+              <div className="rc-s-icon" style={{ background: "linear-gradient(135deg,#f0a46120,#f0a46140)", border: "1px solid #f0a46155" }}>🎬</div>
               <div className="rc-s-title"><h2>Video Editing</h2><p>Reels · Event Films · Timelapse · Motion</p></div>
             </div>
 
@@ -1045,7 +1041,7 @@ export default function RecruitmentPage() {
           {/* ══════ CONTENT ══════ */}
           <div className={`rc-section${activeTab === "content" ? " active" : ""}`}>
             <div className="rc-section-header">
-              <div className="rc-s-icon" style={{ background: "linear-gradient(135deg,#c084fc20,#c084fc40)", border: "1px solid #c084fc55" }}>✍️</div>
+              <div className="rc-s-icon" style={{ background: "linear-gradient(135deg,#ffb17320,#ffb17340)", border: "1px solid #ffb17355" }}>✍️</div>
               <div className="rc-s-title"><h2>Content Team</h2><p>Writing · Research · Astro Storytelling</p></div>
             </div>
 

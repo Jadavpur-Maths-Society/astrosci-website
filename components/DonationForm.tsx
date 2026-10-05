@@ -171,7 +171,7 @@ export default function DonationForm() {
       {/* Back Link */}
       <Link
         href="/donators"
-        className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-[#22d3ee] transition-colors mb-8"
+        className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-[#ffc48e] transition-colors mb-8"
       >
         <ArrowLeft className="w-4 h-4" />
         Back to Donators
@@ -187,7 +187,7 @@ export default function DonationForm() {
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
                   isActive
-                    ? "bg-gradient-to-r from-[#7c3aed] to-[#22d3ee] text-white"
+                    ? "bg-gradient-to-r from-[#e2600f] to-[#ffc48e] text-white"
                     : "bg-white/10 text-gray-500"
                 }`}
               >
@@ -195,7 +195,7 @@ export default function DonationForm() {
               </div>
               <span
                 className={`text-xs hidden sm:block ${
-                  isActive ? "text-[#22d3ee]" : "text-gray-600"
+                  isActive ? "text-[#ffc48e]" : "text-gray-600"
                 }`}
               >
                 {label}
@@ -203,7 +203,7 @@ export default function DonationForm() {
               {i < 2 && (
                 <div
                   className={`w-8 sm:w-12 h-px ${
-                    isActive ? "bg-[#22d3ee]/40" : "bg-white/10"
+                    isActive ? "bg-[#ffc48e]/40" : "bg-white/10"
                   }`}
                 />
               )}
@@ -222,16 +222,16 @@ export default function DonationForm() {
             exit={{ opacity: 0, x: 20 }}
             transition={{ duration: 0.4 }}
           >
-            <div className="rounded-2xl border border-[#22d3ee]/20 bg-[#0f172a]/80 backdrop-blur-sm p-8">
+            <div className="rounded-lg border border-[#ffc48e]/20 bg-[#121214]/80 backdrop-blur-sm p-8">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-[#7c3aed]/10 flex items-center justify-center">
-                  <Heart className="w-5 h-5 text-[#22d3ee]" />
+                <div className="w-10 h-10 rounded-lg bg-[#e2600f]/10 flex items-center justify-center">
+                  <Heart className="w-5 h-5 text-[#ffc48e]" />
                 </div>
                 <div>
                   <h2
                     className="text-xl font-bold text-white"
                     style={{
-                      fontFamily: "'Space Grotesk', 'Inter', sans-serif",
+                      fontFamily: "var(--font-display)",
                     }}
                   >
                     Make a Donation
@@ -243,9 +243,9 @@ export default function DonationForm() {
               </div>
 
               {/* Note about email */}
-              <div className="rounded-xl bg-[#7c3aed]/5 border border-[#7c3aed]/20 p-4 mb-5">
+              <div className="rounded-lg bg-[#e2600f]/5 border border-[#e2600f]/20 p-4 mb-5">
                 <div className="flex items-start gap-3">
-                  <Info className="w-4 h-4 text-[#22d3ee] mt-0.5 flex-shrink-0" />
+                  <Info className="w-4 h-4 text-[#ffc48e] mt-0.5 flex-shrink-0" />
                   <p className="text-xs text-gray-300 leading-relaxed">
                     <strong className="text-white">Important:</strong> Please
                     provide a correct email and phone number so our team can
@@ -257,10 +257,10 @@ export default function DonationForm() {
 
               <form onSubmit={handleFormSubmit} className="space-y-5">
                 {/* Anonymous Toggle */}
-                <div className="rounded-xl bg-[#7c3aed]/5 border border-[#7c3aed]/20 p-4">
+                <div className="rounded-lg bg-[#e2600f]/5 border border-[#e2600f]/20 p-4">
                   <label className="flex items-center justify-between cursor-pointer">
                     <div className="flex items-center gap-3">
-                      <EyeOff className="w-4 h-4 text-[#7c3aed]" />
+                      <EyeOff className="w-4 h-4 text-[#e2600f]" />
                       <div>
                         <span className="text-sm font-semibold text-white">
                           Anonymous Donation
@@ -272,7 +272,7 @@ export default function DonationForm() {
                     </div>
                     <div
                       className={`relative w-11 h-6 rounded-full transition-colors ${
-                        isAnonymous ? "bg-[#7c3aed]" : "bg-white/10"
+                        isAnonymous ? "bg-[#e2600f]" : "bg-white/10"
                       }`}
                       onClick={() => setIsAnonymous(!isAnonymous)}
                     >
@@ -298,7 +298,7 @@ export default function DonationForm() {
                     onChange={(e) => setAmount(e.target.value)}
                     required
                     min="1"
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#22d3ee]/50 focus:shadow-[0_0_15px_rgba(34,211,238,0.15)] transition-all"
+                    className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#ffc48e]/50 focus:shadow-[0_0_15px_rgba(255,196,142,0.15)] transition-all"
                     placeholder="Enter amount"
                   />
                 </div>
@@ -319,7 +319,7 @@ export default function DonationForm() {
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
                       required={!isAnonymous}
-                      className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#22d3ee]/50 focus:shadow-[0_0_15px_rgba(34,211,238,0.15)] transition-all"
+                      className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#ffc48e]/50 focus:shadow-[0_0_15px_rgba(255,196,142,0.15)] transition-all"
                       placeholder="Your full name"
                     />
                   </motion.div>
@@ -337,7 +337,7 @@ export default function DonationForm() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#22d3ee]/50 focus:shadow-[0_0_15px_rgba(34,211,238,0.15)] transition-all"
+                      className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#ffc48e]/50 focus:shadow-[0_0_15px_rgba(255,196,142,0.15)] transition-all"
                       placeholder="you@email.com"
                     />
                   </div>
@@ -356,7 +356,7 @@ export default function DonationForm() {
                       className={`w-full px-4 py-3 rounded-xl bg-white/5 border text-white text-sm placeholder-gray-500 focus:outline-none transition-all ${
                         phoneError
                           ? "border-red-500/50 focus:border-red-500/80"
-                          : "border-white/10 focus:border-[#22d3ee]/50 focus:shadow-[0_0_15px_rgba(34,211,238,0.15)]"
+                          : "border-white/10 focus:border-[#ffc48e]/50 focus:shadow-[0_0_15px_rgba(255,196,142,0.15)]"
                       }`}
                       placeholder="10-digit number"
                     />
@@ -391,7 +391,7 @@ export default function DonationForm() {
                       aria-label="Upload profile picture"
                       className={`relative rounded-xl border-2 border-dashed p-4 text-center cursor-pointer transition-colors ${
                         isDraggingProfile
-                          ? "border-[#22d3ee] bg-[#22d3ee]/5"
+                          ? "border-[#ffc48e] bg-[#ffc48e]/5"
                           : "border-white/10 hover:border-white/20 bg-white/5"
                       }`}
                     >
@@ -406,7 +406,7 @@ export default function DonationForm() {
                       />
                       {profilePic ? (
                         <div className="flex items-center justify-center gap-3">
-                          <CheckCircle2 className="w-4 h-4 text-[#10b981] flex-shrink-0" />
+                          <CheckCircle2 className="w-4 h-4 text-[#e08b2e] flex-shrink-0" />
                           <span className="text-sm text-gray-300 truncate max-w-[200px]">
                             {profilePic.name}
                           </span>
@@ -445,9 +445,9 @@ export default function DonationForm() {
 
                 <motion.button
                   type="submit"
-                  className="w-full py-4 rounded-full bg-gradient-to-r from-[#7c3aed] to-[#22d3ee] text-white font-bold text-sm tracking-wider shadow-[0_0_30px_rgba(124,58,237,0.3)] hover:shadow-[0_0_50px_rgba(124,58,237,0.5)] transition-all duration-300"
+                  className="w-full py-4 rounded-full bg-gradient-to-r from-[#e2600f] to-[#ffc48e] text-white font-bold text-sm tracking-wider shadow-[0_0_30px_rgba(226,96,15,0.3)] hover:shadow-[0_0_50px_rgba(226,96,15,0.5)] transition-all duration-300"
                   style={{
-                    fontFamily: "'Space Grotesk', 'Inter', sans-serif",
+                    fontFamily: "var(--font-display)",
                   }}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -468,14 +468,14 @@ export default function DonationForm() {
             exit={{ opacity: 0, x: 20 }}
             transition={{ duration: 0.4 }}
           >
-            <div className="rounded-2xl border border-[#22d3ee]/20 bg-[#0f172a]/80 backdrop-blur-sm p-8 text-center">
-              <div className="w-14 h-14 rounded-2xl bg-[#7c3aed]/10 flex items-center justify-center mx-auto mb-6">
-                <QrCode className="w-7 h-7 text-[#22d3ee]" />
+            <div className="rounded-lg border border-[#ffc48e]/20 bg-[#121214]/80 backdrop-blur-sm p-8 text-center">
+              <div className="w-14 h-14 rounded-lg bg-[#e2600f]/10 flex items-center justify-center mx-auto mb-6">
+                <QrCode className="w-7 h-7 text-[#ffc48e]" />
               </div>
               <h2
                 className="text-xl font-bold text-white mb-2"
                 style={{
-                  fontFamily: "'Space Grotesk', 'Inter', sans-serif",
+                  fontFamily: "var(--font-display)",
                 }}
               >
                 Complete Payment
@@ -485,7 +485,7 @@ export default function DonationForm() {
               </p>
 
               {/* Payment QR Code */}
-              <div className="w-56 h-56 mx-auto rounded-2xl overflow-hidden bg-white flex items-center justify-center mb-6">
+              <div className="w-56 h-56 mx-auto rounded-lg overflow-hidden bg-white flex items-center justify-center mb-6">
                 <img
                   src={siteConfig.assets.paymentQr}
                   alt="Payment QR Code"
@@ -496,7 +496,7 @@ export default function DonationForm() {
               {/* UPI Button */}
               <motion.a
                 href="#"
-                className="inline-flex items-center gap-2 px-8 py-3 rounded-full border border-[#22d3ee]/40 text-[#22d3ee] font-semibold text-sm tracking-wider hover:bg-[#22d3ee]/10 hover:border-[#22d3ee] transition-all duration-300 mb-8"
+                className="inline-flex items-center gap-2 px-8 py-3 rounded-sm border border-[#ffc48e]/40 text-[#ffc48e] font-semibold text-sm tracking-wider hover:bg-[#ffc48e]/10 hover:border-[#ffc48e] transition-all duration-300 mb-8"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
               >
@@ -524,7 +524,7 @@ export default function DonationForm() {
                   value={transactionRef}
                   onChange={(e) => setTransactionRef(e.target.value)}
                   required
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#22d3ee]/50 focus:shadow-[0_0_15px_rgba(34,211,238,0.15)] transition-all"
+                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#ffc48e]/50 focus:shadow-[0_0_15px_rgba(255,196,142,0.15)] transition-all"
                   placeholder="Enter transaction ID or UTR number"
                 />
               </div>
@@ -549,7 +549,7 @@ export default function DonationForm() {
                   aria-label="Upload payment proof file"
                   className={`relative rounded-xl border-2 border-dashed p-6 text-center cursor-pointer transition-colors ${
                     isDraggingProof
-                      ? "border-[#22d3ee] bg-[#22d3ee]/5"
+                      ? "border-[#ffc48e] bg-[#ffc48e]/5"
                       : "border-white/10 hover:border-white/20 bg-white/5"
                   }`}
                 >
@@ -562,7 +562,7 @@ export default function DonationForm() {
                   />
                   {proofFile ? (
                     <div className="flex items-center justify-center gap-3">
-                      <CheckCircle2 className="w-4 h-4 text-[#10b981] flex-shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-[#e08b2e] flex-shrink-0" />
                       <span className="text-sm text-gray-300 truncate max-w-[200px]">
                         {proofFile.name}
                       </span>
@@ -597,7 +597,7 @@ export default function DonationForm() {
               </div>
 
               {submitError && (
-                <div className="rounded-xl bg-red-500/10 border border-red-500/30 p-3 mb-4">
+                <div className="rounded-lg bg-red-500/10 border border-red-500/30 p-3 mb-4">
                   <p className="text-sm text-red-400 flex items-center gap-2">
                     <AlertCircle className="w-4 h-4 flex-shrink-0" />
                     {submitError}
@@ -609,9 +609,9 @@ export default function DonationForm() {
                 <motion.button
                   onClick={handleFinalSubmit}
                   disabled={submitting}
-                  className="w-full py-4 rounded-full bg-gradient-to-r from-[#7c3aed] to-[#22d3ee] text-white font-bold text-sm tracking-wider shadow-[0_0_30px_rgba(124,58,237,0.3)] hover:shadow-[0_0_50px_rgba(124,58,237,0.5)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full py-4 rounded-full bg-gradient-to-r from-[#e2600f] to-[#ffc48e] text-white font-bold text-sm tracking-wider shadow-[0_0_30px_rgba(226,96,15,0.3)] hover:shadow-[0_0_50px_rgba(226,96,15,0.5)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   style={{
-                    fontFamily: "'Space Grotesk', 'Inter', sans-serif",
+                    fontFamily: "var(--font-display)",
                   }}
                   whileHover={submitting ? {} : { scale: 1.02 }}
                   whileTap={submitting ? {} : { scale: 0.98 }}
@@ -641,21 +641,21 @@ export default function DonationForm() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="rounded-2xl border border-[#22d3ee]/20 bg-[#0f172a]/80 backdrop-blur-sm p-10 text-center">
+            <div className="rounded-lg border border-[#ffc48e]/20 bg-[#121214]/80 backdrop-blur-sm p-10 text-center">
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
               >
-                <div className="w-20 h-20 rounded-full bg-[#7c3aed]/10 flex items-center justify-center mx-auto mb-6">
-                  <Clock className="w-10 h-10 text-[#22d3ee]" />
+                <div className="w-20 h-20 rounded-full bg-[#e2600f]/10 flex items-center justify-center mx-auto mb-6">
+                  <Clock className="w-10 h-10 text-[#ffc48e]" />
                 </div>
               </motion.div>
 
               <h2
                 className="text-2xl font-bold text-white mb-3"
                 style={{
-                  fontFamily: "'Space Grotesk', 'Inter', sans-serif",
+                  fontFamily: "var(--font-display)",
                 }}
               >
                 Payment Verification Pending
@@ -664,20 +664,20 @@ export default function DonationForm() {
                 Thank you for your generous donation! Your payment is being
                 verified.
               </p>
-              <p className="text-[#22d3ee] text-sm font-semibold mb-6">
+              <p className="text-[#ffc48e] text-sm font-semibold mb-6">
                 Verification will be completed within 24 hours.
               </p>
 
-              <div className="rounded-xl bg-white/5 border border-white/10 p-5 text-left space-y-3 mb-8">
+              <div className="rounded-lg bg-white/5 border border-white/10 p-5 text-left space-y-3 mb-8">
                 <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-4 h-4 text-[#10b981] mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-[#e08b2e] mt-0.5 flex-shrink-0" />
                   <p className="text-sm text-gray-300">
                     Once verified, you will receive an official{" "}
                     <strong className="text-white">Donator Certificate</strong>.
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-4 h-4 text-[#10b981] mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-[#e08b2e] mt-0.5 flex-shrink-0" />
                   <p className="text-sm text-gray-300">
                     {isAnonymous
                       ? 'Your donation will appear as "Anonymous Donor" on the donators wall.'
@@ -685,10 +685,10 @@ export default function DonationForm() {
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-4 h-4 text-[#10b981] mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-[#e08b2e] mt-0.5 flex-shrink-0" />
                   <p className="text-sm text-gray-300">
                     Status update:{" "}
-                    <strong className="text-[#22d3ee]">Accepted</strong> or{" "}
+                    <strong className="text-[#ffc48e]">Accepted</strong> or{" "}
                     <strong className="text-gray-400">Rejected</strong> within
                     24 hrs.
                   </p>
@@ -696,10 +696,10 @@ export default function DonationForm() {
               </div>
 
               {/* Verification Status */}
-              <div className="rounded-xl border border-[#22d3ee]/20 bg-[#22d3ee]/5 p-4 mb-8">
+              <div className="rounded-lg border border-[#ffc48e]/20 bg-[#ffc48e]/5 p-4 mb-8">
                 <div className="flex items-center justify-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#22d3ee] animate-pulse" />
-                  <span className="text-sm font-semibold text-[#22d3ee]">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#ffc48e] animate-pulse" />
+                  <span className="text-sm font-semibold text-[#ffc48e]">
                     Pending Verification
                   </span>
                 </div>
@@ -710,11 +710,11 @@ export default function DonationForm() {
                 const donationAmount = parseFloat(amount) || 0;
                 if (donationAmount < 50) {
                   return (
-                    <div className="rounded-xl border border-red-500/20 bg-red-500/5 p-6 text-left mb-8">
+                    <div className="rounded-lg border border-red-500/20 bg-red-500/5 p-6 text-left mb-8">
                       <h3
                         className="text-base font-bold text-white mb-4"
                         style={{
-                          fontFamily: "'Space Grotesk', 'Inter', sans-serif",
+                          fontFamily: "var(--font-display)",
                         }}
                       >
                         Certificate Status
@@ -731,27 +731,27 @@ export default function DonationForm() {
                   );
                 }
                 return (
-                  <div className="rounded-xl border border-[#22d3ee]/20 bg-[#22d3ee]/5 p-6 text-left mb-8">
+                  <div className="rounded-lg border border-[#ffc48e]/20 bg-[#ffc48e]/5 p-6 text-left mb-8">
                     <h3
                       className="text-base font-bold text-white mb-4"
                       style={{
-                        fontFamily: "'Space Grotesk', 'Inter', sans-serif",
+                        fontFamily: "var(--font-display)",
                       }}
                     >
                       Certificate Status
                     </h3>
                     <div className="flex items-center gap-3 mb-4">
-                      <Award className="w-5 h-5 text-[#22d3ee] flex-shrink-0" />
+                      <Award className="w-5 h-5 text-[#ffc48e] flex-shrink-0" />
                       <span className="text-sm text-gray-300">
                         Certificate Status:{" "}
-                        <strong className="text-[#22d3ee]">
+                        <strong className="text-[#ffc48e]">
                           Pending Verification
                         </strong>
                       </span>
                     </div>
                     <button
                       disabled
-                      className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-white/5 border border-white/10 text-gray-500 text-sm font-semibold cursor-not-allowed"
+                      className="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-white/5 border border-white/10 text-gray-500 text-sm font-semibold cursor-not-allowed"
                     >
                       <Download className="w-4 h-4" />
                       Download Donator Certificate
@@ -765,7 +765,7 @@ export default function DonationForm() {
 
               <Link href="/donators">
                 <motion.span
-                  className="inline-flex items-center gap-2 px-8 py-3 rounded-full border border-[#22d3ee]/40 text-[#22d3ee] font-semibold text-sm tracking-wider hover:bg-[#22d3ee]/10 transition-all duration-300 cursor-pointer"
+                  className="inline-flex items-center gap-2 px-8 py-3 rounded-sm border border-[#ffc48e]/40 text-[#ffc48e] font-semibold text-sm tracking-wider hover:bg-[#ffc48e]/10 transition-all duration-300 cursor-pointer"
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                 >

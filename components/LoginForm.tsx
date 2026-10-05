@@ -87,8 +87,8 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
             key="error"
             className="mb-4 p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-sm"
             style={{
-              fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif",
-              boxShadow: "0 0 15px rgba(239,68,68,0.15)",
+              fontFamily: "var(--font-body)",
+              boxShadow: "0 0 15px rgba(229,83,61,0.15)",
             }}
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -104,7 +104,7 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
       <div className="mb-4">
         <label
           className="block text-gray-400 text-xs mb-1.5 tracking-wider uppercase"
-          style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+          style={{ fontFamily: "var(--font-body)" }}
         >
           Email
         </label>
@@ -113,8 +113,8 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#2563eb]/60 focus:shadow-[0_0_15px_rgba(37,99,235,0.2)] transition-all duration-300"
-          style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+          className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#ff7a29]/60 focus:shadow-[0_0_15px_rgba(255,122,41,0.2)] transition-all duration-300"
+          style={{ fontFamily: "var(--font-body)" }}
           placeholder="you@example.com"
         />
       </div>
@@ -123,7 +123,7 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
       <div className="mb-6">
         <label
           className="block text-gray-400 text-xs mb-1.5 tracking-wider uppercase"
-          style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+          style={{ fontFamily: "var(--font-body)" }}
         >
           Password
         </label>
@@ -132,8 +132,8 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#2563eb]/60 focus:shadow-[0_0_15px_rgba(37,99,235,0.2)] transition-all duration-300"
-          style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+          className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#ff7a29]/60 focus:shadow-[0_0_15px_rgba(255,122,41,0.2)] transition-all duration-300"
+          style={{ fontFamily: "var(--font-body)" }}
           placeholder="••••••••"
         />
       </div>
@@ -142,8 +142,8 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
       <motion.button
         type="submit"
         disabled={loading}
-        className="w-full py-3 rounded-lg bg-gradient-to-r from-[#2563eb] to-[#1d4ed8] text-white font-semibold text-sm tracking-wider shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_35px_rgba(37,99,235,0.5)] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
-        style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+        className="w-full py-3 rounded-lg bg-gradient-to-r from-[#ff7a29] to-[#e2600f] text-white font-semibold text-sm tracking-wider shadow-[0_0_20px_rgba(255,122,41,0.3)] hover:shadow-[0_0_35px_rgba(255,122,41,0.5)] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+        style={{ fontFamily: "var(--font-display)" }}
         whileHover={loading ? {} : { scale: 1.02 }}
         whileTap={loading ? {} : { scale: 0.98 }}
       >

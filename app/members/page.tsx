@@ -27,20 +27,20 @@ export default function MembersPage() {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <p
-            className="text-xs tracking-[0.4em] text-[#38bdf8] mb-3 uppercase"
-            style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+            className="text-xs tracking-[0.4em] text-[#ffb173] mb-3 uppercase"
+            style={{ fontFamily: "var(--font-body)" }}
           >
             — Explore Our Community —
           </p>
           <h1
-            className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-white via-[#38bdf8] to-[#2563eb] bg-clip-text text-transparent"
-            style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+            className="section-title leading-none"
+            style={{ fontFamily: "var(--font-display)" }}
           >
             AstroSci Constellation Map
           </h1>
           <p
             className="text-gray-400 mt-3 text-sm md:text-base max-w-xl mx-auto"
-            style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+            style={{ fontFamily: "var(--font-body)" }}
           >
             Each member is a star in our constellation map. Hover over stars
             to discover member identities.
@@ -56,11 +56,11 @@ export default function MembersPage() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="absolute top-4 right-4 z-20 rounded-xl border border-white/10 bg-[#07091a]/80 backdrop-blur-md p-4"
+            className="absolute top-4 right-4 z-20 rounded-lg border border-white/10 bg-[#0b0b0d]/80 backdrop-blur-md p-4"
           >
             <p
               className="text-[10px] tracking-[0.3em] text-gray-400 uppercase mb-3"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+              style={{ fontFamily: "var(--font-body)" }}
             >
               Star Legend
             </p>
@@ -76,7 +76,7 @@ export default function MembersPage() {
                   />
                   <span
                     className="text-gray-300 text-xs"
-                    style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                    style={{ fontFamily: "var(--font-body)" }}
                   >
                     {item.label}
                   </span>
@@ -90,7 +90,7 @@ export default function MembersPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="w-full rounded-2xl border border-white/10 bg-[#020617]/60 backdrop-blur-sm overflow-hidden"
+            className="w-full rounded-lg border border-white/10 bg-[#08080a]/60 backdrop-blur-sm overflow-hidden"
             style={{ height: "calc(100vh - 260px)", minHeight: 400 }}
           >
             <ConstellationMap2D />

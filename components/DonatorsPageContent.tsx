@@ -31,38 +31,38 @@ function DonorCard({
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ y: -4 }}
-      className={`relative group rounded-2xl border bg-[#0f172a]/80 backdrop-blur-sm p-6 text-center ${
+      className={`relative group rounded-2xl border bg-[#121214]/80 backdrop-blur-sm p-6 text-center ${
         highlight
-          ? "border-[#22d3ee]/40 shadow-[0_0_30px_rgba(34,211,238,0.15)]"
-          : "border-[#7c3aed]/20"
+          ? "border-[#ffc48e]/40 shadow-[0_0_30px_rgba(255,196,142,0.15)]"
+          : "border-[#e2600f]/20"
       }`}
     >
       {highlight && (
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-[#22d3ee]/5 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 rounded-lg bg-gradient-to-b from-[#ffc48e]/5 to-transparent pointer-events-none" />
       )}
       <div className="relative z-10">
         <div
           className={`w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden ${
-            highlight ? "ring-2 ring-[#22d3ee]/50" : ""
+            highlight ? "ring-2 ring-[#ffc48e]/50" : ""
           }`}
         >
           {!isAnonymous && donor.avatar ? (
             <img src={donor.avatar} alt={donor.name} className="w-full h-full object-cover" />
           ) : (
-            <div className="w-full h-full bg-gradient-to-br from-[#7c3aed] to-[#22d3ee] flex items-center justify-center">
+            <div className="w-full h-full bg-gradient-to-br from-[#e2600f] to-[#ffc48e] flex items-center justify-center">
               <User className="w-7 h-7 text-white" />
             </div>
           )}
         </div>
         <h3
           className="text-base font-bold text-white mb-1"
-          style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+          style={{ fontFamily: "var(--font-display)" }}
         >
           {isAnonymous ? "Anonymous Donor" : donor.name}
         </h3>
-        <p className="text-sm text-[#22d3ee]">{donor.amount}</p>
+        <p className="text-sm text-[#ffc48e]">{donor.amount}</p>
         {highlight && (
-          <Star className="w-4 h-4 text-[#f59e0b] mx-auto mt-2 fill-[#f59e0b]" />
+          <Star className="w-4 h-4 text-[#ff9d3d] mx-auto mt-2 fill-[#ff9d3d]" />
         )}
       </div>
     </motion.div>
@@ -77,7 +77,7 @@ export default function DonatorsPageContent({
   allDonors: Donor[];
 }) {
   return (
-    <main className="relative min-h-screen bg-[#020617]">
+    <main className="relative min-h-screen bg-[#08080a]">
       <Navbar />
 
       <div className="relative z-20 pt-20">
@@ -87,8 +87,8 @@ export default function DonatorsPageContent({
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="flex items-center justify-center gap-2 rounded-xl border border-[#22d3ee]/30 bg-[#0f172a]/90 backdrop-blur-sm px-5 py-3 text-sm text-[#22d3ee] hover:bg-[#0f172a] hover:border-[#22d3ee]/60 transition-all duration-300 cursor-pointer"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+              className="flex items-center justify-center gap-2 rounded-lg border border-[#ffc48e]/30 bg-[#121214]/90 backdrop-blur-sm px-5 py-3 text-sm text-[#ffc48e] hover:bg-[#121214] hover:border-[#ffc48e]/60 transition-all duration-300 cursor-pointer"
+              style={{ fontFamily: "var(--font-body)" }}
             >
               <Heart className="w-4 h-4" />
               Already applied for donation? Check your status here!
@@ -98,9 +98,9 @@ export default function DonatorsPageContent({
       </div>
 
       <section className="relative pt-12 pb-20 px-6 overflow-hidden">
-        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 40%, #0a1628 0%, #020617 60%)" }} />
-        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-[#7c3aed]/8 rounded-full blur-[140px] pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[#22d3ee]/6 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 40%, #0c0c0e 0%, #08080a 60%)" }} />
+        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-[#e2600f]/8 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[#ffc48e]/6 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           <motion.div
@@ -109,25 +109,25 @@ export default function DonatorsPageContent({
             transition={{ duration: 0.6 }}
           >
             <p
-              className="text-xs tracking-[0.4em] text-[#22d3ee] mb-4 uppercase"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+              className="text-xs tracking-[0.4em] text-[#ffc48e] mb-4 uppercase"
+              style={{ fontFamily: "var(--font-body)" }}
             >
               — Donations —
             </p>
             <h1
               className="text-4xl md:text-6xl font-bold mb-6"
-              style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+              style={{ fontFamily: "var(--font-display)" }}
             >
-              <span className="bg-gradient-to-b from-white via-white to-gray-400 bg-clip-text text-transparent">
+              <span className="text-[#f6f2ea]">
                 Support{" "}
               </span>
-              <span className="bg-gradient-to-r from-[#7c3aed] to-[#22d3ee] bg-clip-text text-transparent">
+              <span className="text-[#ff7a29]">
                 AstroSci
               </span>
             </h1>
             <p
               className="text-gray-400 text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+              style={{ fontFamily: "var(--font-body)" }}
             >
               Your contribution helps us promote science and education. Every donation brings us closer to inspiring the next generation of explorers.
             </p>
@@ -140,13 +140,13 @@ export default function DonatorsPageContent({
           >
             <Link href="/donators/payment">
               <motion.span
-                className="inline-flex items-center gap-3 px-12 py-5 rounded-full bg-gradient-to-r from-[#FBBF24] to-[#F59E0B] text-white font-bold text-base tracking-wider shadow-[0_0_26px_rgba(139,92,246,0.32)] hover:shadow-[0_0_42px_rgba(139,92,246,0.5)] transition-all duration-300 cursor-pointer"
-                style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+                className="inline-flex items-center gap-3 px-12 py-5 rounded-sm bg-gradient-to-r from-[#FBBF24] to-[#ff9d3d] text-white font-bold text-base tracking-wider shadow-[0_0_26px_rgba(234,92,11,0.32)] hover:shadow-[0_0_42px_rgba(234,92,11,0.5)] transition-all duration-300 cursor-pointer"
+                style={{ fontFamily: "var(--font-display)" }}
                 animate={{
                   boxShadow: [
-                    "0 0 18px rgba(139,92,246,0.28)",
-                    "0 0 32px rgba(139,92,246,0.46)",
-                    "0 0 18px rgba(139,92,246,0.28)",
+                    "0 0 18px rgba(234,92,11,0.28)",
+                    "0 0 32px rgba(234,92,11,0.46)",
+                    "0 0 18px rgba(234,92,11,0.28)",
                   ],
                 }}
                 transition={{ duration: 2.3, repeat: Infinity, ease: "easeInOut" }}
@@ -172,14 +172,14 @@ export default function DonatorsPageContent({
             className="text-center mb-14"
           >
             <p
-              className="text-xs tracking-[0.4em] text-[#22d3ee] mb-3 uppercase"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+              className="text-xs tracking-[0.4em] text-[#ffc48e] mb-3 uppercase"
+              style={{ fontFamily: "var(--font-body)" }}
             >
               — Top Supporters —
             </p>
             <h2
               className="text-3xl md:text-4xl font-bold text-white"
-              style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+              style={{ fontFamily: "var(--font-display)" }}
             >
               Our Top Donors
             </h2>
@@ -196,12 +196,12 @@ export default function DonatorsPageContent({
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="text-center py-12 rounded-2xl border border-[#7c3aed]/20 bg-[#0f172a]/40"
+              className="text-center py-12 rounded-lg border border-[#e2600f]/20 bg-[#121214]/40"
             >
               <Star className="w-10 h-10 text-gray-500 mx-auto mb-3" />
               <p
                 className="text-gray-300 text-base"
-                style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                style={{ fontFamily: "var(--font-body)" }}
               >
                 Top supporters will be featured here.
               </p>
@@ -220,14 +220,14 @@ export default function DonatorsPageContent({
             className="text-center mb-14"
           >
             <p
-              className="text-xs tracking-[0.4em] text-[#22d3ee] mb-3 uppercase"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+              className="text-xs tracking-[0.4em] text-[#ffc48e] mb-3 uppercase"
+              style={{ fontFamily: "var(--font-body)" }}
             >
               — Wall of Gratitude —
             </p>
             <h2
               className="text-3xl md:text-4xl font-bold text-white"
-              style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+              style={{ fontFamily: "var(--font-display)" }}
             >
               All Donators
             </h2>
@@ -244,12 +244,12 @@ export default function DonatorsPageContent({
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="text-center py-16 rounded-2xl border border-[#7c3aed]/20 bg-[#0f172a]/40"
+              className="text-center py-16 rounded-lg border border-[#e2600f]/20 bg-[#121214]/40"
             >
               <Heart className="w-12 h-12 text-gray-500 mx-auto mb-4" />
               <p
                 className="text-gray-300 text-base"
-                style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                style={{ fontFamily: "var(--font-body)" }}
               >
                 Verified donators will appear here.
               </p>

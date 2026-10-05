@@ -21,7 +21,7 @@ export default function EventsPage() {
   const [loading, setLoading] = useState(true);
   const [fullscreenEvent, setFullscreenEvent] = useState<ClubEvent | null>(null);
 
-  const defaultGradient = "radial-gradient(ellipse at 50% 50%, #1e3a5f 0%, #020617 100%)";
+  const defaultGradient = "radial-gradient(ellipse at 50% 50%, #241a12 0%, #08080a 100%)";
 
   useEffect(() => {
     async function fetchEvents() {
@@ -59,7 +59,7 @@ export default function EventsPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: i * 0.1 }}
         whileHover={{ y: -4 }}
-        className="group rounded-2xl overflow-hidden border border-white/10 bg-[#07091a]/80 backdrop-blur-sm hover:border-[#2563eb]/40 transition-all"
+        className="group rounded-lg overflow-hidden border border-white/10 bg-[#0b0b0d]/80 backdrop-blur-sm hover:border-[#ff7a29]/40 transition-all"
       >
         <div
           className="relative overflow-hidden cursor-pointer"
@@ -93,13 +93,13 @@ export default function EventsPage() {
         <div className="p-5">
           <h3
             className="text-white font-bold text-base mb-1"
-            style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+            style={{ fontFamily: "var(--font-display)" }}
           >
             {event.title}
           </h3>
           <p
-            className="text-[#38bdf8] text-xs mb-2"
-            style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+            className="text-[#ffb173] text-xs mb-2"
+            style={{ fontFamily: "var(--font-body)" }}
           >
             {new Date(event.event_date).toLocaleDateString("en-IN", {
               year: "numeric",
@@ -111,7 +111,7 @@ export default function EventsPage() {
           </p>
           <p
             className="text-gray-500 text-sm"
-            style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+            style={{ fontFamily: "var(--font-body)" }}
           >
             {event.description}
           </p>
@@ -132,14 +132,14 @@ export default function EventsPage() {
             className="text-center mb-12"
           >
             <p
-              className="text-xs tracking-[0.4em] text-[#38bdf8] mb-2 uppercase"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+              className="kicker mb-3"
+              style={{ fontFamily: "var(--font-body)" }}
             >
               — Club Activities —
             </p>
             <h1
-              className="text-3xl md:text-5xl font-bold text-white"
-              style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+              className="section-title leading-none"
+              style={{ fontFamily: "var(--font-display)" }}
             >
               EVENTS
             </h1>
@@ -149,29 +149,29 @@ export default function EventsPage() {
           <div className="mb-16">
             <h2
               className="text-xl font-bold text-white mb-6 flex items-center gap-2"
-              style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+              style={{ fontFamily: "var(--font-display)" }}
             >
-              <span className="w-2 h-2 rounded-full bg-[#38bdf8] animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-[#ffb173] animate-pulse" />
               Upcoming Events
             </h2>
             {loading ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[...Array(2)].map((_, i) => (
-                  <div key={i} className="rounded-2xl overflow-hidden border border-white/10 bg-[#07091a]/80 animate-pulse">
-                    <div className="w-full bg-[#0f172a]" style={{ aspectRatio: "16/9" }} />
+                  <div key={i} className="rounded-lg overflow-hidden border border-white/10 bg-[#0b0b0d]/80 animate-pulse">
+                    <div className="w-full bg-[#121214]" style={{ aspectRatio: "16/9" }} />
                     <div className="p-5">
-                      <div className="h-4 bg-[#0f172a] rounded w-3/4 mb-2" />
-                      <div className="h-3 bg-[#0f172a] rounded w-1/2 mb-2" />
-                      <div className="h-3 bg-[#0f172a] rounded w-full" />
+                      <div className="h-4 bg-[#121214] rounded w-3/4 mb-2" />
+                      <div className="h-3 bg-[#121214] rounded w-1/2 mb-2" />
+                      <div className="h-3 bg-[#121214] rounded w-full" />
                     </div>
                   </div>
                 ))}
               </div>
             ) : upcoming.length === 0 ? (
-              <div className="rounded-xl border border-white/10 bg-[#07091a]/60 py-16 text-center">
+              <div className="rounded-lg border border-white/10 bg-[#0b0b0d]/60 py-16 text-center">
                 <p
                   className="text-gray-500 text-sm"
-                  style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                  style={{ fontFamily: "var(--font-body)" }}
                 >
                   No upcoming events — stay tuned!
                 </p>
@@ -187,28 +187,28 @@ export default function EventsPage() {
           <div>
             <h2
               className="text-xl font-bold text-gray-400 mb-6"
-              style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+              style={{ fontFamily: "var(--font-display)" }}
             >
               Past Events
             </h2>
             {loading ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 opacity-80">
                 {[...Array(2)].map((_, i) => (
-                  <div key={i} className="rounded-2xl overflow-hidden border border-white/10 bg-[#07091a]/80 animate-pulse">
-                    <div className="w-full bg-[#0f172a]" style={{ aspectRatio: "16/9" }} />
+                  <div key={i} className="rounded-lg overflow-hidden border border-white/10 bg-[#0b0b0d]/80 animate-pulse">
+                    <div className="w-full bg-[#121214]" style={{ aspectRatio: "16/9" }} />
                     <div className="p-5">
-                      <div className="h-4 bg-[#0f172a] rounded w-3/4 mb-2" />
-                      <div className="h-3 bg-[#0f172a] rounded w-1/2 mb-2" />
-                      <div className="h-3 bg-[#0f172a] rounded w-full" />
+                      <div className="h-4 bg-[#121214] rounded w-3/4 mb-2" />
+                      <div className="h-3 bg-[#121214] rounded w-1/2 mb-2" />
+                      <div className="h-3 bg-[#121214] rounded w-full" />
                     </div>
                   </div>
                 ))}
               </div>
             ) : past.length === 0 ? (
-              <div className="rounded-xl border border-white/10 bg-[#07091a]/60 py-16 text-center opacity-80">
+              <div className="rounded-lg border border-white/10 bg-[#0b0b0d]/60 py-16 text-center opacity-80">
                 <p
                   className="text-gray-500 text-sm"
-                  style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                  style={{ fontFamily: "var(--font-body)" }}
                 >
                   No past events yet.
                 </p>

@@ -104,14 +104,14 @@ export default function ProfilePage() {
             className="text-center mb-10"
           >
             <p
-              className="text-xs tracking-[0.4em] text-[#38bdf8] mb-2 uppercase"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+              className="kicker mb-3"
+              style={{ fontFamily: "var(--font-body)" }}
             >
               — {greeting} —
             </p>
             <h1
               className="text-3xl md:text-4xl font-bold text-white"
-              style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+              style={{ fontFamily: "var(--font-display)" }}
             >
               Hello, {userName || "AstroSci Member"}
             </h1>
@@ -121,7 +121,7 @@ export default function ProfilePage() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="rounded-2xl border border-white/10 bg-[#07091a]/80 backdrop-blur-sm p-8"
+            className="rounded-lg border border-white/10 bg-[#0b0b0d]/80 backdrop-blur-sm p-8"
           >
             {/* Profile Image Upload */}
             <ProfileImageUpload
@@ -134,13 +134,13 @@ export default function ProfilePage() {
             <div className="flex flex-col items-center mb-8 -mt-4">
               <h2
                 className="text-xl font-bold text-white mt-2"
-                style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+                style={{ fontFamily: "var(--font-display)" }}
               >
                 {userName || "AstroSci Member"}
               </h2>
               <p
                 className="text-gray-400 text-sm mt-1"
-                style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                style={{ fontFamily: "var(--font-body)" }}
               >
                 {userEmail || "Not logged in"}
               </p>
@@ -151,8 +151,8 @@ export default function ProfilePage() {
               <div className="flex justify-center mb-6">
                 <motion.button
                   onClick={() => setEditing(true)}
-                  className="flex items-center gap-2 px-5 py-2 rounded-full text-sm font-medium border border-[#2563eb]/60 text-[#38bdf8] hover:bg-[#2563eb]/20 hover:border-[#2563eb] transition-all duration-300"
-                  style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                  className="flex items-center gap-2 px-5 py-2 rounded-sm text-sm font-medium border border-[#ff7a29]/60 text-[#ffb173] hover:bg-[#ff7a29]/20 hover:border-[#ff7a29] transition-all duration-300"
+                  style={{ fontFamily: "var(--font-body)" }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.97 }}
                 >
@@ -198,8 +198,8 @@ export default function ProfilePage() {
             <div className="flex justify-center mt-8 pt-6 border-t border-white/5">
               <motion.button
                 onClick={handleLogout}
-                className="flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-medium border border-red-500/40 text-red-400 hover:bg-red-500/10 hover:border-red-500/60 transition-all duration-300"
-                style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                className="flex items-center gap-2 px-6 py-2.5 rounded-sm text-sm font-medium border border-red-500/40 text-red-400 hover:bg-red-500/10 hover:border-red-500/60 transition-all duration-300"
+                style={{ fontFamily: "var(--font-body)" }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
               >

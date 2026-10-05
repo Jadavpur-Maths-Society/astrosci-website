@@ -74,10 +74,10 @@ export default function ProfileForm({
   };
 
   const inputClass =
-    "w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#2563eb]/60 focus:shadow-[0_0_15px_rgba(37,99,235,0.2)] transition-all duration-300";
+    "w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#ff7a29]/60 focus:shadow-[0_0_15px_rgba(255,122,41,0.2)] transition-all duration-300";
   const labelClass =
     "block text-gray-400 text-xs mb-1.5 tracking-wider uppercase";
-  const fontMono = { fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" };
+  const fontMono = { fontFamily: "var(--font-body)" };
 
   return (
     <div className="space-y-4">
@@ -141,22 +141,22 @@ export default function ProfileForm({
           className={inputClass}
           style={fontMono}
         >
-          <option value="" className="bg-[#07091a]">
+          <option value="" className="bg-[#0b0b0d]">
             Select Year
           </option>
-          <option value="1st Year" className="bg-[#07091a]">
+          <option value="1st Year" className="bg-[#0b0b0d]">
             1st Year
           </option>
-          <option value="2nd Year" className="bg-[#07091a]">
+          <option value="2nd Year" className="bg-[#0b0b0d]">
             2nd Year
           </option>
-          <option value="3rd Year" className="bg-[#07091a]">
+          <option value="3rd Year" className="bg-[#0b0b0d]">
             3rd Year
           </option>
-          <option value="4th Year" className="bg-[#07091a]">
+          <option value="4th Year" className="bg-[#0b0b0d]">
             4th Year
           </option>
-          <option value="Alumni" className="bg-[#07091a]">
+          <option value="Alumni" className="bg-[#0b0b0d]">
             Alumni
           </option>
         </select>
@@ -197,8 +197,8 @@ export default function ProfileForm({
         <motion.button
           onClick={handleSave}
           disabled={saving}
-          className="flex-1 py-3 rounded-lg bg-gradient-to-r from-[#2563eb] to-[#1d4ed8] text-white font-semibold text-sm tracking-wider shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_35px_rgba(37,99,235,0.5)] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
-          style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+          className="flex-1 py-3 rounded-lg bg-gradient-to-r from-[#ff7a29] to-[#e2600f] text-white font-semibold text-sm tracking-wider shadow-[0_0_20px_rgba(255,122,41,0.3)] hover:shadow-[0_0_35px_rgba(255,122,41,0.5)] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+          style={{ fontFamily: "var(--font-display)" }}
           whileHover={saving ? {} : { scale: 1.02 }}
           whileTap={saving ? {} : { scale: 0.98 }}
         >

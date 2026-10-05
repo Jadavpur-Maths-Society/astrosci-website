@@ -89,14 +89,14 @@ export default function SignupForm({ onSuccess, onSwitchToLogin }: SignupFormPro
       >
         {/* Success icon */}
         <motion.div
-          className="w-16 h-16 rounded-full bg-[#2563eb]/20 flex items-center justify-center mb-5"
-          style={{ boxShadow: "0 0 25px rgba(37,99,235,0.3)" }}
+          className="w-16 h-16 rounded-full bg-[#ff7a29]/20 flex items-center justify-center mb-5"
+          style={{ boxShadow: "0 0 25px rgba(255,122,41,0.3)" }}
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
         >
           <svg
-            className="w-8 h-8 text-[#38bdf8]"
+            className="w-8 h-8 text-[#ffb173]"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -110,7 +110,7 @@ export default function SignupForm({ onSuccess, onSwitchToLogin }: SignupFormPro
 
         <motion.p
           className="text-white text-base font-semibold mb-2"
-          style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+          style={{ fontFamily: "var(--font-display)" }}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
@@ -119,7 +119,7 @@ export default function SignupForm({ onSuccess, onSwitchToLogin }: SignupFormPro
         </motion.p>
         <motion.p
           className="text-gray-400 text-sm text-center mb-6"
-          style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+          style={{ fontFamily: "var(--font-body)" }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
@@ -130,7 +130,7 @@ export default function SignupForm({ onSuccess, onSwitchToLogin }: SignupFormPro
         <motion.button
           onClick={onSwitchToLogin}
           className="px-6 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white text-sm hover:bg-white/10 transition-all duration-300"
-          style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+          style={{ fontFamily: "var(--font-body)" }}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           initial={{ opacity: 0 }}
@@ -157,8 +157,8 @@ export default function SignupForm({ onSuccess, onSwitchToLogin }: SignupFormPro
             key="error"
             className="mb-4 p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-sm"
             style={{
-              fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif",
-              boxShadow: "0 0 15px rgba(239,68,68,0.15)",
+              fontFamily: "var(--font-body)",
+              boxShadow: "0 0 15px rgba(229,83,61,0.15)",
             }}
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -174,7 +174,7 @@ export default function SignupForm({ onSuccess, onSwitchToLogin }: SignupFormPro
       <div className="mb-4">
         <label
           className="block text-gray-400 text-xs mb-1.5 tracking-wider uppercase"
-          style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+          style={{ fontFamily: "var(--font-body)" }}
         >
           Full Name
         </label>
@@ -183,8 +183,8 @@ export default function SignupForm({ onSuccess, onSwitchToLogin }: SignupFormPro
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
-          className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#2563eb]/60 focus:shadow-[0_0_15px_rgba(37,99,235,0.2)] transition-all duration-300"
-          style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+          className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#ff7a29]/60 focus:shadow-[0_0_15px_rgba(255,122,41,0.2)] transition-all duration-300"
+          style={{ fontFamily: "var(--font-body)" }}
           placeholder="Your full name"
         />
       </div>
@@ -193,7 +193,7 @@ export default function SignupForm({ onSuccess, onSwitchToLogin }: SignupFormPro
       <div className="mb-4">
         <label
           className="block text-gray-400 text-xs mb-1.5 tracking-wider uppercase"
-          style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+          style={{ fontFamily: "var(--font-body)" }}
         >
           Email
         </label>
@@ -202,8 +202,8 @@ export default function SignupForm({ onSuccess, onSwitchToLogin }: SignupFormPro
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#2563eb]/60 focus:shadow-[0_0_15px_rgba(37,99,235,0.2)] transition-all duration-300"
-          style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+          className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#ff7a29]/60 focus:shadow-[0_0_15px_rgba(255,122,41,0.2)] transition-all duration-300"
+          style={{ fontFamily: "var(--font-body)" }}
           placeholder="you@example.com"
         />
       </div>
@@ -212,7 +212,7 @@ export default function SignupForm({ onSuccess, onSwitchToLogin }: SignupFormPro
       <div className="mb-6">
         <label
           className="block text-gray-400 text-xs mb-1.5 tracking-wider uppercase"
-          style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+          style={{ fontFamily: "var(--font-body)" }}
         >
           Password
         </label>
@@ -222,8 +222,8 @@ export default function SignupForm({ onSuccess, onSwitchToLogin }: SignupFormPro
           onChange={(e) => setPassword(e.target.value)}
           required
           minLength={6}
-          className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#2563eb]/60 focus:shadow-[0_0_15px_rgba(37,99,235,0.2)] transition-all duration-300"
-          style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+          className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#ff7a29]/60 focus:shadow-[0_0_15px_rgba(255,122,41,0.2)] transition-all duration-300"
+          style={{ fontFamily: "var(--font-body)" }}
           placeholder="Min 6 characters"
         />
       </div>
@@ -232,8 +232,8 @@ export default function SignupForm({ onSuccess, onSwitchToLogin }: SignupFormPro
       <motion.button
         type="submit"
         disabled={loading}
-        className="w-full py-3 rounded-lg bg-gradient-to-r from-[#2563eb] to-[#1d4ed8] text-white font-semibold text-sm tracking-wider shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_35px_rgba(37,99,235,0.5)] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
-        style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+        className="w-full py-3 rounded-lg bg-gradient-to-r from-[#ff7a29] to-[#e2600f] text-white font-semibold text-sm tracking-wider shadow-[0_0_20px_rgba(255,122,41,0.3)] hover:shadow-[0_0_35px_rgba(255,122,41,0.5)] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+        style={{ fontFamily: "var(--font-display)" }}
         whileHover={loading ? {} : { scale: 1.02 }}
         whileTap={loading ? {} : { scale: 0.98 }}
       >

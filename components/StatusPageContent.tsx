@@ -175,7 +175,7 @@ function RecordCard({
 /* ── STATE B — pending ──────────────────────────────────────────────── */
 function PendingMessage() {
   return (
-    <div className="flex items-start gap-3 rounded-xl border border-yellow-500/20 bg-yellow-500/5 p-4">
+    <div className="flex items-start gap-3 rounded-lg border border-yellow-500/20 bg-yellow-500/5 p-4">
       <Clock className="mt-0.5 h-5 w-5 shrink-0 text-yellow-400" />
       <div>
         <p className="font-medium text-yellow-300">
@@ -192,7 +192,7 @@ function PendingMessage() {
 /* ── STATE C — rejected ─────────────────────────────────────────────── */
 function RejectedMessage({ transactionRef }: { transactionRef: string }) {
   return (
-    <div className="flex items-start gap-3 rounded-xl border border-red-500/20 bg-red-500/5 p-4">
+    <div className="flex items-start gap-3 rounded-lg border border-red-500/20 bg-red-500/5 p-4">
       <XCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-400" />
       <div>
         <p className="font-medium text-red-300">Verification Failed</p>
@@ -213,7 +213,7 @@ function VerifiedMessage({
 }) {
   if (!certificateIssued) {
     return (
-      <div className="flex items-start gap-3 rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-4">
+      <div className="flex items-start gap-3 rounded-lg border border-emerald-500/20 bg-emerald-500/5 p-4">
         <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-emerald-400" />
         <div>
           <p className="font-medium text-emerald-300">Payment Verified!</p>
@@ -226,14 +226,14 @@ function VerifiedMessage({
   }
 
   return (
-    <div className="flex flex-col items-center gap-3 rounded-xl border border-cyan-400/30 bg-gradient-to-br from-cyan-500/10 to-yellow-500/10 p-6">
-      <Award className="h-10 w-10 text-yellow-400 drop-shadow-[0_0_12px_rgba(250,204,21,0.5)]" />
+    <div className="flex flex-col items-center gap-3 rounded-lg border border-cyan-400/30 bg-gradient-to-br from-cyan-500/10 to-yellow-500/10 p-6">
+      <Award className="h-10 w-10 text-yellow-400 drop-shadow-[0_0_12px_rgba(240,180,41,0.5)]" />
       <p className="text-center font-semibold text-cyan-200">
         Your certificate is ready!
       </p>
       <button
         aria-label="Download Official Certificate"
-        className="group relative mt-1 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-yellow-500 px-8 py-3.5 text-sm font-bold text-[#020617] shadow-[0_0_24px_rgba(6,182,212,0.4)] transition-shadow hover:shadow-[0_0_40px_rgba(6,182,212,0.6)]"
+        className="group relative mt-1 inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-cyan-500 to-yellow-500 px-8 py-3.5 text-sm font-bold text-[#08080a] shadow-[0_0_24px_rgba(255,171,99,0.4)] transition-shadow hover:shadow-[0_0_40px_rgba(255,171,99,0.6)]"
       >
         <Download className="h-5 w-5 transition-transform group-hover:-translate-y-0.5" />
         Download Official Certificate
@@ -267,7 +267,7 @@ export default function StatusPageContent({
             transition={{ duration: 0.5 }}
             className="mb-10 text-center"
           >
-            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-xs font-medium text-blue-300">
+            <div className="mb-3 inline-flex items-center gap-2 rounded-sm border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-xs font-medium text-blue-300">
               <Rocket className="h-3.5 w-3.5" />
               Status Tracker
             </div>
@@ -285,9 +285,9 @@ export default function StatusPageContent({
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="mx-auto max-w-md rounded-2xl border border-blue-500/20 bg-[#0a0f2c]/80 p-8 text-center backdrop-blur-md"
+              className="mx-auto max-w-md rounded-lg border border-blue-500/20 bg-[#0a0f2c]/80 p-8 text-center backdrop-blur-md"
             >
-              <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-500/10">
+              <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-lg bg-blue-500/10">
                 <LogIn className="h-8 w-8 text-blue-400" />
               </div>
               <h2 className="mb-2 text-xl font-semibold text-white">
@@ -300,14 +300,14 @@ export default function StatusPageContent({
               <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
                 <Link
                   href="/auth?tab=login"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-500"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-500"
                 >
                   <LogIn className="h-4 w-4" />
                   Log In
                 </Link>
                 <Link
                   href="/auth?tab=signup"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-700 bg-slate-800/60 px-6 py-2.5 text-sm font-semibold text-slate-300 transition-colors hover:bg-slate-700/80"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-700 bg-slate-800/60 px-6 py-2.5 text-sm font-semibold text-slate-300 transition-colors hover:bg-slate-700/80"
                 >
                   <UserPlus className="h-4 w-4" />
                   Create Account
@@ -322,9 +322,9 @@ export default function StatusPageContent({
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="mx-auto max-w-md rounded-2xl border border-slate-700/60 bg-[#0a0f2c]/80 p-8 text-center backdrop-blur-md"
+              className="mx-auto max-w-md rounded-lg border border-slate-700/60 bg-[#0a0f2c]/80 p-8 text-center backdrop-blur-md"
             >
-              <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-800">
+              <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-lg bg-slate-800">
                 <Rocket className="h-8 w-8 text-slate-500" />
               </div>
               <h2 className="mb-2 text-xl font-semibold text-white">
@@ -336,14 +336,14 @@ export default function StatusPageContent({
               <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
                 <Link
                   href="/donators/payment"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-pink-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-pink-500"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-pink-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-pink-500"
                 >
                   <Heart className="h-4 w-4" />
                   Make a Donation
                 </Link>
                 <Link
                   href="/sponsors"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-700 bg-slate-800/60 px-6 py-2.5 text-sm font-semibold text-slate-300 transition-colors hover:bg-slate-700/80"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-700 bg-slate-800/60 px-6 py-2.5 text-sm font-semibold text-slate-300 transition-colors hover:bg-slate-700/80"
                 >
                   <Handshake className="h-4 w-4" />
                   View Sponsorship Plans

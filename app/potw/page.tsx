@@ -21,7 +21,7 @@ export default function POTWPage() {
   const [loading, setLoading] = useState(true);
   const [fullscreenItem, setFullscreenItem] = useState<POTWItem | null>(null);
 
-  const defaultGradient = "radial-gradient(ellipse at 50% 50%, #1e3a5f 0%, #020617 100%)";
+  const defaultGradient = "radial-gradient(ellipse at 50% 50%, #241a12 0%, #08080a 100%)";
 
   useEffect(() => {
     async function fetchPOTW() {
@@ -53,20 +53,20 @@ export default function POTWPage() {
             className="text-center mb-12"
           >
             <p
-              className="text-xs tracking-[0.4em] text-[#38bdf8] mb-2 uppercase"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+              className="kicker mb-3"
+              style={{ fontFamily: "var(--font-body)" }}
             >
               — Photo of the Week —
             </p>
             <h1
-              className="text-3xl md:text-5xl font-bold text-white"
-              style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+              className="section-title leading-none"
+              style={{ fontFamily: "var(--font-display)" }}
             >
               POTW ARCHIVE
             </h1>
             <p
               className="text-gray-500 text-sm mt-3"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+              style={{ fontFamily: "var(--font-body)" }}
             >
               All previous Picture of the Week winners
             </p>
@@ -75,21 +75,21 @@ export default function POTWPage() {
           {loading ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="rounded-2xl overflow-hidden border border-[#2563eb]/20 bg-[#07091a]/80 animate-pulse">
-                  <div className="w-full bg-[#0f172a]" style={{ aspectRatio: "16/10" }} />
+                <div key={i} className="rounded-lg overflow-hidden border border-[#ff7a29]/20 bg-[#0b0b0d]/80 animate-pulse">
+                  <div className="w-full bg-[#121214]" style={{ aspectRatio: "16/10" }} />
                   <div className="p-5">
-                    <div className="h-4 bg-[#0f172a] rounded w-3/4 mb-2" />
-                    <div className="h-3 bg-[#0f172a] rounded w-1/2 mb-1" />
-                    <div className="h-3 bg-[#0f172a] rounded w-1/3" />
+                    <div className="h-4 bg-[#121214] rounded w-3/4 mb-2" />
+                    <div className="h-3 bg-[#121214] rounded w-1/2 mb-1" />
+                    <div className="h-3 bg-[#121214] rounded w-1/3" />
                   </div>
                 </div>
               ))}
             </div>
           ) : items.length === 0 ? (
-            <div className="rounded-xl border border-white/10 bg-[#07091a]/60 py-16 text-center">
+            <div className="rounded-lg border border-white/10 bg-[#0b0b0d]/60 py-16 text-center">
               <p
                 className="text-gray-500 text-sm"
-                style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                style={{ fontFamily: "var(--font-body)" }}
               >
                 No featured photos yet — check back soon!
               </p>
@@ -103,7 +103,7 @@ export default function POTWPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: i * 0.08 }}
                 whileHover={{ y: -6 }}
-                className="group rounded-2xl overflow-hidden border border-[#2563eb]/20 bg-[#07091a]/80 backdrop-blur-sm hover:border-[#2563eb]/50 transition-all"
+                className="group rounded-lg overflow-hidden border border-[#ff7a29]/20 bg-[#0b0b0d]/80 backdrop-blur-sm hover:border-[#ff7a29]/50 transition-all"
               >
                 <div
                   className="relative overflow-hidden cursor-pointer"
@@ -131,13 +131,13 @@ export default function POTWPage() {
                           }}
                         />
                       ))}
-                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-[#2563eb]/30 blur-2xl" />
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-[#ff7a29]/30 blur-2xl" />
                     </div>
                   )}
                   <div className="absolute top-3 left-3">
                     <span
-                      className="px-2 py-1 rounded-full bg-[#38bdf8]/20 border border-[#38bdf8]/40 text-[#38bdf8] text-xs backdrop-blur-sm"
-                      style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                      className="px-2 py-1 rounded-sm bg-[#ffb173]/20 border border-[#ffb173]/40 text-[#ffb173] text-xs backdrop-blur-sm"
+                      style={{ fontFamily: "var(--font-body)" }}
                     >
                       ★ POTW
                     </span>
@@ -146,19 +146,19 @@ export default function POTWPage() {
                 <div className="p-5">
                   <h3
                     className="text-white font-bold text-base mb-1"
-                    style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+                    style={{ fontFamily: "var(--font-display)" }}
                   >
                     {item.title}
                   </h3>
                   <p
-                    className="text-[#38bdf8] text-sm"
-                    style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                    className="text-[#ffb173] text-sm"
+                    style={{ fontFamily: "var(--font-body)" }}
                   >
                     📸 {item.photographer}
                   </p>
                   <p
                     className="text-gray-500 text-xs mt-2"
-                    style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                    style={{ fontFamily: "var(--font-body)" }}
                   >
                     {new Date(item.week_date).toLocaleDateString("en-IN", {
                       year: "numeric",

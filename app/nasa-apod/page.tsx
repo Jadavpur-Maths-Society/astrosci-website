@@ -51,14 +51,14 @@ export default function NasaApodPage() {
             className="text-center mb-12"
           >
             <p
-              className="text-xs tracking-[0.4em] text-[#38bdf8] mb-2 uppercase"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+              className="kicker mb-3"
+              style={{ fontFamily: "var(--font-body)" }}
             >
               — NASA —
             </p>
             <h1
-              className="text-3xl md:text-5xl font-bold text-white"
-              style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+              className="section-title leading-none"
+              style={{ fontFamily: "var(--font-display)" }}
             >
               ASTRONOMY PICTURE OF THE DAY
             </h1>
@@ -66,10 +66,10 @@ export default function NasaApodPage() {
 
           {loading ? (
             <div className="text-center py-20">
-              <div className="w-12 h-12 rounded-full border-2 border-[#38bdf8]/30 border-t-[#38bdf8] animate-spin mx-auto" />
+              <div className="w-12 h-12 rounded-full border-2 border-[#ffb173]/30 border-t-[#ffb173] animate-spin mx-auto" />
               <p
                 className="text-gray-500 text-sm mt-4"
-                style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                style={{ fontFamily: "var(--font-body)" }}
               >
                 Fetching from NASA...
               </p>
@@ -79,7 +79,7 @@ export default function NasaApodPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="rounded-2xl overflow-hidden border border-[#38bdf8]/20 bg-[#07091a]/80 backdrop-blur-sm"
+              className="rounded-lg overflow-hidden border border-[#ffb173]/20 bg-[#0b0b0d]/80 backdrop-blur-sm"
             >
               {apod.media_type === "image" ? (
                 <div className="relative overflow-hidden cursor-pointer" onClick={() => setFullscreenOpen(true)}>
@@ -102,13 +102,13 @@ export default function NasaApodPage() {
               <div className="p-6 md:p-8">
                 <h2
                   className="text-xl md:text-2xl font-bold text-white mb-2"
-                  style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+                  style={{ fontFamily: "var(--font-display)" }}
                 >
                   {apod.title}
                 </h2>
                 <p
-                  className="text-[#38bdf8] text-sm mb-4"
-                  style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                  className="text-[#ffb173] text-sm mb-4"
+                  style={{ fontFamily: "var(--font-body)" }}
                 >
                   {new Date(apod.date).toLocaleDateString("en-IN", {
                     year: "numeric",
@@ -118,7 +118,7 @@ export default function NasaApodPage() {
                 </p>
                 <p
                   className="text-gray-400 text-sm leading-relaxed mb-6"
-                  style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                  style={{ fontFamily: "var(--font-body)" }}
                 >
                   {apod.explanation}
                 </p>
@@ -126,8 +126,8 @@ export default function NasaApodPage() {
                   href="https://apod.nasa.gov/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[#38bdf8]/40 text-[#38bdf8] text-sm hover:bg-[#38bdf8]/10 hover:shadow-[0_0_20px_rgba(56,189,248,0.3)] transition-all duration-300"
-                  style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-sm border border-[#ffb173]/40 text-[#ffb173] text-sm hover:bg-[#ffb173]/10 hover:shadow-[0_0_20px_rgba(255,177,115,0.3)] transition-all duration-300"
+                  style={{ fontFamily: "var(--font-body)" }}
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.97 }}
                 >
@@ -136,10 +136,10 @@ export default function NasaApodPage() {
               </div>
             </motion.div>
           ) : (
-            <div className="text-center py-20 rounded-2xl border border-white/10 bg-[#07091a]/80 backdrop-blur-sm">
+            <div className="text-center py-20 rounded-lg border border-white/10 bg-[#0b0b0d]/80 backdrop-blur-sm">
               <p
                 className="text-gray-500 text-sm"
-                style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                style={{ fontFamily: "var(--font-body)" }}
               >
                 Unable to load NASA APOD. Please try again later.
               </p>
@@ -147,8 +147,8 @@ export default function NasaApodPage() {
                 href="https://apod.nasa.gov/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block mt-4 px-6 py-2 rounded-full border border-[#38bdf8]/30 text-[#38bdf8] text-sm hover:bg-[#38bdf8]/10 transition-all"
-                style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                className="inline-block mt-4 px-6 py-2 rounded-sm border border-[#ffb173]/30 text-[#ffb173] text-sm hover:bg-[#ffb173]/10 transition-all"
+                style={{ fontFamily: "var(--font-body)" }}
                 whileHover={{ scale: 1.04 }}
               >
                 Visit NASA APOD →

@@ -49,20 +49,20 @@ export default function GalleryPage() {
             className="text-center mb-12"
           >
             <p
-              className="text-xs tracking-[0.4em] text-[#38bdf8] mb-2 uppercase"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+              className="kicker mb-3"
+              style={{ fontFamily: "var(--font-body)" }}
             >
               — Astrophotography —
             </p>
             <h1
-              className="text-3xl md:text-5xl font-bold text-white"
-              style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+              className="section-title leading-none"
+              style={{ fontFamily: "var(--font-display)" }}
             >
               GALLERY
             </h1>
             <p
               className="text-gray-500 text-sm mt-3"
-              style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+              style={{ fontFamily: "var(--font-body)" }}
             >
               Stunning shots captured by our members
             </p>
@@ -71,20 +71,20 @@ export default function GalleryPage() {
           {loading ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="rounded-2xl overflow-hidden border border-white/10 bg-[#07091a]/80 animate-pulse">
-                  <div className="w-full bg-[#0f172a]" style={{ aspectRatio: "4/3" }} />
+                <div key={i} className="rounded-lg overflow-hidden border border-white/10 bg-[#0b0b0d]/80 animate-pulse">
+                  <div className="w-full bg-[#121214]" style={{ aspectRatio: "4/3" }} />
                   <div className="p-4">
-                    <div className="h-4 bg-[#0f172a] rounded w-3/4 mb-2" />
-                    <div className="h-3 bg-[#0f172a] rounded w-1/2" />
+                    <div className="h-4 bg-[#121214] rounded w-3/4 mb-2" />
+                    <div className="h-3 bg-[#121214] rounded w-1/2" />
                   </div>
                 </div>
               ))}
             </div>
           ) : items.length === 0 ? (
-            <div className="rounded-xl border border-white/10 bg-[#07091a]/60 py-16 text-center">
+            <div className="rounded-lg border border-white/10 bg-[#0b0b0d]/60 py-16 text-center">
               <p
                 className="text-gray-500 text-sm"
-                style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                style={{ fontFamily: "var(--font-body)" }}
               >
                 No gallery images yet — check back soon!
               </p>
@@ -98,7 +98,7 @@ export default function GalleryPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: i * 0.08 }}
                 whileHover={{ scale: 1.03, y: -4 }}
-                className="group relative rounded-2xl overflow-hidden border border-white/10 hover:border-[#38bdf8]/40 bg-[#07091a]/80 backdrop-blur-sm transition-all"
+                className="group relative rounded-lg overflow-hidden border border-white/10 hover:border-[#ffb173]/40 bg-[#0b0b0d]/80 backdrop-blur-sm transition-all"
               >
                 <div
                   className="relative overflow-hidden cursor-pointer"
@@ -112,7 +112,7 @@ export default function GalleryPage() {
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                   ) : (
-                    <div className="w-full h-full" style={{ background: "radial-gradient(ellipse at 50% 50%, #1e3a5f 0%, #020617 100%)" }}>
+                    <div className="w-full h-full" style={{ background: "radial-gradient(ellipse at 50% 50%, #241a12 0%, #08080a 100%)" }}>
                       {[...Array(20)].map((_, j) => (
                         <div
                           key={j}
@@ -132,13 +132,13 @@ export default function GalleryPage() {
                 <div className="p-4">
                   <h3
                     className="text-white font-bold text-sm"
-                    style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
+                    style={{ fontFamily: "var(--font-display)" }}
                   >
                     {item.caption}
                   </h3>
                   <p
                     className="text-gray-500 text-xs mt-1"
-                    style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
+                    style={{ fontFamily: "var(--font-body)" }}
                   >
                     {new Date(item.created_at).toLocaleDateString("en-IN", {
                       year: "numeric",

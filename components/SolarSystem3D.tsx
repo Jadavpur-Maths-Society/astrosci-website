@@ -22,14 +22,14 @@ function Sun() {
       {/* Mid glow */}
       <mesh scale={1.3}>
         <sphereGeometry args={[1, 32, 32]} />
-        <meshBasicMaterial color="#f59e0b" transparent opacity={0.12} side={THREE.BackSide} />
+        <meshBasicMaterial color="#ff9d3d" transparent opacity={0.12} side={THREE.BackSide} />
       </mesh>
       {/* Sun body */}
       <mesh ref={ref}>
         <sphereGeometry args={[0.45, 48, 48]} />
         <meshStandardMaterial
           color="#fbbf24"
-          emissive="#f59e0b"
+          emissive="#ff9d3d"
           emissiveIntensity={2}
           roughness={0.3}
         />
@@ -118,7 +118,7 @@ function OrbitingPlanet({
       {hasMoon && (
         <mesh ref={moonRef}>
           <sphereGeometry args={[size * 0.3, 16, 16]} />
-          <meshStandardMaterial color="#c0c0c0" roughness={0.8} />
+          <meshStandardMaterial color="#c9c3b8" roughness={0.8} />
         </mesh>
       )}
     </group>
@@ -137,7 +137,7 @@ function OrbitPath({ radius }: { radius: number }) {
     return pts;
   }, [radius]);
 
-  return <Line points={points} color="#38bdf8" transparent opacity={0.08} lineWidth={1} />;
+  return <Line points={points} color="#ffb173" transparent opacity={0.08} lineWidth={1} />;
 }
 
 /* ─── Tiny background stars ─── */
@@ -157,7 +157,7 @@ function Stars({ count = 300 }: { count?: number }) {
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
-      <pointsMaterial size={0.04} color="#e0e7ff" sizeAttenuation transparent opacity={0.7} />
+      <pointsMaterial size={0.04} color="#f2e9df" sizeAttenuation transparent opacity={0.7} />
     </points>
   );
 }
@@ -205,8 +205,8 @@ function SolarSystemScene() {
       <OrbitingPlanet
         orbitRadius={3.3}
         size={0.13}
-        color="#2563eb"
-        emissive="#1d4ed8"
+        color="#ff7a29"
+        emissive="#e2600f"
         speed={0.5}
         initialAngle={3.5}
         hasMoon
@@ -215,8 +215,8 @@ function SolarSystemScene() {
       <OrbitingPlanet
         orbitRadius={4.3}
         size={0.1}
-        color="#d32f2f"
-        emissive="#b71c1c"
+        color="#c8452f"
+        emissive="#8c2f1e"
         speed={0.38}
         initialAngle={5.2}
       />
@@ -247,7 +247,7 @@ export default function SolarSystem3D() {
       <Suspense
         fallback={
           <div className="w-full h-full flex items-center justify-center">
-            <div className="w-32 h-32 rounded-full bg-gradient-to-br from-[#f59e0b]/30 to-[#0c1e3d] animate-pulse" />
+            <div className="w-32 h-32 rounded-full bg-gradient-to-br from-[#ff9d3d]/30 to-[#17130f] animate-pulse" />
           </div>
         }
       >
