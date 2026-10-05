@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import {
   motion,
@@ -10,6 +10,7 @@ import {
   useScroll,
   type Variants,
 } from "framer-motion";
+import { Telescope, Camera, Orbit, ArrowUpRight } from "lucide-react";
 import BlackHole from "@/components/ambient/BlackHole";
 import HeroVideoBackground from "@/components/ambient/HeroVideoBackground";
 import ClubLogo from "@/components/ClubLogo";
@@ -17,10 +18,25 @@ import { siteConfig } from "@/config/siteConfig";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-const meta = [
-  { label: "Observatory", value: "22.4996° N, 88.3716° E" },
-  { label: "Meetings", value: "Fridays · 18:00 IST" },
-  { label: "Sections", value: "Gallery · POTW · Magazine" },
+const features = [
+  {
+    icon: Telescope,
+    title: "Observe",
+    desc: "Star parties & eclipse trips",
+    href: "/events",
+  },
+  {
+    icon: Camera,
+    title: "Capture",
+    desc: "Astrophotography, guided",
+    href: "/gallery",
+  },
+  {
+    icon: Orbit,
+    title: "Learn & build",
+    desc: "Workshops, POTW, magazine",
+    href: "/projects",
+  },
 ];
 
 const ticker = [
@@ -58,8 +74,35 @@ const letter: Variants = {
   },
 };
 
+const featureGrid: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12, delayChildren: 0.15 } },
+};
+
+const featureCard: Variants = {
+  hidden: { opacity: 0, y: 20, scale: 0.97 },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.65, ease: EASE },
+  },
+};
+
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const [activeFeature, setActiveFeature] = useState(0);
+  const [featuresPaused, setFeaturesPaused] = useState(false);
+
+  /* ── auto-cycle the feature spotlight (hover to take over) ── */
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (featuresPaused) return;
+    const id = setInterval(() => {
+      setActiveFeature((i) => (i + 1) % features.length);
+    }, 2600);
+    return () => clearInterval(id);
+  }, [featuresPaused]);
 
   /* ── mouse parallax for the instrument plate ── */
   const mx = useMotionValue(0.5);
@@ -193,20 +236,89 @@ export default function HeroSection() {
             </motion.span>
           </motion.div>
 
-          {/* instrument read-out strip */}
-          <motion.dl
-            variants={fadeUp}
-            className="mt-14 grid max-w-2xl grid-cols-2 gap-x-8 gap-y-6 border-t border-white/10 pt-6 sm:grid-cols-3"
-          >
-            {meta.map((item) => (
-              <div key={item.label}>
-                <dt className="kicker mb-2">{item.label}</dt>
-                <dd className="mono-data text-[0.7rem] uppercase text-[#b9b3a7]">
-                  {item.value}
-                </dd>
-              </div>
-            ))}
-          </motion.dl>
+          {/* feature highlights — auto-cycling spotlight, hover to take over */}
+          <motion.div variants={fadeUp} className="mt-12 max-w-2xl">
+            <div className="mb-4 flex items-center gap-3">
+              <span className="h-1.5 w-1.5 bg-[#ff7a29]" aria-hidden />
+              <span className="kicker">What we do</span>
+            </div>
+            <motion.div
+              variants={featureGrid}
+              onMouseLeave={() => setFeaturesPaused(false)}
+              className="grid grid-cols-1 gap-3 sm:grid-cols-3"
+            >
+              {features.map((f, i) => {
+                const Icon = f.icon;
+                const active = i === activeFeature;
+                return (
+                  <motion.div key={f.title} variants={featureCard}>
+                    <motion.div
+                      whileHover={{ y: -4 }}
+                      whileTap={{ scale: 0.98 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 22 }}
+                    >
+                      <Link
+                        href={f.href}
+                        onMouseEnter={() => {
+                          setActiveFeature(i);
+                          setFeaturesPaused(true);
+                        }}
+                        onFocus={() => setActiveFeature(i)}
+                        className={`group relative block overflow-hidden border p-4 backdrop-blur-sm transition-all duration-500 ${
+                          active
+                            ? "border-[#ff7a29]/50 bg-[#ff7a29]/[0.07]"
+                            : "border-white/10 bg-white/[0.02] hover:border-white/20"
+                        }`}
+                      >
+                        {/* spotlight timer hairline */}
+                        {active && !featuresPaused ? (
+                          <motion.span
+                            key={activeFeature}
+                            aria-hidden
+                            className="absolute inset-x-0 top-0 h-px origin-left bg-[#ff7a29]"
+                            initial={{ scaleX: 0 }}
+                            animate={{ scaleX: 1 }}
+                            transition={{ duration: 2.6, ease: "linear" }}
+                          />
+                        ) : (
+                          <span
+                            aria-hidden
+                            className={`absolute inset-x-0 top-0 h-px transition-colors duration-500 ${
+                              active ? "bg-[#ff7a29]" : "bg-transparent"
+                            }`}
+                          />
+                        )}
+                        <span className="flex items-start justify-between">
+                          <span
+                            className={`flex h-9 w-9 items-center justify-center border transition-all duration-500 ${
+                              active
+                                ? "border-[#ff7a29]/50 text-[#ffb173]"
+                                : "border-white/10 text-[#948d81]"
+                            }`}
+                          >
+                            <Icon className="h-4 w-4" strokeWidth={1.75} />
+                          </span>
+                          <ArrowUpRight
+                            className={`h-3.5 w-3.5 transition-all duration-500 ${
+                              active
+                                ? "translate-x-0 translate-y-0 text-[#ffb173] opacity-100"
+                                : "-translate-x-1 translate-y-1 opacity-0 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:text-[#ffb173] group-hover:opacity-60"
+                            }`}
+                          />
+                        </span>
+                        <span className="mono-data mt-3 block text-[0.68rem] uppercase tracking-[0.18em] text-[#f6f2ea]">
+                          {f.title}
+                        </span>
+                        <span className="mt-1 block text-[0.78rem] leading-snug text-[#736d63]">
+                          {f.desc}
+                        </span>
+                      </Link>
+                    </motion.div>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+          </motion.div>
         </motion.div>
 
         {/* ── Right: one black hole, rendered live ────────────── */}
