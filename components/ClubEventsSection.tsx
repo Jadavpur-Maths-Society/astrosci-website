@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { supabase } from "@/lib/supabaseClient";
+import CometLine from "@/components/ambient/CometLine";
 
 interface ClubEvent {
   id: string;
@@ -65,8 +66,8 @@ export default function ClubEventsSection() {
 
   return (
     <section className="py-16 px-6 relative overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#2563eb]/20 to-transparent" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-[#2563eb]/5 rounded-full blur-[100px]" />
+      <CometLine className="absolute top-0 left-0 right-0" color="#2563eb" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-[#2563eb]/5 rounded-full blur-[100px] astro-drift-b" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Section header */}
@@ -176,6 +177,7 @@ export default function ClubEventsSection() {
                         Click to enlarge
                       </span>
                     </div>
+                    <span className="shine-sweep" aria-hidden />
                   </>
                 ) : (
                   <div className="w-full h-full relative flex items-center justify-center" style={{ background: defaultGradient }}>

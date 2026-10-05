@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { MotionConfig } from "framer-motion";
 import "./globals.css";
 import StarfieldBackground from "@/components/StarfieldBackground";
+import ScrollProgressComet from "@/components/ambient/ScrollProgressComet";
 import { siteConfig } from "@/config/siteConfig";
 
 export const metadata: Metadata = {
@@ -24,8 +26,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body style={{ backgroundColor: "#020617", color: "white" }}>
-        <StarfieldBackground />
-        {children}
+        <MotionConfig reducedMotion="user">
+          <StarfieldBackground />
+          <ScrollProgressComet />
+          {children}
+        </MotionConfig>
       </body>
     </html>
   );

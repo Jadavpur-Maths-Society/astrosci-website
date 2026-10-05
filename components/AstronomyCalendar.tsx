@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { supabase } from "@/lib/supabaseClient";
+import CometLine from "@/components/ambient/CometLine";
 
 interface AstronomyEvent {
   id: string;
@@ -98,8 +99,8 @@ export default function AstronomyCalendar() {
 
   return (
     <section className="py-16 px-6 relative overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#38bdf8]/20 to-transparent" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-[#38bdf8]/3 rounded-full blur-[100px]" />
+      <CometLine className="absolute top-0 left-0 right-0" color="#38bdf8" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-[#38bdf8]/3 rounded-full blur-[100px] astro-drift-a" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
@@ -237,7 +238,8 @@ export default function AstronomyCalendar() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="rounded-xl border border-white/10 bg-[#07091a]/60 backdrop-blur-sm p-5 hover:border-[#38bdf8]/30 transition-all"
+              whileHover={{ y: -4 }}
+              className="rounded-xl border border-white/10 bg-[#07091a]/60 backdrop-blur-sm p-5 hover:border-[#38bdf8]/30 hover:shadow-[0_8px_36px_rgba(56,189,248,0.12)] transition-all"
             >
               <p
                 className="text-[#38bdf8] text-xs mb-2"

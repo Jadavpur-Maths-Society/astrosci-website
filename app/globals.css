@@ -7,6 +7,7 @@
   --accent-blue: #2563eb;
   --accent-orbit: #38bdf8;
   --accent-green: #10b981;
+  --astro-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 * {
@@ -26,10 +27,23 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+::selection {
+  background: rgba(37, 99, 235, 0.55);
+  color: #f0f9ff;
+}
+
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #020617; }
 ::-webkit-scrollbar-thumb { background: #2563eb40; border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: #2563eb80; }
+
+:focus-visible {
+  outline: 2px solid rgba(56, 189, 248, 0.7);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─────────────────────────  keyframes  ───────────────────────── */
 
 @keyframes glow-pulse {
   0%, 100% { box-shadow: 0 0 20px rgba(37, 99, 235, 0.3); }
@@ -38,4 +52,154 @@ body {
 
 .glow-blue {
   animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* slow full rotation (orbit rings, dashed halo) */
+@keyframes astro-spin {
+  to { transform: rotate(360deg); }
+}
+.astro-spin-slow { animation: astro-spin 26s linear infinite; }
+.astro-spin-slower { animation: astro-spin 48s linear infinite; }
+
+/* gentle floating bob */
+@keyframes astro-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.astro-bob { animation: astro-bob 5.5s ease-in-out infinite; }
+
+/* star twinkle */
+@keyframes astro-twinkle {
+  0%, 100% { opacity: 0.15; transform: scale(0.75); }
+  50% { opacity: 0.95; transform: scale(1.15); }
+}
+.astro-twinkle { animation: astro-twinkle 3.2s ease-in-out infinite; }
+
+/* nebula blobs drifting */
+@keyframes astro-drift-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(34px, -26px) scale(1.12); }
+  66% { transform: translate(-22px, 18px) scale(0.94); }
+}
+@keyframes astro-drift-b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40% { transform: translate(-30px, 24px) scale(1.08); }
+  75% { transform: translate(20px, -18px) scale(0.96); }
+}
+.astro-drift-a { animation: astro-drift-a 18s ease-in-out infinite; }
+.astro-drift-b { animation: astro-drift-b 23s ease-in-out infinite; }
+
+/* animated gradient text / surfaces */
+@keyframes astro-shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.astro-shimmer {
+  background-size: 220% 220%;
+  animation: astro-shimmer 7s ease-in-out infinite;
+}
+
+/* ken burns slow zoom for deep-space imagery */
+@keyframes kb-drift-a {
+  0% { transform: scale(1.06) translate3d(0, 0, 0); }
+  100% { transform: scale(1.19) translate3d(1.6%, -1.8%, 0); }
+}
+@keyframes kb-drift-b {
+  0% { transform: scale(1.18) translate3d(-1.4%, 1%, 0); }
+  100% { transform: scale(1.05) translate3d(1%, -1.2%, 0); }
+}
+.kb-drift-a { animation: kb-drift-a 55s ease-in-out infinite alternate; will-change: transform; }
+.kb-drift-b { animation: kb-drift-b 65s ease-in-out infinite alternate; will-change: transform; }
+
+/* diagonal light sweep (hover shine) */
+.shine-sweep {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 42%,
+    rgba(255, 255, 255, 0.14) 50%,
+    rgba(165, 243, 252, 0.1) 54%,
+    transparent 62%
+  );
+  transform: translateX(-130%);
+  transition: transform 1.05s var(--astro-ease);
+}
+.group:hover .shine-sweep,
+a:hover .shine-sweep { transform: translateX(130%); }
+
+/* cursor-following spotlight surface (set --mx / --my from JS) */
+.spotlight-surface { position: relative; }
+.spotlight-surface::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  background: radial-gradient(
+    340px circle at var(--mx, 50%) var(--my, 50%),
+    var(--spot, rgba(56, 189, 248, 0.16)),
+    transparent 65%
+  );
+}
+.spotlight-surface:hover::after { opacity: 1; }
+
+/* rotating conic ring (avatar halo) */
+@keyframes astro-ring-rotate { to { --astro-ring-a: 360deg; } }
+.astro-ring {
+  background: conic-gradient(
+    from 0deg,
+    rgba(37, 99, 235, 0) 0deg,
+    rgba(37, 99, 235, 0.9) 80deg,
+    rgba(16, 185, 129, 0.9) 160deg,
+    rgba(56, 189, 248, 0.9) 240deg,
+    rgba(37, 99, 235, 0) 360deg
+  );
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+  animation: astro-spin 7s linear infinite;
+}
+
+/* soft breathing glow for badges & tiles */
+@keyframes astro-glow-soft {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
+}
+.astro-glow-soft { animation: astro-glow-soft 3.4s ease-in-out infinite; }
+
+/* mouse-wheel scroll cue */
+@keyframes astro-wheel {
+  0% { transform: translateY(0); opacity: 0; }
+  25% { opacity: 1; }
+  100% { transform: translateY(14px); opacity: 0; }
+}
+.astro-wheel-dot { animation: astro-wheel 1.9s var(--astro-ease) infinite; }
+
+/* astronomy-themed form focus glow */
+.astro-input:focus {
+  box-shadow:
+    0 0 0 1px rgba(56, 189, 248, 0.28),
+    0 0 24px rgba(56, 189, 248, 0.14);
+}
+
+/* countdown tick flash */
+@keyframes astro-tick {
+  0% { transform: translateY(-6px); opacity: 0; filter: blur(2px); }
+  100% { transform: translateY(0); opacity: 1; filter: blur(0); }
+}
+.astro-tick { animation: astro-tick 0.45s var(--astro-ease); }
+
+/* ─────────────────────  reduced motion  ───────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+  }
 }

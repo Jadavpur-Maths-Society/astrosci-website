@@ -4,11 +4,12 @@ import Link from "next/link";
 import MoonPhaseWidget from "@/components/MoonPhaseWidget";
 import ISSTrackerWidget from "@/components/ISSTrackerWidget";
 import AstronomicalCalendarWidget from "@/components/AstronomicalCalendarWidget";
+import CometLine from "@/components/ambient/CometLine";
 
 export default function AstronomyPreview() {
   return (
     <section className="py-16 px-6 relative overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#38bdf8]/20 to-transparent" />
+      <CometLine className="absolute top-0 left-0 right-0" color="#38bdf8" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
@@ -49,6 +50,8 @@ export default function AstronomyPreview() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0 }}
+            whileHover={{ y: -6 }}
+            className="transition-shadow duration-300 hover:shadow-[0_10px_50px_rgba(56,189,248,0.12)] rounded-2xl"
           >
             <MoonPhaseWidget preview />
           </motion.div>
@@ -57,6 +60,8 @@ export default function AstronomyPreview() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
+            whileHover={{ y: -6 }}
+            className="transition-shadow duration-300 hover:shadow-[0_10px_50px_rgba(56,189,248,0.12)] rounded-2xl"
           >
             <ISSTrackerWidget preview />
           </motion.div>
@@ -65,6 +70,8 @@ export default function AstronomyPreview() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
+            whileHover={{ y: -6 }}
+            className="transition-shadow duration-300 hover:shadow-[0_10px_50px_rgba(56,189,248,0.12)] rounded-2xl"
           >
             <AstronomicalCalendarWidget preview />
           </motion.div>

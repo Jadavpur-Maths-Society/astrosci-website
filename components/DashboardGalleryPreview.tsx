@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { supabase } from "@/lib/supabaseClient";
 import FullscreenImageViewer from "@/components/FullscreenImageViewer";
+import CometLine from "@/components/ambient/CometLine";
+import TiltCard from "@/components/ambient/TiltCard";
 
 interface GalleryItem {
   id: string;
@@ -37,7 +39,7 @@ export default function DashboardGalleryPreview() {
 
   return (
     <section className="py-16 px-6 relative overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#38bdf8]/20 to-transparent" />
+      <CometLine className="absolute top-0 left-0 right-0" color="#38bdf8" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
@@ -92,14 +94,14 @@ export default function DashboardGalleryPreview() {
         ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {items.map((item, i) => (
-            <motion.div
-              key={item.id}
+            <TiltCard key={item.id} className="rounded-xl" glow="rgba(56,189,248,0.18)">
+              <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
               whileHover={{ scale: 1.03, y: -4 }}
-              className="group relative rounded-xl overflow-hidden cursor-pointer border border-white/10 hover:border-[#38bdf8]/30 transition-all"
+              className="group relative rounded-xl overflow-hidden cursor-pointer border border-white/10 hover:border-[#38bdf8]/30 transition-all h-full"
               style={{ aspectRatio: "4/3" }}
               onClick={() => item.image_url && setFullscreenItem(item)}
             >
@@ -128,6 +130,7 @@ export default function DashboardGalleryPreview() {
               )}
 
               <div className="absolute inset-0 bg-gradient-to-t from-[#020617]/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300" />
+              <span className="shine-sweep" aria-hidden />
               <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
                 <p
                   className="text-white text-sm font-bold"
@@ -137,6 +140,7 @@ export default function DashboardGalleryPreview() {
                 </p>
               </div>
             </motion.div>
+            </TiltCard>
           ))}
         </div>
         )}
