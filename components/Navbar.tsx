@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { supabase, isSupabaseConfigured } from "@/lib/supabaseClient";
-import { siteConfig } from "@/config/siteConfig";
+import ClubLogo from "@/components/ClubLogo";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -80,14 +80,13 @@ export default function Navbar() {
       <div className="mx-auto flex h-16 max-w-content items-center justify-between gap-6 px-6">
         {/* wordmark */}
         <Link href="/" className="group flex items-center gap-3" aria-label="AstroSci Club, home">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={siteConfig.assets.logo}
-            alt=""
-            width={26}
-            height={26}
-            className="h-[26px] w-[26px] object-contain opacity-90 transition-opacity group-hover:opacity-100"
-          />
+          <motion.span
+            animate={{ scale: scrolled ? 0.9 : 1 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="inline-flex"
+          >
+            <ClubLogo size={34} glow spinOnHover eager />
+          </motion.span>
           <span className="flex flex-col leading-none">
             <span className="font-display text-[0.95rem] font-semibold tracking-[-0.02em] text-[#f6f2ea]">
               ASTROSCI

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { MotionConfig } from "framer-motion";
 import "./globals.css";
@@ -41,8 +41,37 @@ export const metadata: Metadata = {
     "Exploring the cosmos from the heart of Jadavpur University. A community of astronomers, astrophotographers, and space enthusiasts.",
   keywords: ["astronomy", "astrophotography", "Jadavpur University", "space", "stargazing"],
   icons: {
-    icon: siteConfig.assets.favicon,
+    icon: [
+      { url: siteConfig.assets.favicon, type: "image/png" },
+      { url: "/assets/favicon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: siteConfig.assets.favicon,
+    apple: [{ url: siteConfig.assets.favicon }],
   },
+  openGraph: {
+    title: `${siteConfig.clubName} – ${siteConfig.university}`,
+    description:
+      "A student-run astronomy society — astrophotography, observation nights, orbital mechanics and everything in between.",
+    images: [
+      {
+        url: siteConfig.assets.logo,
+        width: 512,
+        height: 512,
+        alt: `${siteConfig.clubName} logo`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: `${siteConfig.clubName} – ${siteConfig.university}`,
+    description:
+      "A student-run astronomy society — astrophotography, observation nights, orbital mechanics and everything in between.",
+    images: [siteConfig.assets.logo],
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#08080a",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -51,6 +80,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${archivo.variable} ${instrument.variable} ${jetbrains.variable}`}
     >
+      <head>
+        {/* Warm up the asset host so the logo / hero video start instantly. */}
+        <link
+          rel="preconnect"
+          href="https://rwjfnuszkhoznfrjzqfr.supabase.co"
+          crossOrigin="anonymous"
+        />
+        <link rel="dns-prefetch" href="https://rwjfnuszkhoznfrjzqfr.supabase.co" />
+      </head>
       <body>
         <MotionConfig reducedMotion="user">
           <ScrollProgress />
