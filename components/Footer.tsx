@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { siteConfig } from "@/config/siteConfig";
+import ClubLogo from "@/components/ClubLogo";
 
 const socialIcons: Record<string, React.ReactNode> = {
   instagram: (
@@ -66,16 +68,15 @@ export default function Footer() {
       <div className="mx-auto max-w-content px-6 pb-8 pt-16">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           {/* brand */}
-          <div className="lg:pr-10">
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:pr-10"
+          >
             <div className="flex items-center gap-3">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={siteConfig.assets.logo}
-                alt={`${siteConfig.clubName} logo`}
-                width={30}
-                height={30}
-                className="h-[30px] w-[30px] object-contain opacity-90"
-              />
+              <ClubLogo size={40} glow spinOnHover />
               <div className="flex flex-col leading-none">
                 <span className="font-display text-base font-semibold tracking-[-0.02em] text-[#f6f2ea]">
                   ASTROSCI
@@ -108,32 +109,44 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={socialDisplayNames[key] || key}
-                    className="flex h-8 w-8 items-center justify-center border border-white/10 text-[#736d63] transition-colors hover:border-[#ff7a29]/50 hover:text-[#ffb173]"
+                    className="flex h-8 w-8 items-center justify-center border border-white/10 text-[#736d63] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#ff7a29]/50 hover:text-[#ffb173] hover:shadow-[0_4px_16px_rgba(255,122,41,0.25)]"
                   >
                     {socialIcons[key]}
                   </a>
                 );
               })}
             </div>
-          </div>
+          </motion.div>
 
           {/* link columns */}
-          {Object.entries(footerLinks).map(([section, links]) => (
-            <nav key={section} aria-label={section}>
+          {Object.entries(footerLinks).map(([section, links], col) => (
+            <motion.nav
+              key={section}
+              aria-label={section}
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{
+                duration: 0.7,
+                delay: 0.08 + col * 0.08,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+            >
               <h4 className="kicker mb-5 text-[#6a655c]">{section}</h4>
               <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-[0.85rem] text-[#948d81] transition-colors hover:text-[#f6f2ea]"
+                      className="group inline-flex items-center gap-0 text-[0.85rem] text-[#948d81] transition-colors hover:text-[#f6f2ea]"
                     >
+                      <span className="inline-block h-px w-0 bg-[#ff7a29] transition-all duration-300 group-hover:mr-2 group-hover:w-3" aria-hidden />
                       {link.label}
                     </Link>
                   </li>
                 ))}
               </ul>
-            </nav>
+            </motion.nav>
           ))}
         </div>
 

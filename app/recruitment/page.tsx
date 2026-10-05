@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { siteConfig } from "@/config/siteConfig";
 
 // ── DEADLINE: June 6, 2026, 5:00 PM IST (UTC+5:30 → UTC 11:30) ──
 const DEADLINE = new Date("2026-06-06T11:30:00Z");
@@ -85,8 +86,11 @@ const CSS = `
   width:100%;height:100%;border-radius:50%;
   background:#060607;
   display:flex;align-items:center;justify-content:center;font-size:32px;
+  animation:rcSpinRev 12s linear infinite;
 }
+.rc-logo-inner img { width:72%;height:72%;object-fit:contain; }
 @keyframes rcSpin { to { transform:rotate(360deg); } }
+@keyframes rcSpinRev { to { transform:rotate(-360deg); } }
 
 /* eyebrow */
 .rc-eyebrow {
@@ -422,7 +426,7 @@ export default function RecruitmentPage() {
           <div className="rc-rainbow-strip" />
 
           <div className="rc-banner-inner">
-            <div className="rc-logo-ring"><div className="rc-logo-inner">🔭</div></div>
+            <div className="rc-logo-ring"><div className="rc-logo-inner">{/* eslint-disable-next-line @next/next/no-img-element */}<img src={siteConfig.assets.logo} alt="AstroSci Club logo" onError={(e) => { (e.target as HTMLImageElement).src = siteConfig.assets.logoFallback; }} /></div></div>
 
             <div className="rc-eyebrow">★ Astro Club · AstroSci Society</div>
             <h1 className="rc-title">Recruitment<br />2025–26</h1>

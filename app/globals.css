@@ -267,6 +267,57 @@ a:hover .shine-sweep { transform: translateX(130%); }
   box-shadow: 0 0 0 1px rgba(255, 122, 41, 0.25);
 }
 
+/* ───────────────────  brand motion (logo / hero video)  ─────────────────── */
+
+/* slow cinematic push-in on the hero footage */
+@keyframes hero-zoom {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.09); }
+}
+.hero-video-zoom { animation: hero-zoom 38s ease-in-out infinite; }
+
+/* gentle levitation for the club mark */
+@keyframes logo-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.logo-float { animation: logo-float 5.5s ease-in-out infinite; }
+
+/* rotating ember halo behind the instrument plate */
+@keyframes halo-spin { to { transform: rotate(360deg); } }
+.halo-conic {
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    rgba(255, 122, 41, 0.16) 10%,
+    transparent 24%,
+    transparent 52%,
+    rgba(255, 177, 115, 0.12) 66%,
+    transparent 82%
+  );
+  animation: halo-spin 26s linear infinite;
+}
+
+/* the instrument plate slowly "breathes" */
+@keyframes plate-breathe {
+  0%, 100% {
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.04),
+      0 0 60px rgba(255, 122, 41, 0.06);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(255, 122, 41, 0.22),
+      0 0 110px rgba(255, 122, 41, 0.13);
+  }
+}
+.plate-breathe { animation: plate-breathe 6.5s ease-in-out infinite; }
+
+/* seamless orbit ticker along the hero's bottom edge */
+@keyframes astro-marquee { to { transform: translateX(-50%); } }
+.animate-marquee { animation: astro-marquee 30s linear infinite; }
+.animate-marquee:hover { animation-play-state: paused; }
+
 /* ─────────────────────  reduced motion  ───────────────────── */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
