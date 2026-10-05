@@ -75,10 +75,27 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
+      {/* glowing hairline that slides in once the page is scrolled */}
+      <span
+        aria-hidden
+        className={`absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#38bdf8]/70 to-transparent transition-all duration-700 ${
+          scrolled ? "opacity-100 scale-x-100" : "opacity-0 scale-x-50"
+        }`}
+      />
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <motion.div className="flex items-center gap-3 cursor-pointer" whileHover={{ scale: 1.03 }}>
-          <Image src={siteConfig.assets.logo} alt={`${siteConfig.clubName} Logo`} width={36} height={36} className="h-9 w-9" />
+          <span className="relative inline-block">
+            <Image src={siteConfig.assets.logo} alt={`${siteConfig.clubName} Logo`} width={36} height={36} className="h-9 w-9 relative z-10" />
+            {/* orbiting halo around the logo */}
+            <span
+              aria-hidden
+              className="absolute -inset-1.5 rounded-full border border-dashed border-[#38bdf8]/25 astro-spin-slow"
+            />
+            <span aria-hidden className="absolute -inset-1.5 astro-spin-slower">
+              <span className="absolute left-1/2 top-0 w-1 h-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#38bdf8] shadow-[0_0_6px_rgba(56,189,248,0.9)]" />
+            </span>
+          </span>
           <div>
             <span
               className="font-bold text-lg tracking-wider bg-gradient-to-r from-[#2563eb] to-[#10b981] bg-clip-text text-transparent"

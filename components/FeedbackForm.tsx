@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import CometLine from "@/components/ambient/CometLine";
 
 export default function FeedbackForm() {
   const [name, setName] = useState("");
@@ -19,7 +20,7 @@ export default function FeedbackForm() {
 
   return (
     <section className="py-16 px-6 relative overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#38bdf8]/20 to-transparent" />
+      <CometLine className="absolute top-0 left-0 right-0" color="#38bdf8" />
 
       <div className="max-w-2xl mx-auto relative z-10">
         <motion.div
@@ -27,8 +28,10 @@ export default function FeedbackForm() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="text-center mb-8"
+          className="text-center mb-8 relative"
         >
+          <span aria-hidden className="absolute -top-3 left-[18%] w-1 h-1 rounded-full bg-[#a5f3fc] astro-twinkle" />
+          <span aria-hidden className="absolute top-6 right-[16%] w-1.5 h-1.5 rounded-full bg-[#93c5fd] astro-twinkle" style={{ animationDelay: "1.4s" }} />
           <p
             className="text-xs tracking-[0.4em] text-[#38bdf8] mb-2 uppercase"
             style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
@@ -63,7 +66,7 @@ export default function FeedbackForm() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
-              className="w-full px-4 py-3 rounded-xl bg-[#0a0d1a] border border-white/10 text-white text-sm focus:border-[#38bdf8]/50 focus:outline-none transition-colors"
+              className="w-full px-4 py-3 rounded-xl bg-[#0a0d1a] border border-white/10 text-white text-sm focus:border-[#38bdf8]/50 focus:outline-none transition-all astro-input"
               style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
               placeholder="Your name"
             />
@@ -80,7 +83,7 @@ export default function FeedbackForm() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full px-4 py-3 rounded-xl bg-[#0a0d1a] border border-white/10 text-white text-sm focus:border-[#38bdf8]/50 focus:outline-none transition-colors"
+              className="w-full px-4 py-3 rounded-xl bg-[#0a0d1a] border border-white/10 text-white text-sm focus:border-[#38bdf8]/50 focus:outline-none transition-all astro-input"
               style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
               placeholder="your@email.com"
             />
@@ -97,7 +100,7 @@ export default function FeedbackForm() {
               onChange={(e) => setMessage(e.target.value)}
               required
               rows={4}
-              className="w-full px-4 py-3 rounded-xl bg-[#0a0d1a] border border-white/10 text-white text-sm focus:border-[#38bdf8]/50 focus:outline-none transition-colors resize-none"
+              className="w-full px-4 py-3 rounded-xl bg-[#0a0d1a] border border-white/10 text-white text-sm focus:border-[#38bdf8]/50 focus:outline-none transition-all resize-none astro-input"
               style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
               placeholder="Share your thoughts..."
             />
@@ -119,12 +122,13 @@ export default function FeedbackForm() {
           ) : (
             <motion.button
               type="submit"
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-[#38bdf8]/20 to-[#2563eb]/20 border border-[#38bdf8]/40 text-[#38bdf8] text-sm font-medium hover:from-[#38bdf8]/30 hover:to-[#2563eb]/30 hover:shadow-[0_0_30px_rgba(56,189,248,0.3)] transition-all duration-300"
+              className="group relative w-full py-3 rounded-xl bg-gradient-to-r from-[#38bdf8]/20 to-[#2563eb]/20 border border-[#38bdf8]/40 text-[#38bdf8] text-sm font-medium hover:from-[#38bdf8]/30 hover:to-[#2563eb]/30 hover:shadow-[0_0_30px_rgba(56,189,248,0.3)] transition-all duration-300 overflow-hidden"
               style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
               Submit Feedback
+              <span className="shine-sweep" aria-hidden />
             </motion.button>
           )}
         </motion.form>

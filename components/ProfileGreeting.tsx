@@ -66,6 +66,12 @@ export default function ProfileGreeting() {
             whileHover={{ scale: 1.08 }}
           >
             <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-[#2563eb] to-[#10b981] opacity-60 blur-sm group-hover:opacity-100 transition-opacity" />
+            {/* rotating comet-tail halo */}
+            <div className="absolute -inset-2 rounded-full astro-ring opacity-80" aria-hidden />
+            {/* tiny satellite orbiting the avatar */}
+            <span className="absolute -inset-3 astro-spin-slow" aria-hidden>
+              <span className="absolute left-1/2 top-0 w-1.5 h-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#a5f3fc] shadow-[0_0_8px_rgba(165,243,252,0.9)]" />
+            </span>
             <div className="relative w-36 h-36 rounded-full overflow-hidden border-2 border-purple-500 shadow-lg">
               {profileImage ? (
                 <img

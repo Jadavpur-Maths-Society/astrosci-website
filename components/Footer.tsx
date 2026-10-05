@@ -48,7 +48,35 @@ const footerLinks = {
 export default function Footer() {
   return (
     <footer className="relative bg-[#020617] border-t border-[#2563eb]/20 overflow-hidden" id="join">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-[#2563eb]/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-[#2563eb]/5 rounded-full blur-[100px] pointer-events-none astro-glow-soft" />
+      {/* planet horizon rising from the bottom edge */}
+      <div
+        aria-hidden
+        className="absolute -bottom-40 left-1/2 -translate-x-1/2 w-[160%] h-80 rounded-[50%] pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse at 50% 0%, rgba(37,99,235,0.16) 0%, rgba(16,185,129,0.05) 45%, transparent 70%)",
+          borderTop: "1px solid rgba(56,189,248,0.18)",
+          boxShadow: "0 -8px 60px rgba(37,99,235,0.12)",
+        }}
+      />
+      {/* faint twinkling dust */}
+      <div aria-hidden className="absolute inset-0 pointer-events-none">
+        {[
+          { top: "22%", left: "8%", delay: "0s" },
+          { top: "38%", left: "22%", delay: "1.1s" },
+          { top: "18%", left: "78%", delay: "0.6s" },
+          { top: "52%", left: "90%", delay: "1.8s" },
+          { top: "66%", left: "12%", delay: "2.4s" },
+          { top: "30%", left: "55%", delay: "3s" },
+        ].map((s, i) => (
+          <span
+            key={i}
+            className="absolute w-1 h-1 rounded-full bg-[#a5f3fc]/70 astro-twinkle"
+            style={{ top: s.top, left: s.left, animationDelay: s.delay }}
+          />
+        ))}
+      </div>
 
       <div className="max-w-7xl mx-auto px-6 pt-16 pb-8 relative z-10">
         <div className="grid md:grid-cols-5 gap-10 mb-12">

@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { supabase } from "@/lib/supabaseClient";
 import FullscreenImageViewer from "@/components/FullscreenImageViewer";
+import CometLine from "@/components/ambient/CometLine";
+import TiltCard from "@/components/ambient/TiltCard";
 
 interface POTWItem {
   id: string;
@@ -41,8 +43,8 @@ export default function DashboardPOTWPreview() {
 
   return (
     <section className="py-16 px-6 relative overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#2563eb]/20 to-transparent" />
-      <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-[#2563eb]/5 rounded-full blur-[120px]" />
+      <CometLine className="absolute top-0 left-0 right-0" color="#2563eb" />
+      <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-[#2563eb]/5 rounded-full blur-[120px] astro-drift-b" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
@@ -102,14 +104,14 @@ export default function DashboardPOTWPreview() {
         ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {items.map((item, i) => (
-            <motion.div
-              key={item.id}
+            <TiltCard key={item.id} className="rounded-2xl" glow="rgba(37,99,235,0.2)">
+              <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
               whileHover={{ y: -6 }}
-              className="group relative rounded-2xl overflow-hidden border border-[#2563eb]/20 bg-[#07091a]/80 backdrop-blur-sm hover:border-[#2563eb]/50 transition-all cursor-pointer"
+              className="group relative rounded-2xl overflow-hidden border border-[#2563eb]/20 bg-[#07091a]/80 backdrop-blur-sm hover:border-[#2563eb]/50 transition-all cursor-pointer h-full"
               onClick={() => item.image_url && setFullscreenItem(item)}
             >
               <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16/10" }}>
@@ -170,7 +172,9 @@ export default function DashboardPOTWPreview() {
                   })}
                 </p>
               </div>
+              <span className="shine-sweep" aria-hidden />
             </motion.div>
+            </TiltCard>
           ))}
         </div>
         )}

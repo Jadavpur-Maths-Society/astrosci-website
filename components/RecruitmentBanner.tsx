@@ -41,9 +41,9 @@ export default function RecruitmentBanner() {
         }}
       />
 
-      {/* Aurora blobs */}
+      {/* Aurora blobs — slow drift */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none astro-drift-a"
         style={{
           background:
             "radial-gradient(ellipse 60% 80% at 10% 50%, #4f46e520 0%, transparent 60%), " +
@@ -51,6 +51,25 @@ export default function RecruitmentBanner() {
             "radial-gradient(ellipse 40% 60% at 50% 100%, #06b6d415 0%, transparent 50%)",
         }}
       />
+
+      {/* faint drifting star-dust inside the banner */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden>
+        {[
+          { top: "18%", left: "12%", d: "3.4s", delay: "0s" },
+          { top: "30%", left: "44%", d: "4.2s", delay: "0.9s" },
+          { top: "64%", left: "28%", d: "3.8s", delay: "1.7s" },
+          { top: "22%", left: "72%", d: "4.6s", delay: "0.4s" },
+          { top: "58%", left: "64%", d: "3.2s", delay: "2.2s" },
+          { top: "44%", left: "88%", d: "5s", delay: "1.2s" },
+          { top: "72%", left: "80%", d: "4.4s", delay: "2.8s" },
+        ].map((s, i) => (
+          <span
+            key={i}
+            className="absolute w-1 h-1 rounded-full bg-white astro-twinkle"
+            style={{ top: s.top, left: s.left, animationDuration: s.d, animationDelay: s.delay }}
+          />
+        ))}
+      </div>
 
       {/* Animated top rainbow strip */}
       <div
@@ -106,7 +125,7 @@ export default function RecruitmentBanner() {
 
           <Link href="/recruitment">
             <span
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-bold text-white cursor-pointer transition-all duration-200"
+              className="group relative inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-bold text-white cursor-pointer transition-all duration-200 overflow-hidden"
               style={{
                 background: "linear-gradient(135deg,#4f46e5,#a855f7,#ec4899)",
                 boxShadow: "0 0 20px #a855f750",
@@ -114,6 +133,7 @@ export default function RecruitmentBanner() {
               }}
             >
               Apply Now 🚀
+              <span className="shine-sweep" aria-hidden />
             </span>
           </Link>
         </div>

@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { supabase } from "@/lib/supabaseClient";
 import { siteConfig } from "@/config/siteConfig";
+import CometLine from "@/components/ambient/CometLine";
+import TiltCard from "@/components/ambient/TiltCard";
 
 const plans = [
   {
@@ -55,7 +57,7 @@ export default function MembershipCards() {
 
   return (
     <section className="py-16 px-6 relative overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#2563eb]/20 to-transparent" />
+      <CometLine className="absolute top-0 left-0 right-0" color="#2563eb" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
@@ -100,14 +102,14 @@ export default function MembershipCards() {
                     };
 
             return (
-              <motion.div
-                key={plan.name}
+              <TiltCard key={plan.name} className="rounded-2xl" glow={`${plan.color}24`}>
+                <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.15 }}
                 whileHover={{ y: -6 }}
-                className={`relative rounded-2xl border bg-[#07091a]/80 backdrop-blur-sm p-6 transition-all ${tierStyles.border}`}
+                className={`relative rounded-2xl border bg-[#07091a]/80 backdrop-blur-sm p-6 transition-all h-full ${tierStyles.border}`}
               >
                 {plan.tier === "annual" && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
@@ -182,6 +184,7 @@ export default function MembershipCards() {
                   Contact Admins
                 </motion.a>
               </motion.div>
+              </TiltCard>
             );
           })}
         </div>

@@ -1,7 +1,10 @@
 "use client";
 import dynamic from "next/dynamic";
-import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { siteConfig } from "@/config/siteConfig";
+import KenBurnsNebula from "@/components/ambient/KenBurnsNebula";
+import OrbitRings from "@/components/ambient/OrbitRings";
 
 const SolarSystem3D = dynamic(() => import("@/components/SolarSystem3D"), {
   ssr: false,
@@ -12,36 +15,82 @@ const SolarSystem3D = dynamic(() => import("@/components/SolarSystem3D"), {
   ),
 });
 
+/* Hubble Deep Field — NASA/ESA/STScI, public domain */
+const DEEP_FIELD =
+  "https://images-assets.nasa.gov/image/PIA12110/PIA12110~medium.jpg";
+
 export default function HeroSection() {
+  // Pointer parallax — eases toward the cursor for a weightless feel.
+  const px = useMotionValue(0);
+  const py = useMotionValue(0);
+  const sx = useSpring(px, { stiffness: 40, damping: 18, mass: 0.6 });
+  const sy = useSpring(py, { stiffness: 40, damping: 18, mass: 0.6 });
+
+  const blobX = useTransform(sx, [-0.5, 0.5], [18, -18]);
+  const blobY = useTransform(sy, [-0.5, 0.5], [14, -14]);
+  const gridX = useTransform(sx, [-0.5, 0.5], [-8, 8]);
+  const gridY = useTransform(sy, [-0.5, 0.5], [-6, 6]);
+  const planetX = useTransform(sx, [-0.5, 0.5], [-10, 10]);
+  const planetY = useTransform(sy, [-0.5, 0.5], [-8, 8]);
+
+  useEffect(() => {
+    const handle = (e: PointerEvent) => {
+      px.set(e.clientX / window.innerWidth - 0.5);
+      py.set(e.clientY / window.innerHeight - 0.5);
+    };
+    window.addEventListener("pointermove", handle, { passive: true });
+    return () => window.removeEventListener("pointermove", handle);
+  }, [px, py]);
+
   return (
     <section
       id="home"
       className="relative min-h-screen flex items-center overflow-hidden"
       style={{ background: "radial-gradient(ellipse at 50% 60%, #0a1628 0%, #020617 60%)" }}
     >
-      {/* Nebula glows */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#2563eb]/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-[#38bdf8]/8 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#2563eb]/5 rounded-full blur-[160px] pointer-events-none" />
+      {/* Real deep-space photography drifting slowly (NASA Hubble Deep Field) */}
+      <KenBurnsNebula src={DEEP_FIELD} opacity={0.3} drift="a" />
 
-      {/* Grid overlay */}
-      <div
+      {/* Nebula glows — drift on their own and lean away from the cursor */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none"
+        style={{ x: blobX, y: blobY }}
+        aria-hidden
+      >
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#2563eb]/10 rounded-full blur-[120px] astro-drift-a" />
+        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-[#38bdf8]/10 rounded-full blur-[100px] astro-drift-b" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#2563eb]/5 rounded-full blur-[160px]" />
+      </motion.div>
+
+      {/* Grid overlay — counter-parallax for depth */}
+      <motion.div
         className="absolute inset-0 pointer-events-none opacity-[0.04]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(56,189,248,1) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,1) 1px, transparent 1px)",
-          backgroundSize: "80px 80px",
-        }}
-      />
+        style={{ x: gridX, y: gridY }}
+        aria-hidden
+      >
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(56,189,248,1) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,1) 1px, transparent 1px)",
+            backgroundSize: "80px 80px",
+          }}
+        />
+      </motion.div>
 
       {/* Content - Left/Right Split */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center pt-24 lg:pt-0">
         {/* Left side: Text content */}
-        <div className="text-center lg:text-left">
+        <div className="text-center lg:text-left relative">
+          {/* tiny twinkle accents around the headline */}
+          <span aria-hidden className="absolute -top-6 left-6 lg:left-2 w-1 h-1 rounded-full bg-[#a5f3fc] astro-twinkle" />
+          <span aria-hidden className="absolute top-16 right-8 lg:right-auto lg:left-[19rem] w-1.5 h-1.5 rounded-full bg-[#93c5fd] astro-twinkle" style={{ animationDelay: "1.2s" }} />
+          <span aria-hidden className="absolute -top-2 left-1/2 w-1 h-1 rounded-full bg-white astro-twinkle" style={{ animationDelay: "2.1s" }} />
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="flex items-center justify-center lg:justify-start gap-3 mb-6"
           >
             <span className="h-px w-12 bg-gradient-to-r from-transparent to-[#2563eb]" />
@@ -52,14 +101,14 @@ export default function HeroSection() {
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.4 }}
+            initial={{ opacity: 0, y: 40, filter: "blur(6px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 0.9, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="text-4xl md:text-6xl lg:text-7xl font-black leading-none mb-6 tracking-tight"
             style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}
           >
             <span className="bg-gradient-to-b from-white via-white to-gray-400 bg-clip-text text-transparent">ASTRO</span>
-            <span className="bg-gradient-to-br from-[#2563eb] to-[#10b981] bg-clip-text text-transparent">SCI</span>
+            <span className="bg-gradient-to-br from-[#2563eb] via-[#38bdf8] to-[#10b981] bg-clip-text text-transparent astro-shimmer">SCI</span>
             <br />
             <span className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-400 tracking-widest">CLUB</span>
           </motion.h1>
@@ -67,7 +116,7 @@ export default function HeroSection() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.7 }}
+            transition={{ duration: 0.7, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="text-gray-400 text-base md:text-lg max-w-xl mb-10 leading-relaxed mx-auto lg:mx-0"
             style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}
           >
@@ -77,7 +126,7 @@ export default function HeroSection() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.9 }}
+            transition={{ duration: 0.7, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
           >
             <motion.a
@@ -89,6 +138,7 @@ export default function HeroSection() {
             >
               <span className="relative z-10">Explore Events</span>
               <div className="absolute inset-0 bg-gradient-to-r from-[#2563eb] to-[#10b981] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <span className="shine-sweep" aria-hidden />
             </motion.a>
 
             <motion.a
@@ -107,9 +157,13 @@ export default function HeroSection() {
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2, delay: 0.5 }}
+          transition={{ duration: 1.2, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className="relative h-[300px] sm:h-[400px] lg:h-[500px]"
+          style={{ x: planetX, y: planetY }}
         >
+          {/* Satellite orbit rings sweeping behind the system */}
+          <OrbitRings className="absolute inset-0 flex items-center justify-center opacity-80" />
+
           {/* Floating particles around planet */}
           <div className="absolute inset-0 pointer-events-none">
             {[
@@ -142,15 +196,18 @@ export default function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator — mouse-wheel cue */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2.5 z-10"
       >
         <span className="text-xs text-gray-600 tracking-widest uppercase" style={{ fontFamily: "'Public Sans', 'Inter', system-ui, sans-serif" }}>Scroll</span>
-        <div className="w-px h-8 bg-gradient-to-b from-gray-600 to-transparent" style={{ animation: "pulse 2s ease-in-out infinite" }} />
+        <div className="w-[22px] h-9 rounded-full border border-gray-600/80 flex justify-center pt-1.5">
+          <span className="w-1 h-2 rounded-full bg-[#38bdf8] astro-wheel-dot" />
+        </div>
+        <div className="w-px h-6 bg-gradient-to-b from-gray-600 to-transparent" />
       </motion.div>
 
       <style>{`

@@ -4,6 +4,12 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { supabase } from "@/lib/supabaseClient";
 import FullscreenImageViewer from "@/components/FullscreenImageViewer";
+import CometLine from "@/components/ambient/CometLine";
+import KenBurnsNebula from "@/components/ambient/KenBurnsNebula";
+
+/* Eagle Nebula (WISE view, home of the Pillars of Creation) — NASA/JPL, public domain */
+const EAGLE_NEBULA =
+  "https://images-assets.nasa.gov/image/PIA25433/PIA25433~medium.jpg";
 
 interface Magazine {
   id: string;
@@ -42,8 +48,9 @@ export default function DashboardMagazinePreview() {
       className="py-16 px-6 relative overflow-hidden"
       style={{ background: "linear-gradient(180deg, #020617 0%, #05021a 50%, #020617 100%)" }}
     >
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#2563eb]/30 to-transparent" />
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#2563eb]/6 rounded-full blur-[120px] -translate-y-1/2" />
+      <CometLine className="absolute top-0 left-0 right-0" color="#2563eb" />
+      <KenBurnsNebula src={EAGLE_NEBULA} opacity={0.1} drift="b" />
+      <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#2563eb]/6 rounded-full blur-[120px] -translate-y-1/2 astro-drift-a" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
@@ -110,7 +117,11 @@ export default function DashboardMagazinePreview() {
           className="grid md:grid-cols-2 gap-8 items-center"
         >
           {/* Cover */}
-          <div className="group mx-auto max-w-xs">
+          <motion.div
+            className="group mx-auto max-w-xs"
+            animate={{ y: [0, -7, 0] }}
+            transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut" }}
+          >
             <div className="relative">
               <div className="absolute -inset-3 bg-[#2563eb]/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
               <div
@@ -169,9 +180,10 @@ export default function DashboardMagazinePreview() {
                     </div>
                   </div>
                 )}
+                <span className="shine-sweep" aria-hidden />
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Info */}
           <div className="flex flex-col gap-4">
