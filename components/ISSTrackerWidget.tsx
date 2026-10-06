@@ -203,7 +203,7 @@ export default function ISSTrackerWidget({ preview = false }: ISSTrackerWidgetPr
 
   if (loading) {
     return (
-      <div className={`rounded-xl border border-[#26231f] bg-[#121214] ${preview ? "p-4" : "p-6"} animate-pulse`}>
+      <div className={`${preview ? "home-widget p-4" : "rounded-xl border border-[#26231f] bg-[#121214] p-6"} animate-pulse`}>
         <div className="h-4 bg-[#26231f] rounded w-1/3 mb-3" />
         <div className="h-6 bg-[#26231f] rounded w-2/3 mb-4" />
         {!preview && <div className="w-full bg-[#26231f] rounded-lg" style={{ aspectRatio: "2/1" }} />}
@@ -213,7 +213,7 @@ export default function ISSTrackerWidget({ preview = false }: ISSTrackerWidgetPr
 
   if (error && !position) {
     return (
-      <div className={`rounded-xl border border-[#26231f] bg-[#121214] ${preview ? "p-4" : "p-6"}`}>
+      <div className={`${preview ? "home-widget p-4" : "rounded-xl border border-[#26231f] bg-[#121214] p-6"}`}>
         <p
           className="text-xs tracking-[0.3em] text-[#ffb173] mb-1 uppercase"
           style={{ fontFamily: "var(--font-body)" }}
@@ -239,7 +239,7 @@ export default function ISSTrackerWidget({ preview = false }: ISSTrackerWidgetPr
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="rounded-lg border border-[#26231f] bg-[#121214]/80 p-5 hover:border-[#ffb173]/30 transition-all"
+        className="home-widget p-5"
       >
         <div className="flex items-center gap-4">
           {/* Mini position indicator */}

@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import HomeExperience from "@/components/HomeExperience";
 import RecruitmentBanner from "@/components/RecruitmentBanner";
 import ProfileGreeting from "@/components/ProfileGreeting";
 import DashboardGalleryPreview from "@/components/DashboardGalleryPreview";
@@ -17,17 +18,19 @@ export default function Home() {
     <main className="relative min-h-screen">
       <Navbar />
       <HeroSection />
-      <RecruitmentBanner />
-      <ProfileGreeting />
-      <DashboardGalleryPreview />
-      <DashboardPOTWPreview />
-      <DashboardMagazinePreview />
-      <AstronomyCalendar />
-      <AstronomyPreview />
-      <ClubEventsSection />
-      <MembershipCards />
-      <FeedbackForm />
-      <Footer />
+      <HomeExperience>
+        <RecruitmentBanner />
+        <ProfileGreeting />
+        <DashboardGalleryPreview />
+        <DashboardPOTWPreview />
+        <DashboardMagazinePreview />
+        <AstronomyCalendar />
+        <AstronomyPreview />
+        <ClubEventsSection />
+        <MembershipCards />
+        <FeedbackForm />
+        <Footer />
+      </HomeExperience>
     </main>
   );
 }

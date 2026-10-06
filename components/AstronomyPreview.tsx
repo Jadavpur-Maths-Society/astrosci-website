@@ -1,6 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import SectionHeading from "@/components/ambient/SectionHeading";
 import MoonPhaseWidget from "@/components/MoonPhaseWidget";
 import ISSTrackerWidget from "@/components/ISSTrackerWidget";
 import AstronomicalCalendarWidget from "@/components/AstronomicalCalendarWidget";
@@ -8,41 +10,22 @@ import CometLine from "@/components/ambient/CometLine";
 
 export default function AstronomyPreview() {
   return (
-    <section className="py-16 px-6 relative overflow-hidden">
+    <section className="relative overflow-hidden px-6 py-20 md:py-24">
       <CometLine className="absolute top-0 left-0 right-0" color="#ffb173" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="flex flex-wrap items-center justify-between gap-4 mb-8"
-        >
-          <div>
-            <p
-              className="kicker mb-3"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              — Astronomy Tools —
-            </p>
-            <h2
-              className="section-title leading-none"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              LIVE SKY DATA
-            </h2>
-          </div>
-          <Link href="/astronomy">
-            <motion.span
-              className="link-rule mono-data text-[0.66rem] uppercase tracking-[0.2em]"
-              style={{ fontFamily: "var(--font-body)" }}
-              whileHover={{ scale: 1.05 }}
-            >
-              Explore Astronomy Tools →
-            </motion.span>
-          </Link>
-        </motion.div>
+      <div className="max-w-content mx-auto relative z-10">
+        <SectionHeading
+          index="06"
+          eyebrow="Live instruments"
+          title="LIVE SKY DATA"
+          description="A live readout from Earth's orbit, the lunar cycle and the calendar above us."
+          action={(
+            <Link href="/astronomy" className="section-action group">
+              <span>Explore all instruments</span>
+              <ArrowUpRight aria-hidden="true" />
+            </Link>
+          )}
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           <motion.div

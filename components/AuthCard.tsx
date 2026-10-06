@@ -7,6 +7,7 @@ import AuthTabs from "./AuthTabs";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import LoginSuccessAnimation from "./LoginSuccessAnimation";
+import ClubLogo from "@/components/ClubLogo";
 
 export default function AuthCard() {
   const router = useRouter();
@@ -89,16 +90,9 @@ export default function AuthCard() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
               >
-                {/* Logo */}
-                <div className="flex justify-center mb-4">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#ff7a29] to-[#e08b2e] flex items-center justify-center">
-                    <svg
-                      viewBox="0 0 24 24"
-                      className="w-6 h-6 text-white fill-current"
-                    >
-                      <path d="M12 2L9.5 8.5H3L8 12.5L6 19L12 15.5L18 19L16 12.5L21 8.5H14.5L12 2Z" />
-                    </svg>
-                  </div>
+                {/* Official club mark, shared with the hero and navigation. */}
+                <div className="mb-5 flex justify-center">
+                  <ClubLogo size={66} glow ring float eager />
                 </div>
                 <h1
                   className="text-2xl font-bold text-white mb-1"

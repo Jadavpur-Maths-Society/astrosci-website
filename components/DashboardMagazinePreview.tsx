@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { ArrowDownToLine, ArrowUpRight } from "lucide-react";
+import SectionHeading from "@/components/ambient/SectionHeading";
 import { supabase } from "@/lib/supabaseClient";
 import FullscreenImageViewer from "@/components/FullscreenImageViewer";
 import CometLine from "@/components/ambient/CometLine";
@@ -40,43 +42,24 @@ export default function DashboardMagazinePreview() {
 
   return (
     <section
-      className="py-16 px-6 relative overflow-hidden"
+      className="relative overflow-hidden px-6 py-20 md:py-24"
       style={{ background: "linear-gradient(180deg, #08080a 0%, #0a0a0c 50%, #08080a 100%)" }}
     >
       <CometLine className="absolute top-0 left-0 right-0" color="#ff7a29" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="flex flex-wrap items-center justify-between gap-4 mb-8"
-        >
-          <div>
-            <p
-              className="kicker mb-3"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              — Publication —
-            </p>
-            <h2
-              className="section-title leading-none"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              LATEST MAGAZINE
-            </h2>
-          </div>
-          <Link href="/magazine">
-            <motion.span
-              className="link-rule mono-data text-[0.66rem] uppercase tracking-[0.2em]"
-              style={{ fontFamily: "var(--font-body)" }}
-              whileHover={{ scale: 1.05 }}
-            >
-              View All →
-            </motion.span>
-          </Link>
-        </motion.div>
+      <div className="max-w-content mx-auto relative z-10">
+        <SectionHeading
+          index="04"
+          eyebrow="Club publication"
+          title="LATEST MAGAZINE"
+          description="Ideas, images and investigations gathered in one field journal."
+          action={(
+            <Link href="/magazine" className="section-action group">
+              <span>Browse every issue</span>
+              <ArrowUpRight aria-hidden="true" />
+            </Link>
+          )}
+        />
 
         {loading ? (
           <div className="grid md:grid-cols-2 gap-8 items-center animate-pulse">
@@ -93,14 +76,16 @@ export default function DashboardMagazinePreview() {
             </div>
           </div>
         ) : !magazine ? (
-          <div className="rounded-lg border border-white/10 bg-[#0b0b0d]/60 py-16 text-center">
-            <p
-              className="text-gray-500 text-sm"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              No magazines published yet — check back soon!
-            </p>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="home-panel plate-frame px-6 py-14 text-center md:py-16"
+          >
+            <span className="kicker kicker-ember">Issue in development</span>
+            <p className="mt-3 font-display text-xl text-[#f6f2ea]">A new field journal is taking shape.</p>
+            <p className="mt-2 text-sm text-[#736d63]">Past issues and stories from the club live in the magazine archive.</p>
+          </motion.div>
         ) : (
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -111,14 +96,18 @@ export default function DashboardMagazinePreview() {
         >
           {/* Cover */}
           <motion.div
+            initial={{ opacity: 0, y: 24, rotateY: -7 }}
+            whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+            viewport={{ once: true, amount: 0.35 }}
+            whileHover={{ y: -6, rotateY: -2 }}
+            transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
             className="group mx-auto max-w-xs"
-            animate={{ y: [0, -7, 0] }}
-            transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut" }}
+            style={{ perspective: 1000 }}
           >
             <div className="relative">
-              <div className="absolute -inset-3 bg-[#ff7a29]/20 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
+              <div className="absolute -inset-3 bg-[#ff7a29]/14 blur-2xl opacity-40 transition-all duration-700 group-hover:opacity-100" />
               <div
-                className="relative rounded-lg overflow-hidden border border-[#ff7a29]/30 group-hover:border-[#ff7a29]/60 transition-all duration-500 cursor-pointer"
+                className="relative cursor-pointer overflow-hidden border border-[#ff7a29]/30 transition-colors duration-500 group-hover:border-[#ffb173]/70"
                 style={{ aspectRatio: "3/4" }}
                 onClick={() => magazine.cover_image && setFullscreenOpen(true)}
               >
@@ -130,22 +119,10 @@ export default function DashboardMagazinePreview() {
                   />
                 ) : (
                   <div
-                    className="w-full h-full relative"
-                    style={{ background: "linear-gradient(135deg, #08080a 0%, #1a0a3e 40%, #0a0a0b 100%)" }}
+                    className="relative h-full w-full overflow-hidden"
+                    style={{ background: "radial-gradient(ellipse at 70% 28%, rgba(255,122,41,0.22), transparent 36%), linear-gradient(145deg, #17110e 0%, #09090a 68%, #050506 100%)" }}
                   >
-                    {[...Array(40)].map((_, i) => (
-                      <div
-                        key={i}
-                        className="absolute rounded-full bg-white"
-                        style={{
-                          width: `${Math.random() * 2 + 0.5}px`,
-                          height: `${Math.random() * 2 + 0.5}px`,
-                          top: `${Math.random() * 100}%`,
-                          left: `${Math.random() * 100}%`,
-                          opacity: Math.random() * 0.6 + 0.2,
-                        }}
-                      />
-                    ))}
+                    <div className="absolute inset-0 opacity-25" style={{ backgroundImage: "radial-gradient(1px 1px at 18% 22%, #f6f2ea 50%, transparent 100%), radial-gradient(1px 1px at 70% 14%, #ffb173 50%, transparent 100%), radial-gradient(1px 1px at 48% 59%, #f6f2ea 50%, transparent 100%), radial-gradient(1px 1px at 86% 76%, #f6f2ea 50%, transparent 100%)", backgroundSize: "150px 150px" }} />
                     <div className="absolute inset-0 flex flex-col justify-between p-6">
                       <div>
                         <p
@@ -195,37 +172,27 @@ export default function DashboardMagazinePreview() {
                 month: "long",
               })}
             </p>
-            <div className="flex flex-wrap gap-3 mt-2">
+            <div className="mt-3 flex flex-wrap gap-3">
               {magazine.pdf_url && magazine.pdf_url !== "#" ? (
                 <motion.a
                   href={magazine.pdf_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg bg-gradient-to-r from-[#ff7a29] to-[#e2600f] text-white text-xs sm:text-sm font-semibold shadow-[0_0_25px_rgba(255,122,41,0.4)] hover:shadow-[0_0_40px_rgba(255,122,41,0.6)] transition-all duration-300"
-                  style={{ fontFamily: "var(--font-body)" }}
-                  whileHover={{ scale: 1.03 }}
+                  className="btn-ember group"
+                  whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.97 }}
                 >
-                  ↓ Download
+                  <ArrowDownToLine className="h-4 w-4" aria-hidden="true" />
+                  Download issue
                 </motion.a>
               ) : (
-                <motion.button
-                  className="px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg bg-gradient-to-r from-[#ff7a29] to-[#e2600f] text-white text-xs sm:text-sm font-semibold shadow-[0_0_25px_rgba(255,122,41,0.4)] hover:shadow-[0_0_40px_rgba(255,122,41,0.6)] transition-all duration-300"
-                  style={{ fontFamily: "var(--font-body)" }}
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                >
-                  ↓ Download
-                </motion.button>
+                <span className="btn-quiet cursor-not-allowed opacity-60" aria-disabled="true">
+                  PDF coming soon
+                </span>
               )}
-              <Link href="/magazine">
-                <motion.span
-                  className="px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg border border-white/10 text-gray-400 text-xs sm:text-sm hover:border-white/20 hover:text-white transition-all duration-300 inline-block cursor-pointer"
-                  style={{ fontFamily: "var(--font-body)" }}
-                  whileHover={{ scale: 1.03 }}
-                >
-                  View All →
-                </motion.span>
+              <Link href="/magazine" className="btn-quiet group">
+                Browse archive
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
               </Link>
             </div>
           </div>

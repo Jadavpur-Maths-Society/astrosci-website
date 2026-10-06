@@ -67,9 +67,9 @@ function MoonVisual({ phaseRatio, size }: { phaseRatio: number; size: number }) 
       {/* Moon glow */}
       <motion.div
         animate={{ boxShadow: [
-          `0 0 ${size * 0.15}px ${size * 0.05}px rgba(56, 189, 248, 0.15)`,
-          `0 0 ${size * 0.25}px ${size * 0.1}px rgba(56, 189, 248, 0.25)`,
-          `0 0 ${size * 0.15}px ${size * 0.05}px rgba(56, 189, 248, 0.15)`,
+          `0 0 ${size * 0.15}px ${size * 0.05}px rgba(255, 177, 115, 0.15)`,
+          `0 0 ${size * 0.25}px ${size * 0.1}px rgba(255, 177, 115, 0.22)`,
+          `0 0 ${size * 0.15}px ${size * 0.05}px rgba(255, 177, 115, 0.15)`,
         ] }}
         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         className="absolute inset-0 rounded-full"
@@ -146,7 +146,7 @@ export default function MoonPhaseWidget({ preview = false }: MoonPhaseWidgetProp
 
   if (!phaseData) {
     return (
-      <div className={`rounded-xl border border-[#26231f] bg-[#121214] ${preview ? "p-4" : "p-6"} animate-pulse`}>
+      <div className={`${preview ? "home-widget p-4" : "rounded-xl border border-[#26231f] bg-[#121214] p-6"} animate-pulse`}>
         <div className="h-4 bg-[#26231f] rounded w-1/3 mb-3" />
         <div className="h-8 bg-[#26231f] rounded w-1/2 mb-4" />
         <div className={`${preview ? "h-16 w-16" : "h-32 w-32"} rounded-full bg-[#26231f] mx-auto`} />
@@ -163,7 +163,7 @@ export default function MoonPhaseWidget({ preview = false }: MoonPhaseWidgetProp
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="rounded-lg border border-[#26231f] bg-[#121214]/80 p-5 hover:border-[#ffb173]/30 transition-all"
+        className="home-widget p-5"
       >
         <div className="flex items-center gap-4">
           <MoonVisual phaseRatio={phaseRatio} size={56} />

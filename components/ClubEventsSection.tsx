@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import SectionHeading from "@/components/ambient/SectionHeading";
 import { supabase } from "@/lib/supabaseClient";
 import CometLine from "@/components/ambient/CometLine";
 
@@ -65,54 +67,23 @@ export default function ClubEventsSection() {
   const isExpired = eventDateObj ? eventDateObj.getTime() <= Date.now() : false;
 
   return (
-    <section className="py-16 px-6 relative overflow-hidden">
+    <section className="relative overflow-hidden px-6 py-20 md:py-24">
       <CometLine className="absolute top-0 left-0 right-0" color="#ff7a29" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-[#ff7a29]/5 rounded-full blur-[100px] astro-drift-b" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="flex flex-wrap items-center justify-between gap-4 mb-8"
-        >
-          <div>
-            <p
-              className="kicker mb-3"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              — Club Activities —
-            </p>
-            <h2
-              className="section-title leading-none"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              CLUB EVENTS
-            </h2>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-3">
-            <Link href="/events">
-              <motion.span
-                className="link-rule mono-data text-[0.66rem] uppercase tracking-[0.2em]"
-                style={{ fontFamily: "var(--font-body)" }}
-                whileHover={{ scale: 1.05 }}
-              >
-                View All Events
-              </motion.span>
+      <div className="max-w-content mx-auto relative z-10">
+        <SectionHeading
+          index="07"
+          eyebrow="Club activities"
+          title="CLUB EVENTS"
+          description="Field sessions, talks and nights spent under the stars."
+          action={(
+            <Link href="/events" className="section-action group">
+              <span>See the full schedule</span>
+              <ArrowUpRight aria-hidden="true" />
             </Link>
-            <Link href="/events">
-              <motion.span
-                className="text-xs sm:text-sm text-gray-400 border border-white/10 px-4 sm:px-5 py-2 rounded-sm hover:bg-white/5 transition-all cursor-pointer hidden md:inline-block whitespace-nowrap"
-                style={{ fontFamily: "var(--font-body)" }}
-                whileHover={{ scale: 1.05 }}
-              >
-                Past Activities
-              </motion.span>
-            </Link>
-          </div>
-        </motion.div>
+          )}
+        />
 
         {/* Loading skeleton */}
         {loading ? (
@@ -153,7 +124,7 @@ export default function ClubEventsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="rounded-lg border border-[#ff7a29]/20 bg-[#0b0b0d]/80 backdrop-blur-sm overflow-hidden"
+            className="home-panel"
           >
             <div className="grid md:grid-cols-[260px_minmax(0,1fr)]">
               {/* Event Poster */}
@@ -239,7 +210,7 @@ export default function ClubEventsSection() {
                   </div>
 
                   {/* Date badge */}
-                  <div className="shrink-0 text-left md:text-right bg-[#121214]/80 border border-[#ff7a29]/20 rounded-lg px-4 py-3">
+                  <div className="shrink-0 border border-[#ff7a29]/20 bg-[#121214]/65 px-4 py-3 text-left md:text-right">
                     <p
                       className="text-gray-500 text-xs mb-1"
                       style={{ fontFamily: "var(--font-body)" }}
@@ -287,7 +258,7 @@ export default function ClubEventsSection() {
                     ].map((t, i) => (
                       <div key={t.label} className="flex items-center gap-3 md:gap-4">
                         <div className="text-center">
-                          <div className="w-16 h-16 md:w-20 md:h-20 rounded-lg bg-gradient-to-b from-[#ff7a29]/20 to-[#08080a] border border-[#ff7a29]/30 flex items-center justify-center shadow-[0_0_20px_rgba(255,122,41,0.2)]">
+                          <div className="flex h-16 w-16 items-center justify-center border border-[#ff7a29]/25 bg-gradient-to-b from-[#ff7a29]/[0.11] to-[#08080a] md:h-20 md:w-20">
                             <motion.span
                               key={t.val}
                               initial={{ opacity: 0.5, scale: 0.9 }}
@@ -315,15 +286,9 @@ export default function ClubEventsSection() {
 
                 {/* CTA */}
                 <div className="mt-auto pt-2">
-                  <Link href="/events">
-                    <motion.button
-                      className="px-6 py-2.5 rounded-sm bg-gradient-to-r from-[#ff7a29]/30 to-[#ffb173]/20 border border-[#ff7a29]/50 text-white text-sm font-medium hover:from-[#ff7a29]/50 hover:to-[#ffb173]/30 hover:shadow-[0_0_24px_rgba(255,122,41,0.35)] transition-all duration-300"
-                      style={{ fontFamily: "var(--font-body)" }}
-                      whileHover={{ scale: 1.04 }}
-                      whileTap={{ scale: 0.97 }}
-                    >
-                      View Event Details →
-                    </motion.button>
+                  <Link href="/events" className="btn-quiet group">
+                    View event details
+                    <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
                   </Link>
                 </div>
               </div>

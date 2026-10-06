@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import SectionHeading from "@/components/ambient/SectionHeading";
 import { supabase } from "@/lib/supabaseClient";
 import FullscreenImageViewer from "@/components/FullscreenImageViewer";
 import CometLine from "@/components/ambient/CometLine";
@@ -27,7 +29,6 @@ export default function DashboardGalleryPreview() {
           .select("id, image_url, caption, created_at")
           .order("created_at", { ascending: false })
           .limit(3);
-        console.log("gallery", data);
         if (data) setItems(data);
       } catch {
         // Supabase fetch failed silently
@@ -38,111 +39,84 @@ export default function DashboardGalleryPreview() {
   }, []);
 
   return (
-    <section className="py-16 px-6 relative overflow-hidden">
+    <section className="relative overflow-hidden px-6 py-20 md:py-24">
       <CometLine className="absolute top-0 left-0 right-0" color="#ffb173" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="flex flex-wrap items-center justify-between gap-4 mb-8"
-        >
-          <div>
-            <p
-              className="kicker mb-3"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              — Astrophotography —
-            </p>
-            <h2
-              className="section-title leading-none"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              GALLERY
-            </h2>
-          </div>
-          <Link href="/gallery">
-            <motion.span
-              className="link-rule mono-data text-[0.66rem] uppercase tracking-[0.2em]"
-              style={{ fontFamily: "var(--font-body)" }}
-              whileHover={{ scale: 1.05 }}
-            >
-              View All →
-            </motion.span>
-          </Link>
-        </motion.div>
+      <div className="max-w-content mx-auto relative z-10">
+        <SectionHeading
+          index="02"
+          eyebrow="Astrophotography"
+          title="GALLERY"
+          action={(
+            <Link href="/gallery" className="section-action group">
+              <span>View all frames</span>
+              <ArrowUpRight aria-hidden="true" />
+            </Link>
+          )}
+        />
 
         {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-3" aria-label="Loading gallery">
             {[...Array(3)].map((_, i) => (
-              <div key={i} className="rounded-lg overflow-hidden border border-white/10 animate-pulse" style={{ aspectRatio: "4/3" }}>
-                <div className="w-full h-full bg-[#121214]" />
+              <div key={i} className="animate-pulse border border-white/10 bg-[#0c0c0e]" style={{ aspectRatio: "4/3" }}>
+                <div className="h-full w-full bg-[radial-gradient(ellipse_at_65%_35%,rgba(255,122,41,0.12),transparent_42%)]" />
               </div>
             ))}
           </div>
         ) : items.length === 0 ? (
-          <div className="rounded-lg border border-white/10 bg-[#0b0b0d]/60 py-16 text-center">
-            <p
-              className="text-gray-500 text-sm"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              No gallery images yet — check back soon!
-            </p>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="home-panel plate-frame px-6 py-14 text-center md:py-16"
+          >
+            <span className="kicker kicker-ember">Archive transmission</span>
+            <p className="mt-3 font-display text-xl text-[#f6f2ea]">The next frame is waiting to be captured.</p>
+            <p className="mt-2 text-sm text-[#736d63]">New observations from the club will appear here.</p>
+          </motion.div>
         ) : (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {items.map((item, i) => (
-            <TiltCard key={item.id} className="rounded-lg" glow="rgba(255,177,115,0.18)">
-              <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              whileHover={{ scale: 1.03, y: -4 }}
-              className="group relative rounded-lg overflow-hidden cursor-pointer border border-white/10 hover:border-[#ffb173]/30 transition-all h-full"
-              style={{ aspectRatio: "4/3" }}
-              onClick={() => item.image_url && setFullscreenItem(item)}
-            >
-              {item.image_url ? (
-                <img
-                  src={item.image_url}
-                  alt={item.caption}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-              ) : (
-                <div className="w-full h-full" style={{ background: "radial-gradient(ellipse at 50% 50%, #241a12 0%, #08080a 100%)" }}>
-                  {[...Array(20)].map((_, j) => (
-                    <div
-                      key={j}
-                      className="absolute rounded-full bg-white"
-                      style={{
-                        width: `${Math.random() * 2 + 0.5}px`,
-                        height: `${Math.random() * 2 + 0.5}px`,
-                        top: `${Math.random() * 100}%`,
-                        left: `${Math.random() * 100}%`,
-                        opacity: Math.random() * 0.7 + 0.3,
-                      }}
-                    />
-                  ))}
-                </div>
-              )}
-
-              <div className="absolute inset-0 bg-gradient-to-t from-[#08080a]/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300" />
-              <span className="shine-sweep" aria-hidden />
-              <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                <p
-                  className="text-white text-sm font-bold"
-                  style={{ fontFamily: "var(--font-display)" }}
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+            {items.map((item, i) => (
+              <TiltCard key={item.id} className="h-full" glow="rgba(255,177,115,0.18)">
+                <motion.button
+                  type="button"
+                  initial={{ opacity: 0, y: 28, scale: 0.97 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, amount: 0.25 }}
+                  transition={{ duration: 0.72, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ y: -5 }}
+                  whileTap={{ scale: 0.985 }}
+                  className="group relative block h-full w-full overflow-hidden border border-white/10 bg-[#08080a] text-left transition-colors duration-500 hover:border-[#ffb173]/50 disabled:cursor-default"
+                  style={{ aspectRatio: "4/3" }}
+                  onClick={() => item.image_url && setFullscreenItem(item)}
+                  disabled={!item.image_url}
+                  aria-label={item.image_url ? `Open photograph: ${item.caption || "Untitled observation"}` : undefined}
                 >
-                  {item.caption}
-                </p>
-              </div>
-            </motion.div>
-            </TiltCard>
-          ))}
-        </div>
+                  {item.image_url ? (
+                    <img
+                      src={item.image_url}
+                      alt={item.caption || "Astronomical observation"}
+                      className="h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="home-image-placeholder h-full w-full" aria-hidden="true" />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#050506]/95 via-[#050506]/12 to-[#050506]/15" />
+                  <div className="absolute inset-x-0 top-0 flex items-center justify-between border-b border-white/10 bg-[#08080a]/15 px-4 py-3 backdrop-blur-[2px]">
+                    <span className="mono-data text-[0.55rem] uppercase tracking-[0.18em] text-white/65">Field frame / 0{i + 1}</span>
+                    <ArrowUpRight className="h-4 w-4 text-[#ffb173] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
+                  </div>
+                  <div className="absolute inset-x-0 bottom-0 p-5">
+                    <p className="kicker mb-2 text-white/55">AstroSci · Jadavpur</p>
+                    <p className="font-display text-base font-semibold leading-snug text-white md:text-lg">
+                      {item.caption || "Untitled observation"}
+                    </p>
+                  </div>
+                  <span className="shine-sweep" aria-hidden="true" />
+                </motion.button>
+              </TiltCard>
+            ))}
+          </div>
         )}
       </div>
       <FullscreenImageViewer
