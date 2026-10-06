@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import SectionHeading from "@/components/ambient/SectionHeading";
 import { supabase } from "@/lib/supabaseClient";
 import FullscreenImageViewer from "@/components/FullscreenImageViewer";
 import CometLine from "@/components/ambient/CometLine";
@@ -29,7 +31,6 @@ export default function DashboardPOTWPreview() {
           .select("id, image_url, title, photographer, description, week_date")
           .order("week_date", { ascending: false })
           .limit(3);
-        console.log("potw", data);
         if (data) setItems(data);
       } catch {
         // Supabase fetch failed silently
@@ -42,141 +43,95 @@ export default function DashboardPOTWPreview() {
   const defaultGradient = "radial-gradient(ellipse at 50% 50%, #241a12 0%, #08080a 100%)";
 
   return (
-    <section className="py-16 px-6 relative overflow-hidden">
+    <section className="relative overflow-hidden px-6 py-20 md:py-24">
       <CometLine className="absolute top-0 left-0 right-0" color="#ff7a29" />
       <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-[#ff7a29]/5 rounded-full blur-[120px] astro-drift-b" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="flex flex-wrap items-center justify-between gap-4 mb-8"
-        >
-          <div>
-            <p
-              className="kicker mb-3"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              — Featured Shots —
-            </p>
-            <h2
-              className="section-title leading-none"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              Picture of the Week
-            </h2>
-          </div>
-          <Link href="/potw">
-            <motion.span
-              className="link-rule mono-data text-[0.66rem] uppercase tracking-[0.2em]"
-              style={{ fontFamily: "var(--font-body)" }}
-              whileHover={{ scale: 1.05 }}
-            >
-              View All →
-            </motion.span>
-          </Link>
-        </motion.div>
+      <div className="max-w-content mx-auto relative z-10">
+        <SectionHeading
+          index="03"
+          eyebrow="Featured observations"
+          title="Picture of the Week"
+          description="One remarkable view, selected from the community each week."
+          action={(
+            <Link href="/potw" className="section-action group">
+              <span>Explore the collection</span>
+              <ArrowUpRight aria-hidden="true" />
+            </Link>
+          )}
+        />
 
         {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-3" aria-label="Loading featured photographs">
             {[...Array(3)].map((_, i) => (
-              <div key={i} className="rounded-lg overflow-hidden border border-[#ff7a29]/20 bg-[#0b0b0d]/80 animate-pulse">
-                <div className="w-full bg-[#121214]" style={{ aspectRatio: "16/10" }} />
-                <div className="p-4">
-                  <div className="h-4 bg-[#121214] rounded w-3/4 mb-2" />
-                  <div className="h-3 bg-[#121214] rounded w-1/2 mb-1" />
-                  <div className="h-3 bg-[#121214] rounded w-1/3" />
+              <div key={i} className="animate-pulse border border-white/10 bg-[#0c0c0e]">
+                <div className="w-full bg-[radial-gradient(ellipse_at_55%_40%,rgba(255,122,41,0.12),transparent_42%)]" style={{ aspectRatio: "16/10" }} />
+                <div className="space-y-3 border-t border-white/10 p-5">
+                  <div className="h-3 w-1/4 bg-[#1a1917]" />
+                  <div className="h-4 w-3/4 bg-[#1a1917]" />
+                  <div className="h-3 w-1/2 bg-[#1a1917]" />
                 </div>
               </div>
             ))}
           </div>
         ) : items.length === 0 ? (
-          <div className="rounded-lg border border-white/10 bg-[#0b0b0d]/60 py-16 text-center">
-            <p
-              className="text-gray-500 text-sm"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              No featured photos yet — check back soon!
-            </p>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="home-panel plate-frame px-6 py-14 text-center md:py-16"
+          >
+            <span className="kicker kicker-ember">Signal sought</span>
+            <p className="mt-3 font-display text-xl text-[#f6f2ea]">The next featured observation is on its way.</p>
+            <p className="mt-2 text-sm text-[#736d63]">Explore the gallery for more views from our members.</p>
+          </motion.div>
         ) : (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {items.map((item, i) => (
-            <TiltCard key={item.id} className="rounded-lg" glow="rgba(255,122,41,0.2)">
-              <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.15 }}
-              whileHover={{ y: -6 }}
-              className="group relative rounded-lg overflow-hidden border border-[#ff7a29]/20 bg-[#0b0b0d]/80 backdrop-blur-sm hover:border-[#ff7a29]/50 transition-all cursor-pointer h-full"
-              onClick={() => item.image_url && setFullscreenItem(item)}
-            >
-              <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16/10" }}>
-                {item.image_url ? (
-                  <img
-                    src={item.image_url}
-                    alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                ) : (
-                  <div className="w-full h-full" style={{ background: defaultGradient }}>
-                    {[...Array(30)].map((_, j) => (
-                      <div
-                        key={j}
-                        className="absolute rounded-full bg-white"
-                        style={{
-                          width: `${Math.random() * 2 + 0.5}px`,
-                          height: `${Math.random() * 2 + 0.5}px`,
-                          top: `${Math.random() * 100}%`,
-                          left: `${Math.random() * 100}%`,
-                          opacity: Math.random() * 0.7 + 0.3,
-                        }}
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+            {items.map((item, i) => (
+              <TiltCard key={item.id} className="h-full" glow="rgba(255,122,41,0.2)">
+                <motion.button
+                  type="button"
+                  initial={{ opacity: 0, y: 28, scale: 0.97 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, amount: 0.25 }}
+                  transition={{ duration: 0.72, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ y: -5 }}
+                  whileTap={{ scale: 0.985 }}
+                  className="group relative block h-full w-full overflow-hidden border border-white/10 bg-[#08080a] text-left transition-colors duration-500 hover:border-[#ffb173]/50 disabled:cursor-default"
+                  onClick={() => item.image_url && setFullscreenItem(item)}
+                  disabled={!item.image_url}
+                  aria-label={item.image_url ? `Open featured photograph: ${item.title}` : undefined}
+                >
+                  <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16/10" }}>
+                    {item.image_url ? (
+                      <img
+                        src={item.image_url}
+                        alt={item.title || "Featured astronomical photograph"}
+                        className="h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105"
                       />
-                    ))}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-[#ff7a29]/30 blur-2xl" />
+                    ) : (
+                      <div className="home-image-placeholder h-full w-full" style={{ background: defaultGradient }} aria-hidden="true" />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#050506]/80 via-transparent to-transparent" />
+                    <span className="absolute left-4 top-4 border border-[#ffb173]/35 bg-[#08080a]/45 px-3 py-1 font-mono text-[0.58rem] uppercase tracking-[0.16em] text-[#ffb173] backdrop-blur-sm">
+                      Weekly selection · 0{i + 1}
+                    </span>
+                    <span className="shine-sweep" aria-hidden="true" />
                   </div>
-                )}
-                <div className="absolute top-3 left-3">
-                  <span
-                    className="px-2 py-1 rounded-sm bg-[#ffb173]/20 border border-[#ffb173]/40 text-[#ffb173] text-xs backdrop-blur-sm"
-                    style={{ fontFamily: "var(--font-body)" }}
-                  >
-                    ★ POTW
-                  </span>
-                </div>
-              </div>
-              <div className="p-4">
-                <h3
-                  className="text-white font-bold text-sm mb-1"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  {item.title}
-                </h3>
-                <p
-                  className="text-[#ffb173] text-xs"
-                  style={{ fontFamily: "var(--font-body)" }}
-                >
-                  📸 {item.photographer}
-                </p>
-                <p
-                  className="text-gray-500 text-xs mt-1"
-                  style={{ fontFamily: "var(--font-body)" }}
-                >
-                  {new Date(item.week_date).toLocaleDateString("en-IN", {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}
-                </p>
-              </div>
-              <span className="shine-sweep" aria-hidden />
-            </motion.div>
-            </TiltCard>
-          ))}
-        </div>
+                  <div className="relative border-t border-white/10 p-5">
+                    <div className="mb-3 flex items-center justify-between gap-3">
+                      <span className="kicker text-[#ffb173]">{item.photographer || "AstroSci member"}</span>
+                      <ArrowUpRight className="h-4 w-4 shrink-0 text-[#ffb173] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
+                    </div>
+                    <h3 className="font-display text-lg font-semibold leading-snug text-[#f6f2ea]">{item.title}</h3>
+                    <p className="mono-data mt-3 text-[0.58rem] uppercase tracking-[0.14em] text-[#6a655c]">
+                      {new Date(item.week_date).toLocaleDateString("en-IN", { year: "numeric", month: "short", day: "numeric" })}
+                    </p>
+                  </div>
+                </motion.button>
+              </TiltCard>
+            ))}
+          </div>
         )}
       </div>
       <FullscreenImageViewer

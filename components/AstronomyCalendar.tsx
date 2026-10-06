@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import SectionHeading from "@/components/ambient/SectionHeading";
 import { supabase } from "@/lib/supabaseClient";
 import CometLine from "@/components/ambient/CometLine";
 
@@ -98,37 +99,17 @@ export default function AstronomyCalendar() {
   }, [nearestEvent]);
 
   return (
-    <section className="py-16 px-6 relative overflow-hidden">
+    <section className="relative overflow-hidden px-6 py-20 md:py-24">
       <CometLine className="absolute top-0 left-0 right-0" color="#ffb173" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-[#ffb173]/3 rounded-full blur-[100px] astro-drift-a" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="mb-8"
-        >
-          <p
-            className="kicker mb-3"
-            style={{ fontFamily: "var(--font-body)" }}
-          >
-            — Celestial Events —
-          </p>
-          <h2
-            className="section-title leading-none"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            ASTRONOMY CALENDAR
-          </h2>
-          <p
-            className="text-gray-500 text-sm mt-1"
-            style={{ fontFamily: "var(--font-body)" }}
-          >
-            Events this month
-          </p>
-        </motion.div>
+      <div className="max-w-content mx-auto relative z-10">
+        <SectionHeading
+          index="05"
+          eyebrow="Celestial events"
+          title="ASTRONOMY CALENDAR"
+          description="The month's sky, indexed for your next clear night."
+        />
 
         {loading ? (
           <>
@@ -157,14 +138,16 @@ export default function AstronomyCalendar() {
             </div>
           </>
         ) : events.length === 0 ? (
-          <div className="rounded-lg border border-white/10 bg-[#0b0b0d]/60 py-16 text-center">
-            <p
-              className="text-gray-500 text-sm"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              No astronomical events this month — check back soon!
-            </p>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="home-panel plate-frame px-6 py-14 text-center md:py-16"
+          >
+            <span className="kicker kicker-ember">Quiet skies</span>
+            <p className="mt-3 font-display text-xl text-[#f6f2ea]">No major events are on the calendar this month.</p>
+            <p className="mt-2 text-sm text-[#736d63]">Keep an eye on the horizon; the next good night is never far away.</p>
+          </motion.div>
         ) : (
           <>
         {/* Nearest Event Countdown */}
@@ -174,7 +157,7 @@ export default function AstronomyCalendar() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="rounded-lg border border-[#ffb173]/20 bg-[#0b0b0d]/80 backdrop-blur-sm p-6 mb-8"
+          className="home-panel plate-frame mb-8 p-6 md:p-8"
         >
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-4">
             <div>
@@ -208,13 +191,16 @@ export default function AstronomyCalendar() {
                 { val: countdown.seconds, label: "S" },
               ].map((t) => (
                 <div key={t.label} className="text-center">
-                  <div className="w-14 h-14 rounded-lg bg-[#ffb173]/10 border border-[#ffb173]/30 flex items-center justify-center">
-                    <span
-                      className="text-xl font-bold text-white"
-                      style={{ fontFamily: "var(--font-display)" }}
+                  <div className="flex h-14 w-14 items-center justify-center border border-[#ffb173]/25 bg-[#08080a]/75">
+                    <motion.span
+                      key={`${t.label}-${t.val}`}
+                      initial={{ opacity: 0.25, y: 5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                      className="mono-data text-lg text-[#f6f2ea]"
                     >
                       {String(t.val).padStart(2, "0")}
-                    </span>
+                    </motion.span>
                   </div>
                   <span
                     className="text-[10px] text-gray-500 mt-1"
@@ -239,7 +225,7 @@ export default function AstronomyCalendar() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               whileHover={{ y: -4 }}
-              className="rounded-lg border border-white/10 bg-[#0b0b0d]/60 backdrop-blur-sm p-5 hover:border-[#ffb173]/30 hover:shadow-[0_8px_36px_rgba(255,177,115,0.12)] transition-all"
+              className="home-panel p-5"
             >
               <p
                 className="text-[#ffb173] text-xs mb-2"

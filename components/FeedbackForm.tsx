@@ -1,7 +1,10 @@
 "use client";
+
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { ArrowRight, Orbit } from "lucide-react";
 import CometLine from "@/components/ambient/CometLine";
+import SectionHeading from "@/components/ambient/SectionHeading";
 
 export default function FeedbackForm() {
   const [name, setName] = useState("");
@@ -19,119 +22,160 @@ export default function FeedbackForm() {
   }
 
   return (
-    <section className="py-16 px-6 relative overflow-hidden">
-      <CometLine className="absolute top-0 left-0 right-0" color="#ffb173" />
+    <section className="relative overflow-hidden px-6 py-20 md:py-24">
+      <CometLine className="absolute left-0 right-0 top-0" color="#ffb173" />
 
-      <div className="max-w-2xl mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-8 relative"
-        >
-          <span aria-hidden className="absolute -top-3 left-[18%] w-1 h-1 rounded-full bg-[#ffd7b0] astro-twinkle" />
-          <span aria-hidden className="absolute top-6 right-[16%] w-1.5 h-1.5 rounded-full bg-[#ffc9a0] astro-twinkle" style={{ animationDelay: "1.4s" }} />
-          <p
-            className="kicker mb-3"
-            style={{ fontFamily: "var(--font-body)" }}
+      <div className="relative z-10 mx-auto max-w-content">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start lg:gap-16">
+          <div>
+            <SectionHeading
+              index="09"
+              eyebrow="Signal desk"
+              title="LEAVE A SIGNAL"
+              description="Questions, ideas, a sky you want to explore together — we read every message."
+            />
+
+            <motion.aside
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="home-panel plate-frame relative p-6 md:p-8"
+            >
+              <span className="plate-corner" aria-hidden="true" />
+              <div className="absolute -right-16 -top-16 h-52 w-52 rounded-full bg-[#ff7a29]/[0.07] blur-3xl" aria-hidden="true" />
+
+              <div className="relative z-10">
+                <div className="mb-7 flex items-center justify-between gap-4">
+                  <span className="kicker kicker-ember">Community channel</span>
+                  <span className="mono-data flex items-center gap-2 text-[0.56rem] uppercase tracking-[0.15em] text-[#736d63]">
+                    <span className="h-1.5 w-1.5 animate-pulse bg-[#ffb173]" aria-hidden="true" />
+                    Open
+                  </span>
+                </div>
+
+                <div className="relative mb-7 flex h-28 items-center justify-center overflow-hidden border border-white/[0.07] bg-[#08080a]/50">
+                  <span className="absolute h-40 w-64 rounded-[50%] border border-[#ffb173]/10" aria-hidden="true" />
+                  <span className="absolute h-28 w-48 rotate-[-24deg] rounded-[50%] border border-[#ffb173]/15" aria-hidden="true" />
+                  <span className="absolute h-16 w-32 rotate-[32deg] rounded-[50%] border border-[#ff7a29]/20" aria-hidden="true" />
+                  <motion.span
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
+                    className="absolute h-24 w-24 rounded-full border border-dashed border-[#ffb173]/25"
+                    aria-hidden="true"
+                  />
+                  <span className="relative flex h-11 w-11 items-center justify-center border border-[#ffb173]/35 bg-[#0a0908] text-[#ffb173]">
+                    <Orbit className="h-5 w-5" strokeWidth={1.4} aria-hidden="true" />
+                  </span>
+                </div>
+
+                <h3 className="font-display text-2xl font-medium leading-tight tracking-[-0.03em] text-[#f6f2ea]">
+                  Good observations begin with a question.
+                </h3>
+                <p className="mt-3 max-w-md text-sm leading-relaxed text-[#948d81]">
+                  Tell us what you would like to see, learn or build. Your note helps shape the next club night, workshop or project.
+                </p>
+
+                <div className="mt-7 flex items-center justify-between border-t border-white/[0.08] pt-4">
+                  <span className="mono-data text-[0.55rem] uppercase tracking-[0.15em] text-[#585349]">AstroSci · Jadavpur University</span>
+                  <span className="mono-data text-[0.55rem] uppercase tracking-[0.15em] text-[#ffb173]/70">22.4996° N</span>
+                </div>
+              </div>
+            </motion.aside>
+          </div>
+
+          <motion.form
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.85, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+            onSubmit={handleSubmit}
+            className="home-panel plate-frame relative space-y-5 p-6 md:p-8"
           >
-            — We Value Your Input —
-          </p>
-          <h2
-            className="section-title leading-none"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            FEEDBACK
-          </h2>
-        </motion.div>
+            <span className="plate-corner" aria-hidden="true" />
+            <div className="mb-1 flex items-center justify-between gap-4 border-b border-white/[0.08] pb-5">
+              <div>
+                <p className="kicker kicker-ember">Transmission form</p>
+                <p className="mt-2 font-display text-lg text-[#f6f2ea]">Your note to the club</p>
+              </div>
+              <span className="mono-data text-[0.58rem] text-[#6a655c]">09 / 09</span>
+            </div>
 
-        <motion.form
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          onSubmit={handleSubmit}
-          className="rounded-lg border border-white/10 bg-[#0b0b0d]/80 backdrop-blur-sm p-6 md:p-8 space-y-5"
-        >
-          <div>
-            <label
-              className="text-gray-400 text-xs mb-1 block"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              Name
-            </label>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-              className="w-full px-4 py-3 rounded-lg bg-[#0c0c0e] border border-white/10 text-white text-sm focus:border-[#ffb173]/50 focus:outline-none transition-all astro-input"
-              style={{ fontFamily: "var(--font-body)" }}
-              placeholder="Your name"
-            />
-          </div>
-          <div>
-            <label
-              className="text-gray-400 text-xs mb-1 block"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              Email
-            </label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="w-full px-4 py-3 rounded-lg bg-[#0c0c0e] border border-white/10 text-white text-sm focus:border-[#ffb173]/50 focus:outline-none transition-all astro-input"
-              style={{ fontFamily: "var(--font-body)" }}
-              placeholder="your@email.com"
-            />
-          </div>
-          <div>
-            <label
-              className="text-gray-400 text-xs mb-1 block"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              Feedback
-            </label>
-            <textarea
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              required
-              rows={4}
-              className="w-full px-4 py-3 rounded-lg bg-[#0c0c0e] border border-white/10 text-white text-sm focus:border-[#ffb173]/50 focus:outline-none transition-all resize-none astro-input"
-              style={{ fontFamily: "var(--font-body)" }}
-              placeholder="Share your thoughts..."
-            />
-          </div>
+            <div>
+              <label htmlFor="feedback-name" className="mb-2 block font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[#948d81]">
+                Name
+              </label>
+              <input
+                id="feedback-name"
+                name="name"
+                type="text"
+                autoComplete="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                className="astro-input w-full border border-white/10 bg-[#08080a]/75 px-4 py-3 text-sm text-[#f6f2ea] transition-colors placeholder:text-[#585349] focus:border-[#ffb173]/50 focus:outline-none"
+                placeholder="Your name"
+              />
+            </div>
 
-          {submitted ? (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="text-center py-3 rounded-lg bg-[#ffb173]/10 border border-[#ffb173]/30"
-            >
-              <span
-                className="text-[#ffb173] text-sm"
-                style={{ fontFamily: "var(--font-body)" }}
+            <div>
+              <label htmlFor="feedback-email" className="mb-2 block font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[#948d81]">
+                Email
+              </label>
+              <input
+                id="feedback-email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="astro-input w-full border border-white/10 bg-[#08080a]/75 px-4 py-3 text-sm text-[#f6f2ea] transition-colors placeholder:text-[#585349] focus:border-[#ffb173]/50 focus:outline-none"
+                placeholder="you@example.com"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="feedback-message" className="mb-2 block font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[#948d81]">
+                Your message
+              </label>
+              <textarea
+                id="feedback-message"
+                name="message"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                required
+                rows={5}
+                className="astro-input w-full resize-none border border-white/10 bg-[#08080a]/75 px-4 py-3 text-sm leading-relaxed text-[#f6f2ea] transition-colors placeholder:text-[#585349] focus:border-[#ffb173]/50 focus:outline-none"
+                placeholder="Share a thought, an idea, or a question..."
+              />
+            </div>
+
+            {submitted ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.97 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="border border-[#ffb173]/30 bg-[#ffb173]/[0.07] px-4 py-4 text-center"
+                role="status"
               >
-                ✓ Thank you for your feedback!
-              </span>
-            </motion.div>
-          ) : (
-            <motion.button
-              type="submit"
-              className="group relative w-full py-3 rounded-lg bg-gradient-to-r from-[#ffb173]/20 to-[#ff7a29]/20 border border-[#ffb173]/40 text-[#ffb173] text-sm font-medium hover:from-[#ffb173]/30 hover:to-[#ff7a29]/30 hover:shadow-[0_0_30px_rgba(255,177,115,0.3)] transition-all duration-300 overflow-hidden"
-              style={{ fontFamily: "var(--font-body)" }}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Submit Feedback
-              <span className="shine-sweep" aria-hidden />
-            </motion.button>
-          )}
-        </motion.form>
+                <span className="font-mono text-xs uppercase tracking-[0.12em] text-[#ffb173]">
+                  Signal received — thank you.
+                </span>
+              </motion.div>
+            ) : (
+              <motion.button
+                type="submit"
+                className="btn-ember group relative w-full justify-center overflow-hidden"
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.985 }}
+              >
+                Send your signal
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+                <span className="shine-sweep" aria-hidden="true" />
+              </motion.button>
+            )}
+          </motion.form>
+        </div>
       </div>
     </section>
   );

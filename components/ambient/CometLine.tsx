@@ -1,24 +1,21 @@
 "use client";
 
+import type { CSSProperties } from "react";
+
 interface CometLineProps {
   color?: string;
   className?: string;
 }
 
-/**
- * Section divider. It used to be a sweeping comet; now it is a single
- * hairline. Kept as a component so sections stay decoupled from styling.
- */
-export default function CometLine({ color, className = "" }: CometLineProps) {
-  void color;
+/** A quiet section divider with a slow, ember-lit comet pass. */
+export default function CometLine({ color = "#ff7a29", className = "" }: CometLineProps) {
   return (
     <div
-      aria-hidden
-      className={`relative h-px w-full ${className}`}
-      style={{
-        background:
-          "linear-gradient(90deg, transparent, rgba(246,242,234,0.13) 18%, rgba(246,242,234,0.13) 82%, transparent)",
-      }}
-    />
+      aria-hidden="true"
+      className={`comet-line ${className}`}
+      style={{ "--comet-color": color } as CSSProperties & { "--comet-color": string }}
+    >
+      <span className="comet-line__beam" />
+    </div>
   );
 }
